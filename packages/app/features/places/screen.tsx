@@ -3,12 +3,14 @@ import { router } from 'expo-router'
 import { FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useState, useMemo } from 'react'
+import { X } from '@tamagui/lucide-icons'
 import { PLACE_TYPE_COLORS, PLACE_TYPE_LABELS, PLACE_TYPES, type PlaceType } from 'app/utils/constants'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 
 export function PlacesScreen() {
   const [selectedType, setSelectedType] = useState<PlaceType | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [headerDismissed, setHeaderDismissed] = useState(false)
   const insets = useSafeAreaInsets()
 
   // Fetch all places once
@@ -50,6 +52,40 @@ export function PlacesScreen() {
 
   return (
     <YStack f={1} bg="$background">
+      {/* Dismissible Header with safe area */}
+      {!headerDismissed && (
+        <YStack 
+          pt={insets.top} 
+          px="$4" 
+          pb="$4" 
+          bg="$background" 
+          borderBottomWidth={1} 
+          borderBottomColor="$borderColor"
+        >
+          <XStack jc="space-between" ai="flex-start">
+            <YStack f={1}>
+              <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
+                📍 Places in Mazunte
+              </Text>
+              <Text color="$color11" fontSize="$4">
+                Discover amazing places in our community
+              </Text>
+            </YStack>
+            <Button
+              size="$2"
+              circular
+              onPress={() => setHeaderDismissed(true)}
+              ml="$2"
+            >
+              <X size={16} />
+            </Button>
+          </XStack>
+        </YStack>
+      )}
+
+      {/* Safe area padding when header is dismissed */}
+      {headerDismissed && <YStack pt={insets.top} />}
+
       {/* Search */}
       <SearchBar
         placeholder="Search places..."

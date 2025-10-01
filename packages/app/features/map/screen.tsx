@@ -2,6 +2,8 @@ import { Text, YStack, XStack, Button } from '@my/ui'
 import { router } from 'expo-router'
 import { useState } from 'react'
 import { Alert, Platform } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { X } from '@tamagui/lucide-icons'
 import { useEventsQuery } from 'app/utils/react-query/useEventsQuery'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 import { MAZUNTE_CENTER } from 'app/utils/constants'
@@ -24,6 +26,8 @@ type MapViewType = 'events' | 'places' | 'both'
 
 export function MapScreen() {
   const [viewType, setViewType] = useState<MapViewType>('both')
+  const [headerDismissed, setHeaderDismissed] = useState(false)
+  const insets = useSafeAreaInsets()
   
   const { data: events = [], isLoading: eventsLoading } = useEventsQuery({})
   const { data: places = [], isLoading: placesLoading } = usePlacesQuery({})
@@ -53,12 +57,42 @@ export function MapScreen() {
   // Web fallback
   if (Platform.OS === 'web' || !MapView) {
     return (
-      <YStack f={1} bg="$background" p="$4">
-        <YStack f={1} ai="center" jc="center" gap="$4">
-          <Text fontSize="$6" color="$color11">🗺️ Map View</Text>
-          <Text fontSize="$4" color="$color10" ta="center">
-            Interactive map is available on mobile devices
-          </Text>
+      <YStack f={1} bg="$background">
+        {/* Dismissible Header with safe area */}
+        {!headerDismissed && (
+          <YStack 
+            pt={insets.top} 
+            px="$4" 
+            pb="$4" 
+            bg="$background" 
+            borderBottomWidth={1} 
+            borderBottomColor="$borderColor"
+          >
+            <XStack jc="space-between" ai="flex-start">
+              <YStack f={1}>
+                <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
+                  🗺️ Map View
+                </Text>
+                <Text color="$color11" fontSize="$4">
+                  Interactive map is available on mobile devices
+                </Text>
+              </YStack>
+              <Button
+                size="$2"
+                circular
+                onPress={() => setHeaderDismissed(true)}
+                ml="$2"
+              >
+                <X size={16} />
+              </Button>
+            </XStack>
+          </YStack>
+        )}
+
+        {/* Safe area padding when header is dismissed */}
+        {headerDismissed && <YStack pt={insets.top} />}
+        
+        <YStack f={1} ai="center" jc="center" gap="$4" p="$4">
           <YStack gap="$2" w="100%">
             <Text fontSize="$4" fontWeight="600" color="$color11">
               📍 Mazunte, Mexico (15.666°N, 96.556°W)
@@ -77,16 +111,53 @@ export function MapScreen() {
 
   return (
     <YStack f={1} bg="$background">
-      {/* Header with view type toggle */}
-      <XStack 
-        w="100%" 
+      {/* Dismissible Header with safe area and view type toggle */}
+      {!headerDismissed && (
+        <YStack 
+          pt={insets.top} 
+          bg="$background" 
+          borderBottomWidth={1} 
+          borderBottomColor="$borderColor"
+        >
+          <YStack px="$4" pb="$3">
+            <XStack jc="space-between" ai="flex-start">
+              <YStack f={1}>
+                <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
+                  🗺️ Map View
+                </Text>
+                <Text color="$color11" fontSize="$4" mb="$3">
+                  Explore events and places in Mazunte
+                </Text>
+              </YStack>
+              <Button
+                size="$2"
+                circular
+                onPress={() => setHeaderDismissed(true)}
+                ml="$2"
+              >
+                <X size={16} />
+              </Button>
+            </XStack>
+          </YStack>
+        </YStack>
+      )}
+
+      {/* Safe area padding when header is dismissed */}
+      {headerDismissed && <YStack pt={insets.top} />}
+      
+      {/* View type toggle - always visible */}
+      <YStack 
         bg="$background" 
         borderBottomWidth={1} 
         borderBottomColor="$borderColor"
-        px="$4"
-        py="$3"
-        gap="$2"
       >
+        <XStack 
+          w="100%" 
+          bg="$background" 
+          px="$4"
+          py="$3"
+          gap="$2"
+        >
         <Button
           size="$3"
           variant={viewType === 'events' ? 'outlined' : 'ghost'}
@@ -111,7 +182,8 @@ export function MapScreen() {
         >
           <Text>Both</Text>
         </Button>
-      </XStack>
+        </XStack>
+      </YStack>
 
       {/* Map View */}
       <MapView

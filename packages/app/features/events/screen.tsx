@@ -1,20 +1,55 @@
-import { CategoryFilter, EventCard, FullscreenSpinner, SearchBar, Text, YStack } from '@my/ui'
+import { EventCard, FullscreenSpinner, SearchBar, Text, YStack, Button, XStack, H6, Paragraph } from '@my/ui'
 import { router } from 'expo-router'
 import { FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useState } from 'react'
-import { CATEGORY_COLORS, CATEGORY_LABELS, EVENT_CATEGORIES, type EventCategory } from 'app/utils/constants'
+import { useState, useMemo } from 'react'
+import { X } from '@tamagui/lucide-icons'
+import { CATEGORY_LABELS, EVENT_CATEGORIES, type EventCategory } from 'app/utils/constants'
 import { useEventsQuery } from 'app/utils/react-query/useEventsQuery'
+import { formatDate, formatTime, getRelativeDay } from 'app/utils/date-helpers'
 
 export function EventsScreen() {
   const [selectedCategory, setSelectedCategory] = useState<EventCategory | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [headerDismissed, setHeaderDismissed] = useState(false)
   const insets = useSafeAreaInsets()
 
-  const { data: events = [], isLoading } = useEventsQuery({
-    category: selectedCategory,
-    search: searchQuery || undefined,
-  })
+  // Fetch all events once (including past events for now)
+  const { data: allEvents = [], isLoading, error } = useEventsQuery({ includePast: true })
+
+  // Debug logging
+  console.log('Events data:', { allEvents, isLoading, error })
+
+  // Filter locally for better performance
+  const filteredEvents = useMemo(() => {
+    let filtered = allEvents
+
+    // Filter by category
+    if (selectedCategory) {
+      filtered = filtered.filter(event => event.category === selectedCategory)
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase()
+      filtered = filtered.filter(event => 
+        event.title.toLowerCase().includes(query) ||
+        event.description?.toLowerCase().includes(query) ||
+        event.location_name?.toLowerCase().includes(query)
+      )
+    }
+
+    // Sort by date (upcoming first)
+    return filtered.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+  }, [allEvents, selectedCategory, searchQuery])
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+  }
+
+  const handleCategorySelect = (category: string | null) => {
+    setSelectedCategory(category as EventCategory | null)
+  }
 
   if (isLoading) {
     return <FullscreenSpinner />
@@ -22,24 +57,71 @@ export function EventsScreen() {
 
   return (
     <YStack f={1} bg="$background">
+      {/* Dismissible Header with safe area */}
+      {!headerDismissed && (
+        <YStack 
+          pt={insets.top} 
+          px="$4" 
+          pb="$4" 
+          bg="$background" 
+          borderBottomWidth={1} 
+          borderBottomColor="$borderColor"
+        >
+          <XStack jc="space-between" ai="flex-start">
+            <YStack f={1}>
+              <H6 fontSize="$6" color="$color12" mb="$2">
+                🎉 Events in Mazunte
+              </H6>
+              <Paragraph color="$color11" fontSize="$4">
+                Discover amazing events happening in our community
+              </Paragraph>
+            </YStack>
+            <Button
+              size="$2"
+              circular
+              onPress={() => setHeaderDismissed(true)}
+              ml="$2"
+            >
+              <X size={16} />
+            </Button>
+          </XStack>
+        </YStack>
+      )}
+
+      {/* Safe area padding when header is dismissed */}
+      {headerDismissed && <YStack pt={insets.top} />}
+
       {/* Search */}
       <SearchBar
         placeholder="Search events..."
-        onSearch={setSearchQuery}
+        onSearch={handleSearch}
+        defaultValue={searchQuery}
       />
 
       {/* Category Filter */}
-      <CategoryFilter
-        categories={EVENT_CATEGORIES}
-        selected={selectedCategory}
-        onSelect={(cat) => setSelectedCategory(cat as EventCategory | null)}
-        categoryLabels={CATEGORY_LABELS}
-        categoryColors={CATEGORY_COLORS}
-      />
+      <XStack gap="$2" px="$4" py="$2" bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
+        <Button
+          size="$3"
+          variant={selectedCategory === null ? 'outlined' : undefined}
+          onPress={() => handleCategorySelect(null)}
+        >
+          <Text>All ({allEvents.length})</Text>
+        </Button>
+        {EVENT_CATEGORIES.map((category) => (
+          <Button
+            key={category}
+            size="$3"
+            variant={selectedCategory === category ? 'outlined' : undefined}
+            onPress={() => handleCategorySelect(category)}
+          >
+            <Text>{CATEGORY_LABELS[category]}</Text>
+          </Button>
+        ))}
+      </XStack>
 
       {/* Events List */}
       <FlatList
-        data={events}
+        data={filteredEvents}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <EventCard
@@ -58,10 +140,20 @@ export function EventsScreen() {
             <Text fontSize="$5" color="$color10">
               No events found
             </Text>
-            {selectedCategory && (
+            {(selectedCategory || searchQuery) && (
               <Text fontSize="$3" color="$color9" mt="$2">
-                Try a different category
+                Try adjusting your filters
               </Text>
+            )}
+            {!selectedCategory && !searchQuery && (
+              <YStack ai="center" gap="$3" mt="$4">
+                <Text fontSize="$4" color="$color11" ta="center">
+                  No events scheduled yet
+                </Text>
+                <Button onPress={() => router.push('/create')} size="$4">
+                  <Text>Create First Event</Text>
+                </Button>
+              </YStack>
             )}
           </YStack>
         }
