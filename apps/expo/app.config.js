@@ -53,13 +53,14 @@ export default {
           photosPermission: 'The app accesses your photos to let you share them with your friends.',
         },
       ],
-      [
-        '@react-native-google-signin/google-signin',
-        {
-          // https://react-native-google-signin.github.io/docs/setting-up/expo
-          iosUrlScheme: process.env.GOOGLE_IOS_SCHEME || 'com.googleusercontent.apps.571497840649-tqcs8mtqtnrkorj0iagsktomose67k5q',
-        },
-      ],
+      // COMMENTED OUT: Google Sign-In functionality
+      // [
+      //   '@react-native-google-signin/google-signin',
+      //   {
+      //     // https://react-native-google-signin.github.io/docs/setting-up/expo
+      //     iosUrlScheme: process.env.GOOGLE_IOS_SCHEME || 'com.googleusercontent.apps.571497840649-tqcs8mtqtnrkorj0iagsktomose67k5q',
+      //   },
+      // ],
       'expo-apple-authentication',
       'expo-router',
       'expo-build-properties',

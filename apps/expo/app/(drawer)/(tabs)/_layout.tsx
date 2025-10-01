@@ -1,7 +1,6 @@
 import { useTheme, Button } from '@my/ui'
 import { DrawerActions } from '@react-navigation/native'
-import { Home, Menu, Plus, User } from '@tamagui/lucide-icons'
-// import { IconGearFill, IconGear, IconHouse, IconHouseFill } from '@tamagui-icons/icon-ph'
+import { Calendar, Heart, Map, MapPin, Menu, Plus, User } from '@tamagui/lucide-icons'
 import { router, Stack, Tabs, useNavigation, usePathname } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -18,7 +17,7 @@ export default function Layout() {
     <>
       <Stack.Screen
         options={{
-          title: 'Home',
+          title: 'Mazunte Connect',
           headerShown: pathname === '/' || pathname === '/create',
           headerTintColor: accentColor.val,
           headerLeft: () => (
@@ -52,17 +51,21 @@ export default function Layout() {
       />
       <Tabs
         screenOptions={{
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
           headerTintColor: accentColor.val,
           tabBarStyle: {
             paddingTop: 10,
-            paddingBottom: insets.bottom + 20, // edit this with safe area insets
-            height: 60,
+            paddingBottom: insets.bottom + 10,
+            height: insets.bottom + 70,
             alignContent: 'center',
             justifyContent: 'center',
           },
           tabBarItemStyle: {
-            paddingBottom: 10,
+            paddingBottom: 5,
+          },
+          tabBarLabelStyle: {
+            fontSize: 11,
+            fontWeight: '500',
           },
         }}
       >
@@ -71,9 +74,42 @@ export default function Layout() {
           key="index"
           options={{
             headerShown: false,
-            title: 'Home',
+            title: 'Events',
             tabBarIcon: ({ size, color, focused }) => (
-              <Home color={focused ? '$color12' : '$color10'} size={size} strokeWidth={2} />
+              <Calendar color={focused ? '$color12' : '$color10'} size={22} strokeWidth={focused ? 2.5 : 2} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="places"
+          key="places"
+          options={{
+            headerShown: false,
+            title: 'Places',
+            tabBarIcon: ({ size, color, focused }) => (
+              <MapPin color={focused ? '$color12' : '$color10'} size={22} strokeWidth={focused ? 2.5 : 2} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="map"
+          key="map"
+          options={{
+            headerShown: false,
+            title: 'Map',
+            tabBarIcon: ({ size, color, focused }) => (
+              <Map color={focused ? '$color12' : '$color10'} size={22} strokeWidth={focused ? 2.5 : 2} />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="favorites"
+          key="favorites"
+          options={{
+            headerShown: false,
+            title: 'Saved',
+            tabBarIcon: ({ size, color, focused }) => (
+              <Heart color={focused ? '$color12' : '$color10'} size={22} strokeWidth={focused ? 2.5 : 2} fill={focused ? '$color12' : 'transparent'} />
             ),
           }}
         />
@@ -83,9 +119,8 @@ export default function Layout() {
           options={{
             headerShown: false,
             title: 'Profile',
-            tabBarLabel: 'Profile',
             tabBarIcon: ({ size, color, focused }) => (
-              <User color={focused ? '$color12' : '$color10'} size={size} strokeWidth={2} />
+              <User color={focused ? '$color12' : '$color10'} size={22} strokeWidth={focused ? 2.5 : 2} />
             ),
           }}
         />

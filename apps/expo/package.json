@@ -42,7 +42,8 @@
     "@my/ui": "*",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-native-community/netinfo": "11.4.1",
-    "@react-native-google-signin/google-signin": "^13.1.0",
+    // COMMENTED OUT: Google Sign-In functionality
+    // "@react-native-google-signin/google-signin": "^13.1.0",
     "app": "*",
     "babel-plugin-module-resolver": "^4.1.0",
     "burnt": "^0.12.1",

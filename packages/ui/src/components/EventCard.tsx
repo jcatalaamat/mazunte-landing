@@ -1,63 +1,139 @@
+import type { Database } from '@my/supabase/types'
+import { Calendar, Leaf, MapPin } from '@tamagui/lucide-icons'
 import { useState } from 'react'
-import type { useLink } from 'solito/link'
-import { Button, Card, type CardProps, H6, Paragraph, Theme, type ThemeName, XStack } from 'tamagui'
+import { Button, Card, type CardProps, H6, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 
-import { EventModal } from './EventModal'
+type Event = Database['public']['Tables']['events']['Row']
 
-export type EventCardTypes = {
-  title?: string
-  description?: string
-  action?: {
-    props: ReturnType<typeof useLink>
-    text: string
-  }
-  tags?: { text: string; theme: ThemeName }[]
-} & CardProps
+export type EventCardProps = {
+  event: Event
+  onPress?: () => void
+  showFavorite?: boolean
+  onToggleFavorite?: () => void
+} & Omit<CardProps, 'onPress'>
 
-export const EventCard = ({ title, description, action, tags = [], ...props }: EventCardTypes) => {
-  const [toggleEvent, setToggleEvent] = useState(false)
+// Helper to format date
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString)
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+
+  if (date.toDateString() === today.toDateString()) return 'Today'
+  if (date.toDateString() === tomorrow.toDateString()) return 'Tomorrow'
+
+  return date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  })
+}
+
+// Helper to format time
+const formatTime = (timeString: string | null): string => {
+  if (!timeString) return ''
+  const [hours, minutes] = timeString.split(':').map(Number)
+  const date = new Date()
+  date.setHours(hours, minutes, 0)
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })
+}
+
+// Category colors
+const categoryColors: Record<string, string> = {
+  yoga: 'orange',
+  ceremony: 'purple',
+  workshop: 'blue',
+  party: 'pink',
+  market: 'green',
+  other: 'gray',
+}
+
+export const EventCard = ({ event, onPress, showFavorite = false, onToggleFavorite, ...props }: EventCardProps) => {
   const [hover, setHover] = useState(false)
+
   return (
     <Card
       cursor="pointer"
-      gap="$3"
-      p="$4"
-      borderRadius="$3"
+      gap="$2"
+      p="$3"
+      borderRadius="$4"
       chromeless={!hover}
       onHoverIn={() => setHover(true)}
       onHoverOut={() => setHover(false)}
+      onPress={onPress}
       {...props}
-      onPress={() => setToggleEvent((prev) => !prev)}
     >
-      <EventModal toggleEvent={toggleEvent} eventData={{ title, tags, description }} />
-      <XStack gap="$3" flexDirection="column">
-        <H6 size="$5" tt="capitalize">
-          {title}
-        </H6>
-        <XStack gap="$1" marginHorizontal="$-2">
-          {tags.map((tag) => (
-            <Theme key={tag.text} name={tag.theme}>
-              <Button size="$1" px="$2" br="$10" disabled>
-                {tag.text}
-              </Button>
-            </Theme>
-          ))}
+      {/* Image */}
+      {event.image_url && (
+        <Image
+          source={{ uri: event.image_url }}
+          width="100%"
+          height={140}
+          borderRadius="$3"
+          resizeMode="cover"
+        />
+      )}
+
+      <YStack gap="$2">
+        {/* Title and Eco Badge */}
+        <XStack jc="space-between" ai="flex-start" gap="$2">
+          <H6 size="$4" f={1} numberOfLines={2}>
+            {event.title}
+          </H6>
+          {event.eco_conscious && (
+            <XStack ai="center" gap="$1" bg="$green3" px="$2" py="$1" borderRadius="$2">
+              <Leaf size={12} color="$green10" />
+              <Text fontSize="$1" color="$green11" fontWeight="600">
+                Eco
+              </Text>
+            </XStack>
+          )}
         </XStack>
-      </XStack>
 
-      <XStack gap="$1" ai="center">
-        {description ? (
-          <Paragraph>
-            {description.length > 150 ? `${description.slice(0, 150)}...` : description}
+        {/* Category Badge */}
+        <Theme name={categoryColors[event.category] || 'gray'}>
+          <Button size="$2" px="$3" py="$1" borderRadius="$10" disabled als="flex-start">
+            <Text fontSize="$2" tt="capitalize" fontWeight="600">
+              {event.category}
+            </Text>
+          </Button>
+        </Theme>
+
+        {/* Date & Time */}
+        <XStack ai="center" gap="$2">
+          <Calendar size={14} color="$color10" />
+          <Text fontSize="$3" color="$color11">
+            {formatDate(event.date)}
+            {event.time && ` • ${formatTime(event.time)}`}
+          </Text>
+        </XStack>
+
+        {/* Location */}
+        <XStack ai="center" gap="$2">
+          <MapPin size={14} color="$color10" />
+          <Text fontSize="$3" color="$color11" numberOfLines={1}>
+            {event.location_name}
+          </Text>
+        </XStack>
+
+        {/* Price */}
+        {event.price && (
+          <Text fontSize="$3" fontWeight="600" color="$color12">
+            {event.price}
+          </Text>
+        )}
+
+        {/* Description Preview */}
+        {event.description && (
+          <Paragraph fontSize="$2" color="$color10" numberOfLines={2}>
+            {event.description}
           </Paragraph>
-        ) : null}
-      </XStack>
-
-      {/* {action && (
-        <Button iconAfter={ArrowUpRight} size="$2" als="flex-end" {...action.props}>
-          {action?.text}
-        </Button>
-      )} */}
+        )}
+      </YStack>
     </Card>
   )
 }
