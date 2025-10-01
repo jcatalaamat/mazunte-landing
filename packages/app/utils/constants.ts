@@ -63,10 +63,10 @@ export const PRICE_RANGES = ['$', '$$', '$$$', '$$$$'] as const
 
 export type PriceRange = (typeof PRICE_RANGES)[number]
 
-// Mazunte coordinates (approximate center)
+// Mazunte coordinates (exact from Wikipedia)
 export const MAZUNTE_CENTER = {
-  latitude: 15.6658,
-  longitude: -96.7347,
+  latitude: 15.666,
+  longitude: -96.556,
   latitudeDelta: 0.05,
   longitudeDelta: 0.05,
 }
