@@ -65,6 +65,12 @@ export default {
       'expo-router',
       'expo-build-properties',
       'expo-font',
+      [
+        'expo-location',
+        {
+          locationAlwaysAndWhenInUsePermission: 'Allow Mazunte Connect to use your location to show nearby events and places.',
+        },
+      ],
     ],
     extra: {
       router: {
