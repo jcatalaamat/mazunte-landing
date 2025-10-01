@@ -11,9 +11,7 @@ export interface EventFilters {
   category?: EventCategory | null
   ecoConscious?: boolean
   search?: string
-  includeP
-
-ast?: boolean
+  includePast?: boolean
 }
 
 /**
