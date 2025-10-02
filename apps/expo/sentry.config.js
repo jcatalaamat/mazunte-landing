@@ -1,9 +1,8 @@
 import * as Sentry from '@sentry/react-native';
 
-// Determine environment
+// Determine environment from NODE_ENV (more reliable than __DEV__ in standalone builds)
 const getEnvironment = () => {
-  if (__DEV__) return 'development';
-  return 'production';
+  return process.env.NODE_ENV || 'production';
 };
 
 // Simple, safe initialization for Expo
@@ -37,8 +36,8 @@ Sentry.init({
   },
 });
 
-// Log initialization
-if (__DEV__) {
-  console.log('✅ Sentry initialized');
-  console.log('🌍 Environment:', getEnvironment());
-}
+// Log initialization (always log to help debug crashes)
+console.log('✅ Sentry initialized');
+console.log('🌍 Environment:', getEnvironment());
+console.log('📍 Debug mode:', __DEV__);
+console.log('🔧 NODE_ENV:', process.env.NODE_ENV);
