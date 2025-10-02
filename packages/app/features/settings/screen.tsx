@@ -1,11 +1,10 @@
 import { Paragraph, ScrollView, Separator, Settings, YStack, isWeb, useMedia } from '@my/ui'
-import { Book, Cog, Info, Lock, LogOut, Mail, Moon, Twitter, Bug } from '@tamagui/lucide-icons'
+import { Book, Cog, Info, Lock, LogOut, Mail, Moon, Twitter } from '@tamagui/lucide-icons'
 import { useThemeSetting } from 'app/provider/theme'
 import { redirect } from 'app/utils/redirect'
 import { useSupabase } from 'app/utils/supabase/useSupabase'
 import { usePathname } from 'app/utils/usePathname'
 import { useLink } from 'solito/link'
-import * as Sentry from '@sentry/react-native'
 
 import rootPackageJson from '../../../../package.json'
 import packageJson from '../../package.json'
@@ -13,13 +12,6 @@ import packageJson from '../../package.json'
 export const SettingsScreen = () => {
   const media = useMedia()
   const pathname = usePathname()
-
-  // Test Sentry crash function
-  const testSentryCrash = () => {
-    Sentry.captureException(new Error('Test crash from Settings screen!'))
-    Sentry.captureMessage('Test message from Settings screen', 'info')
-    console.log('Sentry test crash triggered from Settings!')
-  }
 
   return (
     <YStack f={1}>
@@ -93,16 +85,6 @@ export const SettingsScreen = () => {
             <Settings.Group>
               <SettingsThemeAction />
               <SettingsItemLogoutAction />
-            </Settings.Group>
-            {isWeb && <Separator boc="$color3" mx="$-4" bw="$0.25" />}
-            <Settings.Group>
-              <Settings.Item
-                icon={Bug}
-                onPress={testSentryCrash}
-                accentTheme="red"
-              >
-                Test Sentry Crash
-              </Settings.Item>
             </Settings.Group>
           </Settings.Items>
         </Settings>
