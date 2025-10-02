@@ -8,12 +8,12 @@ import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
 
 export function FavoritesScreen() {
-  const user = useUser()
+  const { profile } = useUser()
   const insets = useSafeAreaInsets()
   const [activeTab, setActiveTab] = useState<'events' | 'places'>('events')
   const [headerDismissed, setHeaderDismissed] = useState(false)
 
-  const { data: favorites = [], isLoading } = useFavoritesQuery(user?.id)
+  const { data: favorites = [], isLoading } = useFavoritesQuery(profile?.id)
 
   // Separate events and places from favorites
   const { favoriteEvents, favoritePlaces } = useMemo(() => {
@@ -30,40 +30,6 @@ export function FavoritesScreen() {
   if (favorites.length === 0) {
   return (
     <YStack f={1} bg="$background">
-      {/* Dismissible Header with safe area */}
-      {!headerDismissed && (
-        <YStack 
-          pt={insets.top} 
-          px="$4" 
-          pb="$4" 
-          bg="$background" 
-          borderBottomWidth={1} 
-          borderBottomColor="$borderColor"
-        >
-          <XStack jc="space-between" ai="flex-start">
-            <YStack f={1}>
-              <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
-                ❤️ My Favorites
-              </Text>
-              <Text color="$color11" fontSize="$4">
-                Your saved events and places
-              </Text>
-            </YStack>
-            <Button
-              size="$2"
-              circular
-              onPress={() => setHeaderDismissed(true)}
-              ml="$2"
-            >
-              <X size={16} />
-            </Button>
-          </XStack>
-        </YStack>
-      )}
-
-      {/* Safe area padding when header is dismissed */}
-      {headerDismissed && <YStack pt={insets.top} />}
-        
         <YStack f={1} ai="center" jc="center" p="$4">
           <Text fontSize="$6" color="$color10" ta="center" mb="$2">
             ❤️ No Favorites Yet
@@ -81,42 +47,10 @@ export function FavoritesScreen() {
 
   return (
     <YStack f={1} bg="$background">
-      {/* Dismissible Header with safe area */}
-      {!headerDismissed && (
-        <YStack 
-          pt={insets.top} 
-          px="$4" 
-          pb="$4" 
-          bg="$background" 
-          borderBottomWidth={1} 
-          borderBottomColor="$borderColor"
-        >
-          <XStack jc="space-between" ai="flex-start">
-            <YStack f={1}>
-              <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
-                ❤️ My Favorites
-              </Text>
-              <Text color="$color11" fontSize="$4">
-                Your saved events and places
-              </Text>
-            </YStack>
-            <Button
-              size="$2"
-              circular
-              variant="ghost"
-              onPress={() => setHeaderDismissed(true)}
-              ml="$2"
-            >
-              <X size={16} />
-            </Button>
-          </XStack>
-        </YStack>
-      )}
-      
       <XStack w="100%" bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
         <Button
           f={1}
-          variant={activeTab === 'events' ? 'outlined' : 'ghost'}
+          variant={activeTab === 'events' ? 'outlined' : undefined}
           onPress={() => setActiveTab('events')}
           borderRadius={0}
         >
@@ -124,7 +58,7 @@ export function FavoritesScreen() {
         </Button>
         <Button
           f={1}
-          variant={activeTab === 'places' ? 'outlined' : 'ghost'}
+          variant={activeTab === 'places' ? 'outlined' : undefined}
           onPress={() => setActiveTab('places')}
           borderRadius={0}
         >

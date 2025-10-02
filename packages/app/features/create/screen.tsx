@@ -7,10 +7,11 @@ import type { TabsContentProps } from 'tamagui'
 import { Separator, Tabs, Text, useEvent } from 'tamagui'
 
 import { CreateEventForm } from './CreateEventForm'
+import { CreatePlaceForm } from './CreatePlaceForm'
 import { CreatePostForm } from './CreatePostForm'
 import { CreateProjectForm } from './CreateProjectForm'
 
-const tabs = ['Create Project', 'New Post', 'Add Event']
+const tabs = ['Create Project', 'New Post', 'Add Event', 'Add Place']
 
 export const CreateScreen = () => {
   const { setToggleCreateModal } = useGlobalStore()
@@ -50,6 +51,8 @@ export const CreateScreen = () => {
         return <CreatePostForm onSuccess={onSuccess} />
       case 'Add Event':
         return <CreateEventForm onSuccess={onSuccess} />
+      case 'Add Place':
+        return <CreatePlaceForm onSuccess={onSuccess} />
     }
   }
 

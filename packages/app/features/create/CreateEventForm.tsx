@@ -9,11 +9,19 @@ import { z } from 'zod'
 type InsertEvent = Database['public']['Tables']['events']['Insert']
 
 const CreateEventFormSchema = z.object({
-  name: formFields.text.min(5).describe('Name // Your event name').nullable().optional(),
-  description: formFields.textarea.describe('Description // Content of your event').nullable(),
-  start_time: formFields.date.describe('Start Time // Start time of your event').nullable(),
-  end_time: formFields.date.describe('End Time // End time of your event').nullable(),
-  status: formFields.select.describe('Status // Status of your event'),
+  title: formFields.text.min(5).describe('Title // Event title'),
+  description: formFields.textarea.describe('Description // Event description').nullable(),
+  category: formFields.select.describe('Category // Event category'),
+  date: formFields.date.describe('Date // Event date'),
+  time: formFields.text.describe('Time // e.g. 18:00 or 18:00-20:00').nullable().optional(),
+  location_name: formFields.text.describe('Location // Where is the event?'),
+  lat: formFields.number.describe('Latitude // GPS coordinate').default(15.6658),
+  lng: formFields.number.describe('Longitude // GPS coordinate').default(-96.7347),
+  price: formFields.text.describe('Price // e.g. Free, $500 MXN, $20 USD').nullable().optional(),
+  eco_conscious: formFields.boolean_switch.describe('Eco Conscious // Is this eco-friendly?').default(false),
+  organizer_name: formFields.text.describe('Organizer Name').nullable().optional(),
+  organizer_contact: formFields.text.describe('Contact // Email, phone, or WhatsApp').nullable().optional(),
+  image_url: formFields.text.describe('Image URL // Optional').nullable().optional(),
 })
 
 export const CreateEventForm = ({ onSuccess }: { onSuccess: () => void }) => {
@@ -28,13 +36,20 @@ export const CreateEventForm = ({ onSuccess }: { onSuccess: () => void }) => {
     },
 
     async mutationFn(data: z.infer<typeof CreateEventFormSchema>) {
-      const { name, description, start_time, end_time, status } = data
       const insertData: InsertEvent = {
-        name: name?.trim() as string,
-        description,
-        start_time: start_time?.dateValue?.toISOString(),
-        end_time: end_time?.dateValue?.toISOString(),
-        status,
+        title: data.title.trim(),
+        description: data.description,
+        category: data.category,
+        date: data.date.dateValue.toISOString().split('T')[0],
+        time: data.time?.trim() || null,
+        location_name: data.location_name.trim(),
+        lat: data.lat,
+        lng: data.lng,
+        price: data.price?.trim() || null,
+        eco_conscious: data.eco_conscious || false,
+        organizer_name: data.organizer_name?.trim() || null,
+        organizer_contact: data.organizer_contact?.trim() || null,
+        image_url: data.image_url?.trim() || null,
         profile_id: user?.id,
       }
       await supabase.from('events').insert(insertData)
@@ -56,33 +71,32 @@ export const CreateEventForm = ({ onSuccess }: { onSuccess: () => void }) => {
         onSubmit={(values) => mutation.mutate(values)}
         schema={CreateEventFormSchema}
         defaultValues={{
-          name: '',
-
+          title: '',
           description: '',
-          start_time: {
+          category: 'yoga',
+          date: {
             dateValue: new Date(),
           },
-          end_time: {
-            dateValue: new Date(),
-          },
-          status: 'upcoming',
+          time: '',
+          location_name: 'Mazunte',
+          lat: 15.6658,
+          lng: -96.7347,
+          price: '',
+          eco_conscious: false,
+          organizer_name: '',
+          organizer_contact: '',
+          image_url: '',
         }}
         props={{
-          status: {
-            placeholder: 'Set status',
+          category: {
+            placeholder: 'Select category',
             options: [
-              {
-                name: 'Upcoming',
-                value: 'upcoming',
-              },
-              {
-                name: 'Live',
-                value: 'live',
-              },
-              {
-                name: 'Past',
-                value: 'past',
-              },
+              { name: 'Yoga', value: 'yoga' },
+              { name: 'Ceremony', value: 'ceremony' },
+              { name: 'Workshop', value: 'workshop' },
+              { name: 'Party', value: 'party' },
+              { name: 'Market', value: 'market' },
+              { name: 'Other', value: 'other' },
             ],
           },
         }}

@@ -63,13 +63,7 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
                 )}
               </XStack>
             </YStack>
-            {user && (
-              <FavoriteButton
-                itemId={event.id}
-                itemType="event"
-                userId={user.id}
-              />
-            )}
+            {/* TODO: Add FavoriteButton when user auth is working */}
           </XStack>
 
           {/* Details Card */}
@@ -78,13 +72,10 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
               <Calendar size={20} color="$color10" />
               <Text fontSize="$4">{formatDate(event.date)}</Text>
             </XStack>
-            {event.start_time && (
+            {event.time && (
               <XStack gap="$3" ai="center">
                 <Clock size={20} color="$color10" />
-                <Text fontSize="$4">
-                  {formatTime(event.start_time)}
-                  {event.end_time && ` - ${formatTime(event.end_time)}`}
-                </Text>
+                <Text fontSize="$4">{event.time}</Text>
               </XStack>
             )}
             {event.location_name && (
@@ -116,7 +107,7 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
           )}
 
           {/* Organizer Info */}
-          {(event.organizer_name || event.organizer_email || event.organizer_phone) && (
+          {(event.organizer_name || event.organizer_contact) && (
             <Card p="$3" gap="$3">
               <Text fontSize="$5" fontWeight="600">
                 Organizer
@@ -127,16 +118,10 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
                   <Text fontSize="$4">{event.organizer_name}</Text>
                 </XStack>
               )}
-              {event.organizer_email && (
+              {event.organizer_contact && (
                 <XStack gap="$3" ai="center">
                   <Mail size={20} color="$color10" />
-                  <Text fontSize="$4">{event.organizer_email}</Text>
-                </XStack>
-              )}
-              {event.organizer_phone && (
-                <XStack gap="$3" ai="center">
-                  <Phone size={20} color="$color10" />
-                  <Text fontSize="$4">{event.organizer_phone}</Text>
+                  <Text fontSize="$4">{event.organizer_contact}</Text>
                 </XStack>
               )}
             </Card>

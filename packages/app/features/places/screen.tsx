@@ -28,10 +28,10 @@ export function PlacesScreen() {
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase()
-      filtered = filtered.filter(place => 
+      filtered = filtered.filter(place =>
         place.name.toLowerCase().includes(query) ||
         place.description?.toLowerCase().includes(query) ||
-        place.address?.toLowerCase().includes(query)
+        place.location_name?.toLowerCase().includes(query)
       )
     }
 
@@ -52,40 +52,6 @@ export function PlacesScreen() {
 
   return (
     <YStack f={1} bg="$background">
-      {/* Dismissible Header with safe area */}
-      {!headerDismissed && (
-        <YStack 
-          pt={insets.top} 
-          px="$4" 
-          pb="$4" 
-          bg="$background" 
-          borderBottomWidth={1} 
-          borderBottomColor="$borderColor"
-        >
-          <XStack jc="space-between" ai="flex-start">
-            <YStack f={1}>
-              <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
-                📍 Places in Mazunte
-              </Text>
-              <Text color="$color11" fontSize="$4">
-                Discover amazing places in our community
-              </Text>
-            </YStack>
-            <Button
-              size="$2"
-              circular
-              onPress={() => setHeaderDismissed(true)}
-              ml="$2"
-            >
-              <X size={16} />
-            </Button>
-          </XStack>
-        </YStack>
-      )}
-
-      {/* Safe area padding when header is dismissed */}
-      {headerDismissed && <YStack pt={insets.top} />}
-
       {/* Search */}
       <SearchBar
         placeholder="Search places..."
@@ -97,7 +63,7 @@ export function PlacesScreen() {
       <XStack gap="$2" px="$4" py="$2" bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
         <Button
           size="$3"
-          variant={selectedType === null ? 'outlined' : 'ghost'}
+          variant={selectedType === null ? 'outlined' : undefined}
           onPress={() => handleTypeSelect(null)}
         >
           <Text>All ({allPlaces.length})</Text>
@@ -106,7 +72,7 @@ export function PlacesScreen() {
           <Button
             key={type}
             size="$3"
-            variant={selectedType === type ? 'outlined' : 'ghost'}
+            variant={selectedType === type ? 'outlined' : undefined}
             onPress={() => handleTypeSelect(type)}
           >
             <Text>{PLACE_TYPE_LABELS[type]}</Text>

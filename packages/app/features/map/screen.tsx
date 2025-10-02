@@ -58,39 +58,6 @@ export function MapScreen() {
   if (Platform.OS === 'web' || !MapView) {
     return (
       <YStack f={1} bg="$background">
-        {/* Dismissible Header with safe area */}
-        {!headerDismissed && (
-          <YStack 
-            pt={insets.top} 
-            px="$4" 
-            pb="$4" 
-            bg="$background" 
-            borderBottomWidth={1} 
-            borderBottomColor="$borderColor"
-          >
-            <XStack jc="space-between" ai="flex-start">
-              <YStack f={1}>
-                <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
-                  🗺️ Map View
-                </Text>
-                <Text color="$color11" fontSize="$4">
-                  Interactive map is available on mobile devices
-                </Text>
-              </YStack>
-              <Button
-                size="$2"
-                circular
-                onPress={() => setHeaderDismissed(true)}
-                ml="$2"
-              >
-                <X size={16} />
-              </Button>
-            </XStack>
-          </YStack>
-        )}
-
-        {/* Safe area padding when header is dismissed */}
-        {headerDismissed && <YStack pt={insets.top} />}
         
         <YStack f={1} ai="center" jc="center" gap="$4" p="$4">
           <YStack gap="$2" w="100%">
@@ -111,40 +78,6 @@ export function MapScreen() {
 
   return (
     <YStack f={1} bg="$background">
-      {/* Dismissible Header with safe area and view type toggle */}
-      {!headerDismissed && (
-        <YStack 
-          pt={insets.top} 
-          bg="$background" 
-          borderBottomWidth={1} 
-          borderBottomColor="$borderColor"
-        >
-          <YStack px="$4" pb="$3">
-            <XStack jc="space-between" ai="flex-start">
-              <YStack f={1}>
-                <Text fontSize="$6" color="$color12" mb="$2" fontWeight="600">
-                  🗺️ Map View
-                </Text>
-                <Text color="$color11" fontSize="$4" mb="$3">
-                  Explore events and places in Mazunte
-                </Text>
-              </YStack>
-              <Button
-                size="$2"
-                circular
-                onPress={() => setHeaderDismissed(true)}
-                ml="$2"
-              >
-                <X size={16} />
-              </Button>
-            </XStack>
-          </YStack>
-        </YStack>
-      )}
-
-      {/* Safe area padding when header is dismissed */}
-      {headerDismissed && <YStack pt={insets.top} />}
-      
       {/* View type toggle - always visible */}
       <YStack 
         bg="$background" 

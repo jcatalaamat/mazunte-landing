@@ -33,23 +33,23 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
   const typeLabel = PLACE_TYPE_LABELS[place.type]
 
   const handlePhonePress = () => {
-    if (place.phone) Linking.openURL(`tel:${place.phone}`)
+    if (place.contact_phone) Linking.openURL(`tel:${place.contact_phone}`)
   }
 
   const handleWhatsAppPress = () => {
-    if (place.whatsapp) Linking.openURL(`https://wa.me/${place.whatsapp}`)
+    if (place.contact_whatsapp) Linking.openURL(`https://wa.me/${place.contact_whatsapp}`)
   }
 
   const handleEmailPress = () => {
-    if (place.email) Linking.openURL(`mailto:${place.email}`)
+    if (place.contact_email) Linking.openURL(`mailto:${place.contact_email}`)
   }
 
   const handleWebsitePress = () => {
-    if (place.website) Linking.openURL(place.website)
+    if (place.website_url) Linking.openURL(place.website_url)
   }
 
   const handleInstagramPress = () => {
-    if (place.instagram) Linking.openURL(`https://instagram.com/${place.instagram.replace('@', '')}`)
+    if (place.contact_instagram) Linking.openURL(`https://instagram.com/${place.contact_instagram.replace('@', '')}`)
   }
 
   return (
@@ -88,22 +88,16 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 )}
               </XStack>
             </YStack>
-            {user && (
-              <FavoriteButton
-                itemId={place.id}
-                itemType="place"
-                userId={user.id}
-              />
-            )}
+            {/* TODO: Add FavoriteButton when user auth is working */}
           </XStack>
 
           {/* Quick Info */}
           <Card p="$3" gap="$3">
-            {place.address && (
+            {place.location_name && (
               <XStack gap="$3" ai="center">
                 <MapPin size={20} color="$color10" />
                 <Text fontSize="$4" f={1}>
-                  {place.address}
+                  {place.location_name}
                 </Text>
               </XStack>
             )}
@@ -143,7 +137,7 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
             <Text fontSize="$5" fontWeight="600">
               Contact
             </Text>
-            {place.phone && (
+            {place.contact_phone && (
               <Button
                 onPress={handlePhonePress}
                 icon={Phone}
@@ -151,10 +145,10 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 chromeless
                 jc="flex-start"
               >
-                {place.phone}
+                {place.contact_phone}
               </Button>
             )}
-            {place.whatsapp && (
+            {place.contact_whatsapp && (
               <Button
                 onPress={handleWhatsAppPress}
                 icon={Phone}
@@ -162,10 +156,10 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 chromeless
                 jc="flex-start"
               >
-                WhatsApp: {place.whatsapp}
+                WhatsApp: {place.contact_whatsapp}
               </Button>
             )}
-            {place.email && (
+            {place.contact_email && (
               <Button
                 onPress={handleEmailPress}
                 icon={Mail}
@@ -173,10 +167,10 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 chromeless
                 jc="flex-start"
               >
-                {place.email}
+                {place.contact_email}
               </Button>
             )}
-            {place.instagram && (
+            {place.contact_instagram && (
               <Button
                 onPress={handleInstagramPress}
                 icon={Instagram}
@@ -184,10 +178,10 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 chromeless
                 jc="flex-start"
               >
-                {place.instagram}
+                {place.contact_instagram}
               </Button>
             )}
-            {place.website && (
+            {place.website_url && (
               <Button
                 onPress={handleWebsitePress}
                 icon={Globe}

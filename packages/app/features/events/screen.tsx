@@ -57,40 +57,6 @@ export function EventsScreen() {
 
   return (
     <YStack f={1} bg="$background">
-      {/* Dismissible Header with safe area */}
-      {!headerDismissed && (
-        <YStack 
-          pt={insets.top} 
-          px="$4" 
-          pb="$4" 
-          bg="$background" 
-          borderBottomWidth={1} 
-          borderBottomColor="$borderColor"
-        >
-          <XStack jc="space-between" ai="flex-start">
-            <YStack f={1}>
-              <H6 fontSize="$6" color="$color12" mb="$2">
-                🎉 Events in Mazunte
-              </H6>
-              <Paragraph color="$color11" fontSize="$4">
-                Discover amazing events happening in our community
-              </Paragraph>
-            </YStack>
-            <Button
-              size="$2"
-              circular
-              onPress={() => setHeaderDismissed(true)}
-              ml="$2"
-            >
-              <X size={16} />
-            </Button>
-          </XStack>
-        </YStack>
-      )}
-
-      {/* Safe area padding when header is dismissed */}
-      {headerDismissed && <YStack pt={insets.top} />}
-
       {/* Search */}
       <SearchBar
         placeholder="Search events..."
