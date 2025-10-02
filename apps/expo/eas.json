@@ -11,8 +11,8 @@
       "env": {
         "APP_ENV": "development",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
-        "EXPO_PUBLIC_SUPABASE_URL": "https://ypcwgcajfhlcqevgvdvt.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwY3dnY2FqZmhsY3Fldmd2ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY1ODE1OTAsImV4cCI6MjAzMjE1NzU5MH0.NDvbXoWOe4E8HFit2nDyh-TnIoqBhnGq1kc-L41VNGY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
       },
       "ios": {
         "simulator": true,
@@ -26,8 +26,8 @@
       "env": {
         "APP_ENV": "development",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
-        "EXPO_PUBLIC_SUPABASE_URL": "https://ypcwgcajfhlcqevgvdvt.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwY3dnY2FqZmhsY3Fldmd2ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY1ODE1OTAsImV4cCI6MjAzMjE1NzU5MH0.NDvbXoWOe4E8HFit2nDyh-TnIoqBhnGq1kc-L41VNGY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
       },
       "ios": {
         "image": "latest"
@@ -40,8 +40,8 @@
         "APP_ENV": "development",
         "NODE_ENV": "development",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
-        "EXPO_PUBLIC_SUPABASE_URL": "https://ypcwgcajfhlcqevgvdvt.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwY3dnY2FqZmhsY3Fldmd2ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY1ODE1OTAsImV4cCI6MjAzMjE1NzU5MH0.NDvbXoWOe4E8HFit2nDyh-TnIoqBhnGq1kc-L41VNGY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
       },
       "android": {
         "buildType": "apk"
@@ -60,8 +60,8 @@
         "APP_ENV": "staging",
         "NODE_ENV": "staging",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
-        "EXPO_PUBLIC_SUPABASE_URL": "https://ypcwgcajfhlcqevgvdvt.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwY3dnY2FqZmhsY3Fldmd2ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY1ODE1OTAsImV4cCI6MjAzMjE1NzU5MH0.NDvbXoWOe4E8HFit2nDyh-TnIoqBhnGq1kc-L41VNGY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
       },
       "ios": {
         "image": "latest"
@@ -78,8 +78,8 @@
         "APP_ENV": "staging",
         "NODE_ENV": "staging",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
-        "EXPO_PUBLIC_SUPABASE_URL": "https://ypcwgcajfhlcqevgvdvt.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwY3dnY2FqZmhsY3Fldmd2ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY1ODE1OTAsImV4cCI6MjAzMjE1NzU5MH0.NDvbXoWOe4E8HFit2nDyh-TnIoqBhnGq1kc-L41VNGY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
       },
       "ios": {
         "image": "latest"
@@ -93,8 +93,8 @@
         "APP_ENV": "production",
         "NODE_ENV": "production",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
-        "EXPO_PUBLIC_SUPABASE_URL": "https://ypcwgcajfhlcqevgvdvt.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwY3dnY2FqZmhsY3Fldmd2ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY1ODE1OTAsImV4cCI6MjAzMjE1NzU5MH0.NDvbXoWOe4E8HFit2nDyh-TnIoqBhnGq1kc-L41VNGY"
+        "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
       },
       "android": {
         "buildType": "app-bundle"
