@@ -1,8 +1,10 @@
 import { H1, Paragraph, YStack, isWeb, Text } from '@my/ui'
+import { ScrollView } from 'react-native'
 
 export const TermsOfServiceScreen = () => {
   return (
-    <YStack gap="$4" p="$4">
+    <ScrollView>
+      <YStack gap="$4" p="$4">
       {/* only show title on web since mobile has navigator title */}
       {isWeb && <H1>Terms of Service</H1>}
       <Paragraph>
@@ -53,6 +55,7 @@ export const TermsOfServiceScreen = () => {
         us at legal@mazunteconnect.com. These Terms are governed by Mexican law and any disputes 
         will be resolved in Mexican courts.
       </Paragraph>
-    </YStack>
+      </YStack>
+    </ScrollView>
   )
 }

@@ -1,8 +1,10 @@
 import { H1, Paragraph, YStack, isWeb, Text } from '@my/ui'
+import { ScrollView } from 'react-native'
 
 export const PrivacyPolicyScreen = () => {
   return (
-    <YStack gap="$4" p="$4">
+    <ScrollView>
+      <YStack gap="$4" p="$4">
       {/* only show title on web since mobile has navigator title */}
       {isWeb && <H1>Privacy Policy</H1>}
       <Paragraph>
@@ -45,6 +47,7 @@ export const PrivacyPolicyScreen = () => {
         <Text fontWeight="bold">Contact Us:</Text> If you have any questions about this Privacy Policy, please 
         contact us at privacy@mazunteconnect.com or through our app support channels.
       </Paragraph>
-    </YStack>
+      </YStack>
+    </ScrollView>
   )
 }

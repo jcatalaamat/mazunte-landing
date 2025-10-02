@@ -73,13 +73,13 @@ export const SettingsScreen = () => {
             </Settings.Group>
             {isWeb && <Separator boc="$color3" mx="$-4" bw="$0.25" />}
             <Settings.Group>
-              <Settings.Item
+              {/* <Settings.Item
                 icon={Twitter}
                 onPress={() => redirect('https://twitter.com/tamagui_js')}
                 accentTheme="blue"
               >
                 Our Twitter
-              </Settings.Item>
+              </Settings.Item> */}
             </Settings.Group>
             {isWeb && <Separator boc="$color3" mx="$-4" bw="$0.25" />}
             <Settings.Group>
