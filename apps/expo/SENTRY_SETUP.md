@@ -1,5 +1,38 @@
 # Sentry Setup for EAS Builds
 
+## ✅ Fixes Completed
+
+All Sentry integration issues have been fixed! The following changes were made:
+
+- ✅ Updated @sentry/react-native to v6.3.0 (Expo 53 compatible)
+- ✅ Added Sentry Expo native plugin to app.config.js
+- ✅ Fixed sentry.config.js with proper initialization
+- ✅ Fixed import order in index.js (after React Native polyfills)
+- ✅ Added Sentry ErrorBoundary to _layout.tsx
+- ✅ Fixed SplashScreen import issues
+
+## 🚀 Next Steps: Build a New EAS Development Build
+
+**IMPORTANT:** The old build has the broken Sentry configuration. You must build a new version with the fixes.
+
+### Quick Build Command
+
+For iOS device:
+```bash
+cd apps/expo
+yarn eas:build:dev:device:ios
+```
+
+For iOS simulator:
+```bash
+yarn eas:build:dev:simulator:ios
+```
+
+For Android:
+```bash
+yarn eas:build:dev:device:android
+```
+
 ## Overview
 
 This app is configured to automatically upload source maps to Sentry during EAS builds. This enables proper crash symbolication and readable stack traces.
