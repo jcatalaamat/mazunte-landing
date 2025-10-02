@@ -95,11 +95,14 @@ const EditProfileForm = ({
       },
     ])
   }
+  const handleSettings = () => {
+    router.push('/settings')
+  }
 
   return (
     <FormWrapper>
       <FormWrapper.Body>
-        <YStack gap="$4">
+        <YStack gap="$2">
           {/* Avatar */}
           <YStack ai="center" jc="center">
             <UploadAvatar>
@@ -186,16 +189,13 @@ const EditProfileForm = ({
             )}
           </YStack> */}
 
-          {/* Logout Button */}
-          {/* <Button
-            bg="$red9"
-            color="white"
-            onPress={handleLogout}
-            pressStyle={{ bg: '$red10' }}
-            mt="$2"
+          {/* Settings Button */}
+          <Button
+            variant="outlined"
+            onPress={handleSettings}
           >
-            Logout
-          </Button> */}
+            Settings
+          </Button>
         </YStack>
       </FormWrapper.Body>
     </FormWrapper>
