@@ -4,12 +4,13 @@
 
 All Sentry integration issues have been fixed! The following changes were made:
 
-- ✅ Updated @sentry/react-native to v6.3.0 (Expo 53 compatible)
+- ✅ Updated @sentry/react-native to v6.10.0 (Xcode 16.3 compatible)
 - ✅ Added Sentry Expo native plugin to app.config.js
 - ✅ Fixed sentry.config.js with proper initialization
 - ✅ Fixed import order in index.js (after React Native polyfills)
 - ✅ Added Sentry ErrorBoundary to _layout.tsx
 - ✅ Fixed SplashScreen import issues
+- ✅ Fixed Xcode 16.3 C++ compilation error (std::allocator<const T> issue)
 
 ## 🚀 Next Steps: Build a New EAS Development Build
 
