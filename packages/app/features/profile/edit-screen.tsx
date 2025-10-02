@@ -137,7 +137,7 @@ const EditProfileForm = ({
           </SchemaForm>
 
           {/* Saved Events Section */}
-          <YStack gap="$3" mt="$2">
+          {/* <YStack gap="$3" mt="$2">
             <H5>Saved Events</H5>
             {favoriteEvents.length > 0 ? (
               <FlatList
@@ -159,10 +159,10 @@ const EditProfileForm = ({
                 <Text color="$color10">No saved events yet</Text>
               </YStack>
             )}
-          </YStack>
+          </YStack> */}
 
           {/* Saved Places Section */}
-          <YStack gap="$3">
+          {/* <YStack gap="$3">
             <H5>Saved Places</H5>
             {favoritePlaces.length > 0 ? (
               <FlatList
@@ -184,10 +184,10 @@ const EditProfileForm = ({
                 <Text color="$color10">No saved places yet</Text>
               </YStack>
             )}
-          </YStack>
+          </YStack> */}
 
           {/* Logout Button */}
-          <Button
+          {/* <Button
             bg="$red9"
             color="white"
             onPress={handleLogout}
@@ -195,7 +195,7 @@ const EditProfileForm = ({
             mt="$2"
           >
             Logout
-          </Button>
+          </Button> */}
         </YStack>
       </FormWrapper.Body>
     </FormWrapper>
