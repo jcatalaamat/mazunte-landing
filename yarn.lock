@@ -5870,9 +5870,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/react-native@npm:~6.3.0":
-  version: 6.3.0
-  resolution: "@sentry/react-native@npm:6.3.0"
+"@sentry/react-native@npm:~6.4.0":
+  version: 6.4.0
+  resolution: "@sentry/react-native@npm:6.4.0"
   dependencies:
     "@sentry/babel-plugin-component-annotate": "npm:2.20.1"
     "@sentry/browser": "npm:8.40.0"
@@ -5890,7 +5890,7 @@ __metadata:
       optional: true
   bin:
     sentry-expo-upload-sourcemaps: scripts/expo-upload-sourcemaps.js
-  checksum: 10/15b9de5497dbc401e98367154e7e39bbd1427232d4687287e80fca09815a386a8e807d378b7d65013b1dc7d39dccdd42f28127b3056814691c094f85c23488c1
+  checksum: 10/38d37ca946218410e0e74f0ea074be9be875a807074638ca44026536ccee7157f46698cd3df2fa56c4ac3986518ae732de1c1ea8ec182fe93183b9eedd038be0
   languageName: node
   linkType: hard
 
@@ -15760,7 +15760,7 @@ __metadata:
     "@my/ui": "npm:*"
     "@react-native-async-storage/async-storage": "npm:2.1.2"
     "@react-native-community/netinfo": "npm:11.4.1"
-    "@sentry/react-native": "npm:~6.3.0"
+    "@sentry/react-native": "npm:~6.4.0"
     "@tamagui/babel-plugin": "npm:^1.132.7"
     app: "npm:*"
     babel-plugin-module-resolver: "npm:^4.1.0"
