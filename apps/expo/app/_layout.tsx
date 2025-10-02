@@ -70,6 +70,7 @@ export default function HomeLayout() {
               name="create"
               options={{
                 headerShown: false,
+                headerBackTitle: 'Events',
               }}
             />
             <Stack.Screen
