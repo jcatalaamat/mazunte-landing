@@ -4,7 +4,7 @@
 
 All Sentry integration issues have been fixed! The following changes were made:
 
-- ✅ Updated @sentry/react-native to v6.10.0 (Xcode 16.3 compatible)
+- ✅ Updated @sentry/react-native to v6.14.0 (Xcode 16.3 compatible)
 - ✅ Added Sentry Expo native plugin to app.config.js
 - ✅ Fixed sentry.config.js with proper initialization
 - ✅ Fixed import order in index.js (after React Native polyfills)
