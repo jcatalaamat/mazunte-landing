@@ -74,6 +74,14 @@ export default {
           locationAlwaysAndWhenInUsePermission: 'Allow Mazunte Connect to use your location to show nearby events and places.',
         },
       ],
+      [
+        '@sentry/react-native/expo',
+        {
+          organization: 'inner-ascend',
+          project: 'react-native',
+          url: 'https://sentry.io/',
+        },
+      ],
     ],
     extra: {
       router: {

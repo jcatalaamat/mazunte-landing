@@ -3,11 +3,11 @@ import { ExpoRoot } from 'expo-router'
 import 'react-native-url-polyfill/auto'
 import React from 'react'
 
-// Initialize Sentry
-import './sentry.config'
-
 //NOTE: do not remove. this is a workaround for build to work with expo v51.0.0
 React.AnimatedComponent = ({ children }) => <>{children}</>
+
+// Initialize Sentry AFTER React Native polyfills are loaded
+import './sentry.config'
 
 // Must be exported or Fast Refresh won't update the context
 export function App() {
