@@ -8,9 +8,15 @@ const path = require('path')
 const projectRoot = __dirname
 const workspaceRoot = path.resolve(__dirname, '../..')
 
-const config = getDefaultConfig(projectRoot)
+const config = getDefaultConfig(projectRoot, {
+  // [Web-only]: Enables CSS support in Metro.
+  isCSSEnabled: true,
+})
 
-config.watchFolders = [workspaceRoot]
+// For monorepo support, add workspace root to watchFolders
+config.watchFolders = [...config.watchFolders, workspaceRoot]
+
+// Ensure we can resolve modules from the workspace root
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, 'node_modules'),
   path.resolve(workspaceRoot, 'node_modules'),

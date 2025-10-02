@@ -68,6 +68,7 @@ export default {
       'expo-router',
       'expo-build-properties',
       'expo-font',
+      'expo-secure-store',
       [
         'expo-location',
         {
