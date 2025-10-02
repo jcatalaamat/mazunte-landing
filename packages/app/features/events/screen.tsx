@@ -92,6 +92,7 @@ export function EventsScreen() {
         ))}
       </XStack>
 
+
       {/* Events List */}
       <FlatList
         data={filteredEvents}
