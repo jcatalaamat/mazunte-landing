@@ -3,6 +3,9 @@ import { ExpoRoot } from 'expo-router'
 import 'react-native-url-polyfill/auto'
 import React from 'react'
 
+// Initialize Sentry
+import './sentry.config'
+
 //NOTE: do not remove. this is a workaround for build to work with expo v51.0.0
 React.AnimatedComponent = ({ children }) => <>{children}</>
 

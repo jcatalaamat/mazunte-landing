@@ -47,7 +47,12 @@
     "gen": "yarn generate",
     "add:font": "yarn workspace tamagui-fonts-and-icons run add:font",
     "add:icon": "yarn workspace tamagui-fonts-and-icons run add:icon",
-    "get-local-ip-mac": "ifconfig | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print $2 }'"
+    "get-local-ip-mac": "ifconfig | grep 'inet ' | grep -v '127.0.0.1' | awk '{ print $2 }'",
+    "build:dev": "./scripts/build-dev.sh",
+    "build:staging": "./scripts/build-staging.sh",
+    "build:production": "./scripts/build-production.sh",
+    "submit:staging": "./scripts/submit-staging.sh",
+    "submit:production": "./scripts/submit-production.sh"
   },
   "resolutions": {
     "react": "19.0.0",
@@ -88,5 +93,9 @@
     "turbo": "^2.5.3",
     "typescript": "~5.8.3",
     "ultra-runner": "^3.10.5"
+  },
+  "dependencies": {
+    "@sentry/core": "^10.17.0",
+    "@sentry/react": "^10.17.0"
   }
 }

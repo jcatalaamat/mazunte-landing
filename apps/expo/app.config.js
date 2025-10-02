@@ -17,13 +17,16 @@ export default {
     },
     updates: {
       fallbackToCacheTimeout: 0,
-      url: 'https://u.expo.dev/your-project-id',
+      url: 'https://u.expo.dev/6ffa235a-1c28-44f3-a4b7-06858af980a8',
     },
     assetBundlePatterns: ['**/*'],
     ios: {
       supportsTablet: true,
       bundleIdentifier: 'com.mazunte.connect',
       buildNumber: '6',
+      infoPlist: {
+        ITSAppUsesNonExemptEncryption: false,
+      },
     },
     android: {
       softwareKeyboardLayoutMode: 'pan',
@@ -77,12 +80,12 @@ export default {
         origin: false,
       },
       eas: {
-        projectId: 'b5f02af2-6475-4d9e-81b3-664f89564580',
+        projectId: '6ffa235a-1c28-44f3-a4b7-06858af980a8',
       },
     },
     runtimeVersion: {
       policy: 'appVersion',
     },
-    owner: 'tamagui-team',
+    owner: process.env.EXPO_OWNER || 'inner-ascend',
   },
 }
