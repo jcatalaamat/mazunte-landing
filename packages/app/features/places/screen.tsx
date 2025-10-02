@@ -1,6 +1,6 @@
 import { PlaceCard, SearchBar, CategoryFilter, FullscreenSpinner, Text, YStack, Button, XStack } from '@my/ui'
 import { router } from 'expo-router'
-import { FlatList } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
@@ -14,7 +14,14 @@ export function PlacesScreen() {
   const insets = useSafeAreaInsets()
 
   // Fetch all places once
-  const { data: allPlaces = [], isLoading } = usePlacesQuery({})
+  const { data: allPlaces = [], isLoading, refetch } = usePlacesQuery({})
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = async () => {
+    setRefreshing(true)
+    await refetch()
+    setRefreshing(false)
+  }
 
   // Filter locally for better performance
   const filteredPlaces = useMemo(() => {
@@ -92,6 +99,9 @@ export function PlacesScreen() {
             mb="$3"
           />
         )}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         contentContainerStyle={{
           paddingTop: 16,
           paddingBottom: insets.bottom + 80,

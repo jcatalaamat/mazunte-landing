@@ -1,9 +1,8 @@
-import { FullscreenSpinner, Text, YStack, XStack, Image, Button, ScrollView, Card, H4, Paragraph, EcoBadge, FavoriteButton, Theme } from '@my/ui'
+import { FullscreenSpinner, Text, YStack, XStack, Image, Button, ScrollView, Card, H4, Paragraph, EcoBadge, FavoriteButtonWrapper, Theme } from '@my/ui'
 import { usePlaceDetailQuery } from 'app/utils/react-query/usePlacesQuery'
 import { MapPin, DollarSign, Phone, Mail, Globe, Instagram } from '@tamagui/lucide-icons'
 import { PLACE_TYPE_COLORS, PLACE_TYPE_LABELS } from 'app/utils/constants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useUser } from 'app/utils/useUser'
 import { Linking } from 'react-native'
 
 interface PlaceDetailScreenProps {
@@ -11,7 +10,6 @@ interface PlaceDetailScreenProps {
 }
 
 export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
-  const user = useUser()
   const insets = useSafeAreaInsets()
   const { data: place, isLoading } = usePlaceDetailQuery(id)
 
@@ -88,7 +86,7 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 )}
               </XStack>
             </YStack>
-            {/* TODO: Add FavoriteButton when user auth is working */}
+            <FavoriteButtonWrapper itemId={place.id} itemType="place" size={28} />
           </XStack>
 
           {/* Quick Info */}

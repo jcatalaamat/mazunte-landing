@@ -2,6 +2,7 @@ import type { Database } from '@my/supabase/types'
 import { Calendar, Leaf, MapPin } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Card, type CardProps, H6, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
+import { FavoriteButtonWrapper } from './FavoriteButtonWrapper'
 
 type Event = Database['public']['Tables']['events']['Row']
 
@@ -69,29 +70,39 @@ export const EventCard = ({ event, onPress, showFavorite = false, onToggleFavori
     >
       {/* Image */}
       {event.image_url && (
-        <Image
-          source={{ uri: event.image_url }}
-          width="100%"
-          height={140}
-          borderRadius="$3"
-          resizeMode="cover"
-        />
+        <YStack position="relative">
+          <Image
+            source={{ uri: event.image_url }}
+            width="100%"
+            height={140}
+            borderRadius="$3"
+            resizeMode="cover"
+          />
+
+          {/* Favorite Button on Image */}
+          <YStack position="absolute" top="$2" right="$2" zIndex={10}>
+            <FavoriteButtonWrapper itemId={event.id} itemType="event" size={20} />
+          </YStack>
+        </YStack>
       )}
 
       <YStack gap="$2">
-        {/* Title and Eco Badge */}
+        {/* Title, Eco Badge, and Favorite Button */}
         <XStack jc="space-between" ai="flex-start" gap="$2">
-          <H6 size="$4" f={1} numberOfLines={2}>
+          <H6 size="$5" f={1} numberOfLines={2} fontWeight="700">
             {event.title}
           </H6>
-          {event.eco_conscious && (
-            <XStack ai="center" gap="$1" bg="$green3" px="$2" py="$1" borderRadius="$2">
-              <Leaf size={12} color="$green10" />
-              <Text fontSize="$1" color="$green11" fontWeight="600">
-                Eco
-              </Text>
-            </XStack>
-          )}
+          <XStack ai="center" gap="$1">
+            {event.eco_conscious && (
+              <XStack ai="center" gap="$1" bg="$green3" px="$2" py="$1" borderRadius="$2">
+                <Leaf size={12} color="$green10" />
+                <Text fontSize="$1" color="$green11" fontWeight="600">
+                  Eco
+                </Text>
+              </XStack>
+            )}
+            {!event.image_url && <FavoriteButtonWrapper itemId={event.id} itemType="event" size={20} />}
+          </XStack>
         </XStack>
 
         {/* Category Badge */}
@@ -129,7 +140,7 @@ export const EventCard = ({ event, onPress, showFavorite = false, onToggleFavori
 
         {/* Description Preview */}
         {event.description && (
-          <Paragraph fontSize="$2" color="$color10" numberOfLines={2}>
+          <Paragraph fontSize="$3" color="$color10" numberOfLines={3} opacity={0.8}>
             {event.description}
           </Paragraph>
         )}

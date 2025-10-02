@@ -1,6 +1,6 @@
 import { EventCard, FullscreenSpinner, SearchBar, Text, YStack, Button, XStack, H6, Paragraph } from '@my/ui'
 import { router } from 'expo-router'
-import { FlatList } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
@@ -15,7 +15,14 @@ export function EventsScreen() {
   const insets = useSafeAreaInsets()
 
   // Fetch all events once (including past events for now)
-  const { data: allEvents = [], isLoading, error } = useEventsQuery({ includePast: true })
+  const { data: allEvents = [], isLoading, error, refetch } = useEventsQuery({ includePast: true })
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = async () => {
+    setRefreshing(true)
+    await refetch()
+    setRefreshing(false)
+  }
 
   // Debug logging
   console.log('Events data:', { allEvents, isLoading, error })
@@ -97,6 +104,9 @@ export function EventsScreen() {
             mb="$3"
           />
         )}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         contentContainerStyle={{
           paddingTop: 16,
           paddingBottom: insets.bottom + 80,

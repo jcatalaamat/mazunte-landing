@@ -2,6 +2,7 @@ import type { Database } from '@my/supabase/types'
 import { Leaf, MapPin, Phone, Star } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Card, type CardProps, H6, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
+import { FavoriteButtonWrapper } from './FavoriteButtonWrapper'
 
 type Place = Database['public']['Tables']['places']['Row']
 
@@ -39,17 +40,24 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
     >
       {/* Image */}
       {mainImage && (
-        <Image
-          source={{ uri: mainImage }}
-          width="100%"
-          height={140}
-          borderRadius="$3"
-          resizeMode="cover"
-        />
+        <YStack position="relative">
+          <Image
+            source={{ uri: mainImage }}
+            width="100%"
+            height={140}
+            borderRadius="$3"
+            resizeMode="cover"
+          />
+
+          {/* Favorite Button on Image */}
+          <YStack position="absolute" top="$2" right="$2" zIndex={10}>
+            <FavoriteButtonWrapper itemId={place.id} itemType="place" size={20} />
+          </YStack>
+        </YStack>
       )}
 
       <YStack gap="$2">
-        {/* Title and Badges */}
+        {/* Title, Badges, and Favorite Button */}
         <XStack jc="space-between" ai="flex-start" gap="$2">
           <H6 size="$4" f={1} numberOfLines={2}>
             {place.name}
@@ -65,6 +73,7 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
                 <Leaf size={12} color="$green10" />
               </XStack>
             )}
+            {!mainImage && <FavoriteButtonWrapper itemId={place.id} itemType="place" size={20} />}
           </XStack>
         </XStack>
 
@@ -92,9 +101,14 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
 
         {/* Price Range */}
         {place.price_range && (
-          <Text fontSize="$3" fontWeight="600" color="$color12">
-            {place.price_range}
-          </Text>
+          <XStack ai="center" gap="$2">
+            <Text fontSize="$4" fontWeight="700" color="$green10">
+              {place.price_range}
+            </Text>
+            <Text fontSize="$2" color="$color10">
+              Price range
+            </Text>
+          </XStack>
         )}
 
         {/* Contact Info */}
@@ -116,10 +130,10 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
 
         {/* Tags */}
         {place.tags && place.tags.length > 0 && (
-          <XStack gap="$1" flexWrap="wrap">
+          <XStack gap="$2" flexWrap="wrap">
             {place.tags.slice(0, 3).map((tag) => (
-              <XStack key={tag} bg="$color3" px="$2" py="$1" borderRadius="$2">
-                <Text fontSize="$1" color="$color11">
+              <XStack key={tag} bg="$blue2" px="$2.5" py="$1.5" borderRadius="$3">
+                <Text fontSize="$2" color="$blue11" fontWeight="500">
                   {tag}
                 </Text>
               </XStack>

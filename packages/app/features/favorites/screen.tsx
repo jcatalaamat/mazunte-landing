@@ -1,6 +1,6 @@
 import { EventCard, PlaceCard, FullscreenSpinner, Text, YStack, Button, XStack } from '@my/ui'
 import { router } from 'expo-router'
-import { FlatList } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useFavoritesQuery } from 'app/utils/react-query/useFavoritesQuery'
 import { useUser } from 'app/utils/useUser'
@@ -13,7 +13,14 @@ export function FavoritesScreen() {
   const [activeTab, setActiveTab] = useState<'events' | 'places'>('events')
   const [headerDismissed, setHeaderDismissed] = useState(false)
 
-  const { data: favorites = [], isLoading } = useFavoritesQuery(profile?.id)
+  const { data: favorites = [], isLoading, refetch } = useFavoritesQuery(profile?.id)
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = async () => {
+    setRefreshing(true)
+    await refetch()
+    setRefreshing(false)
+  }
 
   // Separate events and places from favorites
   const { favoriteEvents, favoritePlaces } = useMemo(() => {
@@ -78,6 +85,9 @@ export function FavoritesScreen() {
               mb="$3"
             />
           )}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           contentContainerStyle={{
             paddingTop: 16,
             paddingBottom: insets.bottom + 80,
@@ -107,6 +117,9 @@ export function FavoritesScreen() {
               mb="$3"
             />
           )}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           contentContainerStyle={{
             paddingTop: 16,
             paddingBottom: insets.bottom + 80,

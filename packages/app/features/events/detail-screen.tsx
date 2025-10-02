@@ -1,17 +1,15 @@
-import { FullscreenSpinner, Text, YStack, XStack, Image, Button, ScrollView, Card, H4, Paragraph, EcoBadge, FavoriteButton, Theme } from '@my/ui'
+import { FullscreenSpinner, Text, YStack, XStack, Image, Button, ScrollView, Card, H4, Paragraph, EcoBadge, FavoriteButtonWrapper, Theme } from '@my/ui'
 import { useEventDetailQuery } from 'app/utils/react-query/useEventsQuery'
-import { Calendar, Clock, MapPin, DollarSign, User, Mail, Phone } from '@tamagui/lucide-icons'
+import { Calendar, Clock, MapPin, DollarSign, User, Mail } from '@tamagui/lucide-icons'
 import { formatDate, formatTime } from 'app/utils/date-helpers'
 import { CATEGORY_COLORS, CATEGORY_LABELS } from 'app/utils/constants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useUser } from 'app/utils/useUser'
 
 interface EventDetailScreenProps {
   id: string
 }
 
 export function EventDetailScreen({ id }: EventDetailScreenProps) {
-  const user = useUser()
   const insets = useSafeAreaInsets()
   const { data: event, isLoading } = useEventDetailQuery(id)
 
@@ -63,7 +61,7 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
                 )}
               </XStack>
             </YStack>
-            {/* TODO: Add FavoriteButton when user auth is working */}
+            <FavoriteButtonWrapper itemId={event.id} itemType="event" size={28} />
           </XStack>
 
           {/* Details Card */}
