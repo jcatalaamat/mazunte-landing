@@ -17,7 +17,7 @@ export default {
     },
     updates: {
       fallbackToCacheTimeout: 0,
-      url: 'https://u.expo.dev/6ffa235a-1c28-44f3-a4b7-06858af980a8',
+      url: 'https://u.expo.dev/f4f14c35-489b-4fc5-bd7e-6e156faf5928',
     },
     assetBundlePatterns: ['**/*'],
     ios: {
@@ -88,12 +88,12 @@ export default {
         origin: false,
       },
       eas: {
-        projectId: '6ffa235a-1c28-44f3-a4b7-06858af980a8',
+        projectId: 'f4f14c35-489b-4fc5-bd7e-6e156faf5928',
       },
     },
     runtimeVersion: {
       policy: 'appVersion',
     },
-    owner: process.env.EXPO_OWNER || 'inner-ascend',
+    owner: process.env.EXPO_OWNER || 'inner-ascend-expo',
   },
 }
