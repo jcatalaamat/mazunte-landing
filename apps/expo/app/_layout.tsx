@@ -79,6 +79,24 @@ export default function HomeLayout() {
                 headerBackTitle: 'Back',
               }}
             />
+            <Stack.Screen
+              name="event/[id]"
+              options={{
+                headerShown: true,
+                headerTitle: '',
+                headerBackTitle: 'Events',
+                presentation: 'card',
+              }}
+            />
+            <Stack.Screen
+              name="place/[id]"
+              options={{
+                headerShown: true,
+                headerTitle: '',
+                headerBackTitle: 'Places',
+                presentation: 'card',
+              }}
+            />
           </Stack>
         </Provider>
       </View>
