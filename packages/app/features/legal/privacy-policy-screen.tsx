@@ -6,21 +6,44 @@ export const PrivacyPolicyScreen = () => {
       {/* only show title on web since mobile has navigator title */}
       {isWeb && <H1>Privacy Policy</H1>}
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quidem neque maxime
-        soluta nostrum unde eligendi, culpa qui exercitationem modi quasi debitis voluptatibus,
-        deleniti porro! Nihil magni dicta neque aliquid.
+        At Mazunte Connect, we are committed to protecting your privacy and personal information. 
+        This Privacy Policy explains how we collect, use, and safeguard your data when you use our 
+        community platform to discover events and places in Mazunte, Mexico.
       </Paragraph>
 
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quidem neque maxime
-        soluta nostrum unde eligendi, culpa qui exercitationem modi quasi debitis voluptatibus,
-        deleniti porro! Nihil magni dicta neque aliquid.
+        <strong>Information We Collect:</strong> We collect information you provide directly, such as 
+        your name, email address, and profile information when you create an account. We also collect 
+        location data to show you nearby events and places, and usage information to improve our services.
       </Paragraph>
 
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae quidem neque maxime
-        soluta nostrum unde eligendi, culpa qui exercitationem modi quasi debitis voluptatibus,
-        deleniti porro! Nihil magni dicta neque aliquid.
+        <strong>How We Use Your Information:</strong> We use your information to provide and improve 
+        our services, send you notifications about events and places you're interested in, and help 
+        you connect with the Mazunte community. We never sell your personal information to third parties.
+      </Paragraph>
+
+      <Paragraph>
+        <strong>Data Security:</strong> We implement appropriate security measures to protect your 
+        personal information against unauthorized access, alteration, disclosure, or destruction. 
+        Your data is stored securely and encrypted in transit.
+      </Paragraph>
+
+      <Paragraph>
+        <strong>Your Rights:</strong> You have the right to access, update, or delete your personal 
+        information at any time. You can also opt out of certain communications from us. Contact us 
+        at privacy@mazunteconnect.com if you have any questions about your data.
+      </Paragraph>
+
+      <Paragraph>
+        <strong>Changes to This Policy:</strong> We may update this Privacy Policy from time to time. 
+        We will notify you of any changes by posting the new Privacy Policy on this page and updating 
+        the "Last Updated" date.
+      </Paragraph>
+
+      <Paragraph>
+        <strong>Contact Us:</strong> If you have any questions about this Privacy Policy, please 
+        contact us at privacy@mazunteconnect.com or through our app support channels.
       </Paragraph>
     </YStack>
   )

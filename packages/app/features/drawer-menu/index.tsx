@@ -31,7 +31,7 @@ export function DrawerMenu(props) {
                 <Settings.Item icon={User} {...useLink({ href: '/profile/edit' })} accentTheme="pink">
                   Edit profile
                 </Settings.Item>
-                <Settings.Item icon={Box} accentTheme="green">
+                {/* <Settings.Item icon={Box} accentTheme="green">
                   My Items
                 </Settings.Item>
                 <Settings.Item icon={Users} accentTheme="orange">
@@ -42,7 +42,7 @@ export function DrawerMenu(props) {
                 </Settings.Item>
                 <Settings.Item icon={ShoppingCart} accentTheme="blue">
                   Purchase History
-                </Settings.Item>
+                </Settings.Item> */}
                 <Settings.Item {...useLink({ href: '/settings' })} icon={Cog}>
                   Settings
                 </Settings.Item>
