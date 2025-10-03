@@ -33,7 +33,7 @@ export function MapScreen() {
   const insets = useSafeAreaInsets()
   const { t } = useTranslation()
   
-  const { data: events = [], isLoading: eventsLoading } = useEventsQuery({})
+  const { data: events = [], isLoading: eventsLoading } = useEventsQuery({ includePast: true })
   const { data: places = [], isLoading: placesLoading } = usePlacesQuery({})
 
   const isLoading = eventsLoading || placesLoading
@@ -46,6 +46,15 @@ export function MapScreen() {
     ? places.filter(place => place.lat && place.lng) 
     : []
 
+  // Debug: Log what we're about to render
+  console.log('About to render markers:', {
+    viewType,
+    filteredEvents: filteredEvents.length,
+    filteredPlaces: filteredPlaces.length,
+    eventsWithCoords: events.filter(e => e.lat && e.lng).length,
+    placesWithCoords: places.filter(p => p.lat && p.lng).length
+  })
+
   // Debug logging
   console.log('MapScreen Debug:', {
     eventsCount: events.length,
@@ -54,7 +63,26 @@ export function MapScreen() {
     placesWithCoords: places.filter(place => place.lat && place.lng).length,
     viewType,
     filteredEventsCount: filteredEvents.length,
-    filteredPlacesCount: filteredPlaces.length
+    filteredPlacesCount: filteredPlaces.length,
+    sampleEvents: events.slice(0, 3).map(event => ({
+      id: event.id,
+      title: event.title,
+      lat: event.lat,
+      lng: event.lng,
+      date: event.date
+    })),
+    samplePlaces: places.slice(0, 3).map(place => ({
+      id: place.id,
+      name: place.name,
+      lat: place.lat,
+      lng: place.lng
+    })),
+    allEventsWithCoords: events.filter(event => event.lat && event.lng).map(event => ({
+      id: event.id,
+      title: event.title,
+      lat: event.lat,
+      lng: event.lng
+    }))
   })
 
   const handleEventPress = (eventId: string) => {
@@ -184,41 +212,52 @@ export function MapScreen() {
         mapType="standard"
       >
         {/* Event Markers */}
-        {filteredEvents.map((event) => {
+        {console.log('Rendering events:', filteredEvents.length, 'events')}
+        {filteredEvents.map((event, index) => {
             const markerKey = `event-${event.id}`
             const isTapped = tappedMarkers.has(markerKey)
+            
+            // Add small offset to prevent overlapping with places at same coordinates
+            const offset = 0.0001 * (index % 3) // Small offset based on index
+            const offsetLat = event.lat! + offset
+            const offsetLng = event.lng! + offset
             
             return (
               <Marker
                 key={markerKey}
                 coordinate={{
-                  latitude: event.lat!,
-                  longitude: event.lng!,
+                  latitude: offsetLat,
+                  longitude: offsetLng,
                 }}
-                title={event.title}
+                title={`📅 ${event.title}`}
                 description={isTapped 
                   ? `${event.description}\n\nTap again to view details` 
                   : `${event.description}\n\nTap to see more info`
                 }
-                pinColor="blue"
+                pinColor="red"
                 onPress={() => handleEventPress(event.id)}
               />
             )
           })}
 
         {/* Place Markers */}
-        {filteredPlaces.map((place) => {
+        {filteredPlaces.map((place, index) => {
             const markerKey = `place-${place.id}`
             const isTapped = tappedMarkers.has(markerKey)
+            
+            // Add small offset to prevent overlapping with events at same coordinates
+            const offset = 0.0001 * (index % 3) // Small offset based on index
+            const offsetLat = place.lat! - offset // Negative offset to separate from events
+            const offsetLng = place.lng! - offset
             
             return (
               <Marker
                 key={markerKey}
                 coordinate={{
-                  latitude: place.lat!,
-                  longitude: place.lng!,
+                  latitude: offsetLat,
+                  longitude: offsetLng,
                 }}
-                title={place.name}
+                title={`📍 ${place.name}`}
                 description={isTapped 
                   ? `${place.description}\n\nTap again to view details` 
                   : `${place.description}\n\nTap to see more info`
