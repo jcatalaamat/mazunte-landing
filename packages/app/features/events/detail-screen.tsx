@@ -2,8 +2,10 @@ import { FullscreenSpinner, Text, YStack, XStack, Image, Button, ScrollView, Car
 import { useEventDetailQuery } from 'app/utils/react-query/useEventsQuery'
 import { Calendar, Clock, MapPin, DollarSign, User, Mail } from '@tamagui/lucide-icons'
 import { formatDate, formatTime } from 'app/utils/date-helpers'
-import { CATEGORY_COLORS, CATEGORY_LABELS } from 'app/utils/constants'
+import { CATEGORY_COLORS } from 'app/utils/constants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useTranslation } from 'react-i18next'
+import { ScreenWrapper } from 'app/components/ScreenWrapper'
 
 interface EventDetailScreenProps {
   id: string
@@ -12,6 +14,7 @@ interface EventDetailScreenProps {
 export function EventDetailScreen({ id }: EventDetailScreenProps) {
   const insets = useSafeAreaInsets()
   const { data: event, isLoading } = useEventDetailQuery(id)
+  const { t } = useTranslation()
 
   if (isLoading) {
     return <FullscreenSpinner />
@@ -21,28 +24,28 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
     return (
       <YStack f={1} ai="center" jc="center" bg="$background">
         <Text fontSize="$5" color="$color10">
-          Event not found
+          {t('events.detail.not_found')}
         </Text>
       </YStack>
     )
   }
 
   const categoryColor = CATEGORY_COLORS[event.category]
-  const categoryLabel = CATEGORY_LABELS[event.category]
+  const categoryLabel = t(`events.categories.${event.category}`)
 
   return (
     <ScrollView bg="$background">
       <YStack pb={insets.bottom + 20}>
-        {/* Image */}
-        {event.image_url && (
-          <Image
-            source={{ uri: event.image_url }}
-            height={280}
-            width="100%"
-          />
-        )}
+          {/* Image */}
+          {event.image_url && (
+            <Image
+              source={{ uri: event.image_url }}
+              height={280}
+              width="100%"
+            />
+          )}
 
-        <YStack p="$4" gap="$4">
+          <YStack p="$4" gap="$4">
           {/* Header */}
           <XStack jc="space-between" ai="flex-start">
             <YStack f={1} gap="$2">
@@ -56,7 +59,7 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
                 {event.eco_conscious && <EcoBadge size="small" />}
                 {event.featured && (
                   <Button size="$2" disabled theme="yellow">
-                    Featured
+                    {t('events.detail.featured')}
                   </Button>
                 )}
               </XStack>
@@ -96,7 +99,7 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
           {event.description && (
             <YStack gap="$2">
               <Text fontSize="$5" fontWeight="600">
-                About
+                {t('events.detail.about')}
               </Text>
               <Paragraph fontSize="$4" color="$color11">
                 {event.description}
@@ -108,7 +111,7 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
           {(event.organizer_name || event.organizer_contact) && (
             <Card p="$3" gap="$3">
               <Text fontSize="$5" fontWeight="600">
-                Organizer
+                {t('events.detail.organizer')}
               </Text>
               {event.organizer_name && (
                 <XStack gap="$3" ai="center">
@@ -128,8 +131,8 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
           {/* TODO: Add map preview with marker */}
           {/* TODO: Add share button */}
           {/* TODO: Add "Get Directions" button if lat/lng available */}
+          </YStack>
         </YStack>
-      </YStack>
-    </ScrollView>
+      </ScrollView>
   )
 }

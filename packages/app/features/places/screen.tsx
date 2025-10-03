@@ -1,6 +1,6 @@
 import { PlaceCard, SearchBar, CategoryFilter, FullscreenSpinner, Text, YStack, Button, XStack } from '@my/ui'
 import { router } from 'expo-router'
-import { FlatList, RefreshControl } from 'react-native'
+import { FlatList, RefreshControl, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
@@ -69,26 +69,34 @@ export function PlacesScreen() {
         defaultValue={searchQuery}
       />
 
-      {/* Simple Type Filter */}
-      <XStack gap="$2" px="$4" py="$2" bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
-        <Button
-          size="$3"
-          variant={selectedType === null ? 'outlined' : undefined}
-          onPress={() => handleTypeSelect(null)}
+      {/* Type Filter - Horizontal Scrollable */}
+      <YStack bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 8 }}
         >
-          <Text>{t('places.all')} ({allPlaces.length})</Text>
-        </Button>
-        {PLACE_TYPES.map((type) => (
-          <Button
-            key={type}
-            size="$3"
-            variant={selectedType === type ? 'outlined' : undefined}
-            onPress={() => handleTypeSelect(type)}
-          >
-            <Text>{PLACE_TYPE_LABELS[type]}</Text>
-          </Button>
-        ))}
-      </XStack>
+          <XStack gap="$2">
+            <Button
+              size="$3"
+              variant={selectedType === null ? 'outlined' : undefined}
+              onPress={() => handleTypeSelect(null)}
+            >
+              <Text>{t('places.all')} ({allPlaces.length})</Text>
+            </Button>
+            {PLACE_TYPES.map((type) => (
+              <Button
+                key={type}
+                size="$3"
+                variant={selectedType === type ? 'outlined' : undefined}
+                onPress={() => handleTypeSelect(type)}
+              >
+                <Text>{t(`places.types.${type}`)}</Text>
+              </Button>
+            ))}
+          </XStack>
+        </ScrollView>
+      </YStack>
 
       {/* Places List */}
       <FlatList

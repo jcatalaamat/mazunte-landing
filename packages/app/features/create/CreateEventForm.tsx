@@ -5,33 +5,35 @@ import { SchemaForm, formFields } from 'app/utils/SchemaForm'
 import { useSupabase } from 'app/utils/supabase/useSupabase'
 import { useUser } from 'app/utils/useUser'
 import { z } from 'zod'
+import { useTranslation } from 'react-i18next'
 
 type InsertEvent = Database['public']['Tables']['events']['Insert']
-
-const CreateEventFormSchema = z.object({
-  title: formFields.text.min(5).describe('Title // Event title'),
-  description: formFields.textarea.describe('Description // Event description').nullable(),
-  category: formFields.select.describe('Category // Event category'),
-  date: formFields.date.describe('Date // Event date'),
-  time: formFields.text.describe('Time // e.g. 18:00 or 18:00-20:00').nullable().optional(),
-  location_name: formFields.text.describe('Location // Where is the event?'),
-  lat: formFields.number.describe('Latitude // GPS coordinate').default(15.6658),
-  lng: formFields.number.describe('Longitude // GPS coordinate').default(-96.7347),
-  price: formFields.text.describe('Price // e.g. Free, $500 MXN, $20 USD').nullable().optional(),
-  eco_conscious: formFields.boolean_switch.describe('Eco Conscious // Is this eco-friendly?').default(false),
-  organizer_name: formFields.text.describe('Organizer Name').nullable().optional(),
-  organizer_contact: formFields.text.describe('Contact // Email, phone, or WhatsApp').nullable().optional(),
-  image_url: formFields.text.describe('Image URL // Optional').nullable().optional(),
-})
 
 export const CreateEventForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const toast = useToastController()
   const { profile, user } = useUser()
   const supabase = useSupabase()
   const queryClient = useQueryClient()
+  const { t } = useTranslation()
+
+  const CreateEventFormSchema = z.object({
+    title: formFields.text.min(5).describe(`${t('create.event_form.title')} // ${t('create.event_form.title')}`),
+    description: formFields.textarea.describe(`${t('create.event_form.description')} // ${t('create.event_form.description')}`).nullable(),
+    category: formFields.select.describe(`${t('create.event_form.category')} // ${t('create.event_form.category')}`),
+    date: formFields.date.describe(`${t('create.event_form.date')} // ${t('create.event_form.date')}`),
+    time: formFields.text.describe(`${t('create.event_form.time')} // e.g. 18:00 or 18:00-20:00`).nullable().optional(),
+    location_name: formFields.text.describe(`${t('create.event_form.location')} // Where is the event?`),
+    lat: formFields.number.describe('Latitude // GPS coordinate').default(15.6658),
+    lng: formFields.number.describe('Longitude // GPS coordinate').default(-96.7347),
+    price: formFields.text.describe(`${t('create.event_form.price')} // e.g. Free, $500 MXN, $20 USD`).nullable().optional(),
+    eco_conscious: formFields.boolean_switch.describe(`${t('create.event_form.eco_conscious')} // Is this eco-friendly?`).default(false),
+    organizer_name: formFields.text.describe(`${t('create.event_form.organizer')} // Your name or organization`).nullable().optional(),
+    organizer_contact: formFields.text.describe('Contact // Email, phone, or WhatsApp').nullable().optional(),
+    image_url: formFields.text.describe(`${t('create.event_form.image')} // Optional event image`).nullable().optional(),
+  })
   const mutation = useMutation({
     async onError(error) {
-      toast.show('Error creating event')
+      toast.show(t('common.error'))
       console.log('error', error)
     },
 
@@ -89,20 +91,20 @@ export const CreateEventForm = ({ onSuccess }: { onSuccess: () => void }) => {
         }}
         props={{
           category: {
-            placeholder: 'Select category',
+            placeholder: t('create.event_form.category'),
             options: [
-              { name: 'Yoga', value: 'yoga' },
-              { name: 'Ceremony', value: 'ceremony' },
-              { name: 'Workshop', value: 'workshop' },
-              { name: 'Party', value: 'party' },
-              { name: 'Market', value: 'market' },
-              { name: 'Other', value: 'other' },
+              { name: t('events.categories.yoga'), value: 'yoga' },
+              { name: t('events.categories.ceremony'), value: 'ceremony' },
+              { name: t('events.categories.workshop'), value: 'workshop' },
+              { name: t('events.categories.party'), value: 'party' },
+              { name: t('events.categories.market'), value: 'market' },
+              { name: t('events.categories.other'), value: 'other' },
             ],
           },
         }}
         renderAfter={({ submit }) => (
           <Theme inverse>
-            <SubmitButton onPress={() => submit()}>Create Event</SubmitButton>
+            <SubmitButton onPress={() => submit()}>{t('create.event_form.submit')}</SubmitButton>
           </Theme>
         )}
       >

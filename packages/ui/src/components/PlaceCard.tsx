@@ -3,6 +3,7 @@ import { Leaf, MapPin, Phone, Star } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Card, type CardProps, H6, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 import { FavoriteButtonWrapper } from './FavoriteButtonWrapper'
+import { useTranslation } from 'react-i18next'
 
 type Place = Database['public']['Tables']['places']['Row']
 
@@ -24,6 +25,7 @@ const placeTypeColors: Record<string, string> = {
 
 export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavorite, ...props }: PlaceCardProps) => {
   const [hover, setHover] = useState(false)
+  const { t } = useTranslation()
   const mainImage = place.images && place.images.length > 0 ? place.images[0] : null
 
   return (
@@ -81,7 +83,7 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
         <Theme name={placeTypeColors[place.type] || 'gray'}>
           <Button size="$2" px="$3" py="$1" borderRadius="$10" disabled als="flex-start">
             <Text fontSize="$2" tt="capitalize" fontWeight="600">
-              {place.type}
+              {t(`places.types.${place.type}`)}
             </Text>
           </Button>
         </Theme>
@@ -106,7 +108,7 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
               {place.price_range}
             </Text>
             <Text fontSize="$2" color="$color10">
-              Price range
+              {t('place_card.price_range')}
             </Text>
           </XStack>
         )}
@@ -116,7 +118,7 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
           <XStack ai="center" gap="$2">
             <Phone size={14} color="$color10" />
             <Text fontSize="$3" color="$color11" numberOfLines={1}>
-              Contact available
+              {t('place_card.contact_available')}
             </Text>
           </XStack>
         )}
@@ -134,7 +136,7 @@ export const PlaceCard = ({ place, onPress, showFavorite = false, onToggleFavori
             {place.tags.slice(0, 3).map((tag) => (
               <XStack key={tag} bg="$blue2" px="$2.5" py="$1.5" borderRadius="$3">
                 <Text fontSize="$2" color="$blue11" fontWeight="500">
-                  {tag}
+                  {t(`tags.${tag}`)}
                 </Text>
               </XStack>
             ))}

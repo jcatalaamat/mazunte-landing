@@ -1,9 +1,11 @@
 import { FullscreenSpinner, Text, YStack, XStack, Image, Button, ScrollView, Card, H4, Paragraph, EcoBadge, FavoriteButtonWrapper, Theme } from '@my/ui'
 import { usePlaceDetailQuery } from 'app/utils/react-query/usePlacesQuery'
 import { MapPin, DollarSign, Phone, Mail, Globe, Instagram } from '@tamagui/lucide-icons'
-import { PLACE_TYPE_COLORS, PLACE_TYPE_LABELS } from 'app/utils/constants'
+import { PLACE_TYPE_COLORS } from 'app/utils/constants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Linking } from 'react-native'
+import { useTranslation } from 'react-i18next'
+import { ScreenWrapper } from 'app/components/ScreenWrapper'
 
 interface PlaceDetailScreenProps {
   id: string
@@ -12,6 +14,7 @@ interface PlaceDetailScreenProps {
 export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
   const insets = useSafeAreaInsets()
   const { data: place, isLoading } = usePlaceDetailQuery(id)
+  const { t } = useTranslation()
 
   if (isLoading) {
     return <FullscreenSpinner />
@@ -21,14 +24,14 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
     return (
       <YStack f={1} ai="center" jc="center" bg="$background">
         <Text fontSize="$5" color="$color10">
-          Place not found
+          {t('places.detail.not_found')}
         </Text>
       </YStack>
     )
   }
 
   const typeColor = PLACE_TYPE_COLORS[place.type]
-  const typeLabel = PLACE_TYPE_LABELS[place.type]
+  const typeLabel = t(`places.types.${place.type}`)
 
   const handlePhonePress = () => {
     if (place.contact_phone) Linking.openURL(`tel:${place.contact_phone}`)
@@ -53,16 +56,16 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
   return (
     <ScrollView bg="$background">
       <YStack pb={insets.bottom + 20}>
-        {/* Image */}
-        {place.images && place.images.length > 0 && (
-          <Image
-            source={{ uri: place.images[0] }}
-            height={280}
-            width="100%"
-          />
-        )}
+          {/* Image */}
+          {place.images && place.images.length > 0 && (
+            <Image
+              source={{ uri: place.images[0] }}
+              height={280}
+              width="100%"
+            />
+          )}
 
-        <YStack p="$4" gap="$4">
+          <YStack p="$4" gap="$4">
           {/* Header */}
           <XStack jc="space-between" ai="flex-start">
             <YStack f={1} gap="$2">
@@ -111,7 +114,7 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
           {place.description && (
             <YStack gap="$2">
               <Text fontSize="$5" fontWeight="600">
-                About
+                {t('places.detail.about')}
               </Text>
               <Paragraph fontSize="$4" color="$color11">
                 {place.description}
@@ -133,7 +136,7 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
           {/* Contact Info */}
           <Card p="$3" gap="$3">
             <Text fontSize="$5" fontWeight="600">
-              Contact
+              {t('places.detail.contact')}
             </Text>
             {place.contact_phone && (
               <Button
@@ -187,7 +190,7 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
                 chromeless
                 jc="flex-start"
               >
-                Visit Website
+{t('places.detail.visit_website')}
               </Button>
             )}
           </Card>
@@ -196,8 +199,8 @@ export function PlaceDetailScreen({ id }: PlaceDetailScreenProps) {
           {/* TODO: Add map preview with marker */}
           {/* TODO: Add share button */}
           {/* TODO: Add "Get Directions" button if lat/lng available */}
+          </YStack>
         </YStack>
-      </YStack>
-    </ScrollView>
+      </ScrollView>
   )
 }

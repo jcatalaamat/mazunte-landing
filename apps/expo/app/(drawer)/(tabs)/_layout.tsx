@@ -19,7 +19,7 @@ export default function Layout() {
     <>
       <Stack.Screen
         options={{
-          title: 'Mazunte Connect',
+          title: t('app.title'),
           headerShown: pathname === '/' || pathname === '/create',
           headerTintColor: accentColor.val,
           headerLeft: () => (

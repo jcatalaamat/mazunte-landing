@@ -5,17 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'solito/router'
 import type { TabsContentProps } from 'tamagui'
 import { Separator, Tabs, Text, useEvent } from 'tamagui'
+import { useTranslation } from 'react-i18next'
 
 import { CreateEventForm } from './CreateEventForm'
 import { CreatePlaceForm } from './CreatePlaceForm'
-
-const tabs = ['Add Event', 'Add Place']
 
 export const CreateScreen = () => {
   const { setToggleCreateModal } = useGlobalStore()
   const pathName = usePathname()
   const toast = useToastController()
   const router = useRouter()
+  const { t } = useTranslation()
 
   const [activeTabIndex, _setActiveTabIndex] = useState(0)
   const activeTabRef = useRef(activeTabIndex)
@@ -25,7 +25,7 @@ export const CreateScreen = () => {
     _setActiveTabIndex(activeTabIndex)
   })
 
-  const [currentTab, setCurrentTab] = useState<string>(tabs[0])
+  const [currentTab, setCurrentTab] = useState<string>('event')
 
   useEffect(() => {
     changeActiveTab(activeTabIndex)
@@ -43,10 +43,12 @@ export const CreateScreen = () => {
 
   const renderTab = () => {
     switch (currentTab) {
-      case 'Add Event':
+      case 'event':
         return <CreateEventForm onSuccess={onSuccess} />
-      case 'Add Place':
+      case 'place':
         return <CreatePlaceForm onSuccess={onSuccess} />
+      default:
+        return <CreateEventForm onSuccess={onSuccess} />
     }
   }
 
@@ -56,7 +58,7 @@ export const CreateScreen = () => {
       backgroundColor="$background"
       borderBottomWidth={1}
       borderBottomColor="$color1"
-      defaultValue={tabs[0]}
+      defaultValue="event"
       flex={1}
       value={currentTab}
       onValueChange={setCurrentTab}
@@ -77,14 +79,17 @@ export const CreateScreen = () => {
         borderBottomWidth={1}
         borderColor="$borderColor"
       >
-        {tabs.map((tab) => {
-          const active = tab === currentTab
+        {[
+          { key: 'event', label: t('create.add_event') },
+          { key: 'place', label: t('create.add_place') }
+        ].map((tab) => {
+          const active = tab.key === currentTab
 
           return (
             <Tabs.Tab
               unstyled
-              key={tab}
-              value={tab}
+              key={tab.key}
+              value={tab.key}
               flex={1}
               pressStyle={{ opacity: 0.5 }}
               justifyContent="center"
@@ -99,7 +104,7 @@ export const CreateScreen = () => {
                 fontWeight={active ? '600' : undefined}
                 numberOfLines={1}
               >
-                {tab}
+                {tab.label}
               </Text>
             </Tabs.Tab>
           )

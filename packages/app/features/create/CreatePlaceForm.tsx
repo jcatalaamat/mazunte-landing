@@ -5,34 +5,36 @@ import { SchemaForm, formFields } from 'app/utils/SchemaForm'
 import { useSupabase } from 'app/utils/supabase/useSupabase'
 import { useUser } from 'app/utils/useUser'
 import { z } from 'zod'
+import { useTranslation } from 'react-i18next'
 
 type InsertPlace = Database['public']['Tables']['places']['Insert']
-
-const CreatePlaceFormSchema = z.object({
-  name: formFields.text.min(3).describe('Name // Place name'),
-  type: formFields.select.describe('Type // Place type'),
-  category: formFields.text.describe('Category // e.g. Vinyasa, Cacao, Sound Healing'),
-  description: formFields.textarea.describe('Description // Tell us about this place'),
-  location_name: formFields.text.describe('Location // e.g. Playa Mermejita, Centro'),
-  lat: formFields.number.describe('Latitude // GPS coordinate').default(15.6658),
-  lng: formFields.number.describe('Longitude // GPS coordinate').default(-96.7347),
-  price_range: formFields.select.describe('Price Range // How expensive?').nullable().optional(),
-  contact_phone: formFields.text.describe('Phone // Contact number').nullable().optional(),
-  contact_whatsapp: formFields.text.describe('WhatsApp // WhatsApp number').nullable().optional(),
-  contact_email: formFields.text.describe('Email // Contact email').nullable().optional(),
-  contact_instagram: formFields.text.describe('Instagram // Instagram handle').nullable().optional(),
-  website_url: formFields.text.describe('Website // Website URL').nullable().optional(),
-  eco_conscious: formFields.boolean_switch.describe('Eco Conscious // Is this eco-friendly?').default(false),
-})
 
 export const CreatePlaceForm = ({ onSuccess }: { onSuccess: () => void }) => {
   const toast = useToastController()
   const { profile, user } = useUser()
   const supabase = useSupabase()
   const queryClient = useQueryClient()
+  const { t } = useTranslation()
+
+  const CreatePlaceFormSchema = z.object({
+    name: formFields.text.min(3).describe(`${t('create.place_form.name')} // ${t('create.place_form.name')}`),
+    type: formFields.select.describe(`${t('create.place_form.type')} // ${t('create.place_form.type')}`),
+    category: formFields.text.describe(`${t('create.place_form.category')} // e.g. Vinyasa, Cacao, Sound Healing`),
+    description: formFields.textarea.describe(`${t('create.place_form.description')} // Tell us about this place`),
+    location_name: formFields.text.describe(`${t('create.place_form.location')} // e.g. Playa Mermejita, Centro`),
+    lat: formFields.number.describe('Latitude // GPS coordinate').default(15.6658),
+    lng: formFields.number.describe('Longitude // GPS coordinate').default(-96.7347),
+    price_range: formFields.select.describe(`${t('create.place_form.price_range')} // How expensive?`).nullable().optional(),
+    contact_phone: formFields.text.describe(`${t('create.place_form.contact_phone')} // Contact number`).nullable().optional(),
+    contact_whatsapp: formFields.text.describe('WhatsApp // WhatsApp number').nullable().optional(),
+    contact_email: formFields.text.describe(`${t('create.place_form.contact_email')} // Contact email`).nullable().optional(),
+    contact_instagram: formFields.text.describe(`${t('create.place_form.contact_instagram')} // Instagram handle`).nullable().optional(),
+    website_url: formFields.text.describe(`${t('create.place_form.website')} // Website URL`).nullable().optional(),
+    eco_conscious: formFields.boolean_switch.describe(`${t('create.place_form.eco_conscious')} // Is this eco-friendly?`).default(false),
+  })
   const mutation = useMutation({
     async onError(error) {
-      toast.show('Error creating place')
+      toast.show(t('common.error'))
       console.log('error', error)
     },
 
@@ -90,17 +92,17 @@ export const CreatePlaceForm = ({ onSuccess }: { onSuccess: () => void }) => {
         }}
         props={{
           type: {
-            placeholder: 'Select type',
+            placeholder: t('create.place_form.type'),
             options: [
-              { name: 'Retreat', value: 'retreat' },
-              { name: 'Wellness', value: 'wellness' },
-              { name: 'Restaurant', value: 'restaurant' },
-              { name: 'Activity', value: 'activity' },
-              { name: 'Community', value: 'community' },
+              { name: t('places.types.retreat'), value: 'retreat' },
+              { name: t('places.types.wellness'), value: 'wellness' },
+              { name: t('places.types.restaurant'), value: 'restaurant' },
+              { name: t('places.types.activity'), value: 'activity' },
+              { name: t('places.types.community'), value: 'community' },
             ],
           },
           price_range: {
-            placeholder: 'Select price range',
+            placeholder: t('create.place_form.price_range'),
             options: [
               { name: '$', value: '$' },
               { name: '$$', value: '$$' },
@@ -111,7 +113,7 @@ export const CreatePlaceForm = ({ onSuccess }: { onSuccess: () => void }) => {
         }}
         renderAfter={({ submit }) => (
           <Theme inverse>
-            <SubmitButton onPress={() => submit()}>Create Place</SubmitButton>
+            <SubmitButton onPress={() => submit()}>{t('create.place_form.submit')}</SubmitButton>
           </Theme>
         )}
       >

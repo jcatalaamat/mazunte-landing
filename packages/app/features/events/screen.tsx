@@ -1,6 +1,6 @@
 import { EventCard, FullscreenSpinner, SearchBar, Text, YStack, Button, XStack, H6, Paragraph } from '@my/ui'
 import { router } from 'expo-router'
-import { FlatList, RefreshControl } from 'react-native'
+import { FlatList, RefreshControl, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
@@ -73,26 +73,34 @@ export function EventsScreen() {
         defaultValue={searchQuery}
       />
 
-      {/* Category Filter */}
-      <XStack gap="$2" px="$4" py="$2" bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
-        <Button
-          size="$3"
-          variant={selectedCategory === null ? 'outlined' : undefined}
-          onPress={() => handleCategorySelect(null)}
+      {/* Category Filter - Horizontal Scrollable */}
+      <YStack bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
+        <ScrollView 
+          horizontal 
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 8 }}
         >
-          <Text>{t('events.all_events')} ({allEvents.length})</Text>
-        </Button>
-        {EVENT_CATEGORIES.map((category) => (
-          <Button
-            key={category}
-            size="$3"
-            variant={selectedCategory === category ? 'outlined' : undefined}
-            onPress={() => handleCategorySelect(category)}
-          >
-            <Text>{CATEGORY_LABELS[category]}</Text>
-          </Button>
-        ))}
-      </XStack>
+          <XStack gap="$2">
+            <Button
+              size="$3"
+              variant={selectedCategory === null ? 'outlined' : undefined}
+              onPress={() => handleCategorySelect(null)}
+            >
+              <Text>{t('events.all_events')} ({allEvents.length})</Text>
+            </Button>
+            {EVENT_CATEGORIES.map((category) => (
+              <Button
+                key={category}
+                size="$3"
+                variant={selectedCategory === category ? 'outlined' : undefined}
+                onPress={() => handleCategorySelect(category)}
+              >
+                <Text>{t(`events.categories.${category}`)}</Text>
+              </Button>
+            ))}
+          </XStack>
+        </ScrollView>
+      </YStack>
 
 
       {/* Events List */}

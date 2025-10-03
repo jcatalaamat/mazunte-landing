@@ -3,6 +3,7 @@ import { Calendar, Leaf, MapPin } from '@tamagui/lucide-icons'
 import { useState } from 'react'
 import { Button, Card, type CardProps, H6, Image, Paragraph, Text, Theme, XStack, YStack } from 'tamagui'
 import { FavoriteButtonWrapper } from './FavoriteButtonWrapper'
+import { useTranslation } from 'react-i18next'
 
 type Event = Database['public']['Tables']['events']['Row']
 
@@ -55,6 +56,7 @@ const categoryColors: Record<string, string> = {
 
 export const EventCard = ({ event, onPress, showFavorite = false, onToggleFavorite, ...props }: EventCardProps) => {
   const [hover, setHover] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <Card
@@ -109,7 +111,7 @@ export const EventCard = ({ event, onPress, showFavorite = false, onToggleFavori
         <Theme name={categoryColors[event.category] || 'gray'}>
           <Button size="$2" px="$3" py="$1" borderRadius="$10" disabled als="flex-start">
             <Text fontSize="$2" tt="capitalize" fontWeight="600">
-              {event.category}
+              {t(`events.categories.${event.category}`)}
             </Text>
           </Button>
         </Theme>

@@ -17,6 +17,13 @@
     "done": "Done",
     "language": "Language"
   },
+  "app": {
+    "title": "Mazunte Connect"
+  },
+  "place_card": {
+    "price_range": "Price range",
+    "contact_available": "Contact available"
+  },
   "navigation": {
     "home": "Home",
     "events": "Events",
@@ -318,6 +325,20 @@
             "retreat-center": "Retreat Center",
             "water-therapy": "Water Therapy",
             "relaxation": "Relaxation",
-            "couples-retreats": "Couples Retreats"
+            "couples-retreats": "Couples Retreats",
+            "acupuncture": "Acupuncture",
+            "temazcal": "Temazcal",
+            "karate": "Karate",
+            "facial-serums": "Facial Serums",
+            "natural-deodorant": "Natural Deodorant",
+            "drop-in": "Drop-in",
+            "poke-bowls": "Poke Bowls",
+            "silent-retreat": "Silent Retreat",
+            "deep-relaxation": "Deep Relaxation",
+            "stretching": "Stretching",
+            "organic-produce": "Organic Produce",
+            "fresh": "Fresh",
+            "plant-medicines": "Plant Medicines",
+            "beach-wellness": "Beach Wellness"
           }
 }
