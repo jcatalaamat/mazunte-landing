@@ -180,6 +180,6 @@ export function MapScreen() {
           />
         ))}
       </MapView>
-    </YStack>
+    </ScreenWrapper>
   )
 }
