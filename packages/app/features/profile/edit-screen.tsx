@@ -104,7 +104,7 @@ const EditProfileForm = ({
       <FormWrapper.Body>
         <YStack gap="$4">
           {/* Avatar */}
-          <YStack ai="center" jc="center" mt="$8">
+          <YStack ai="center" jc="center" mt="$4">
             <UploadAvatar>
               <UserAvatar />
             </UploadAvatar>
