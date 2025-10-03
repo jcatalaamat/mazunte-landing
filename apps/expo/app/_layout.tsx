@@ -121,8 +121,8 @@ function HomeLayout() {
               }}
             />
             </Stack>
-          </Provider>
-        </LanguageProvider>
+          </LanguageProvider>
+        </Provider>
       </View>
     </GestureHandlerRootView>
   )
