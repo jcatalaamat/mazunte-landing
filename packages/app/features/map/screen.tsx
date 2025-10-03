@@ -8,6 +8,7 @@ import { useEventsQuery } from 'app/utils/react-query/useEventsQuery'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 import { MAZUNTE_CENTER } from 'app/utils/constants'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
+import { useTranslation } from 'react-i18next'
 
 // Import MapView only on native platforms
 let MapView: any = null
@@ -30,6 +31,7 @@ export function MapScreen() {
   const [headerDismissed, setHeaderDismissed] = useState(false)
   const [tappedMarkers, setTappedMarkers] = useState<Set<string>>(new Set())
   const insets = useSafeAreaInsets()
+  const { t } = useTranslation()
   
   const { data: events = [], isLoading: eventsLoading } = useEventsQuery({})
   const { data: places = [], isLoading: placesLoading } = usePlacesQuery({})
@@ -78,7 +80,7 @@ export function MapScreen() {
     return (
       <ScreenWrapper>
         <YStack f={1} ai="center" jc="center">
-          <Text fontSize="$5" color="$color10">Loading map...</Text>
+          <Text fontSize="$5" color="$color10">{t('map.loading_map')}</Text>
         </YStack>
       </ScreenWrapper>
     )
@@ -91,13 +93,13 @@ export function MapScreen() {
         <YStack f={1} ai="center" jc="center" gap="$4" p="$4">
           <YStack gap="$2" w="100%">
             <Text fontSize="$4" fontWeight="600" color="$color11">
-              📍 Mazunte, Mexico (15.666°N, 96.556°W)
+              {t('map.mazunte_location')}
             </Text>
             <Text color="$color10">
-              • Events: {filteredEvents.length} available
+              • {t('map.events_available', { count: filteredEvents.length })}
             </Text>
             <Text color="$color10">
-              • Places: {filteredPlaces.length} available
+              • {t('map.places_available', { count: filteredPlaces.length })}
             </Text>
           </YStack>
         </YStack>
@@ -126,7 +128,7 @@ export function MapScreen() {
           onPress={() => setViewType('events')}
           f={1}
         >
-          <Text>Events ({filteredEvents.length})</Text>
+          <Text>{t('map.events')} ({filteredEvents.length})</Text>
         </Button>
         <Button
           size="$3"
@@ -134,7 +136,7 @@ export function MapScreen() {
           onPress={() => setViewType('places')}
           f={1}
         >
-          <Text>Places ({filteredPlaces.length})</Text>
+          <Text>{t('map.places')} ({filteredPlaces.length})</Text>
         </Button>
         <Button
           size="$3"
@@ -142,7 +144,7 @@ export function MapScreen() {
           onPress={() => setViewType('both')}
           f={1}
         >
-          <Text>Both</Text>
+          <Text>{t('map.both')}</Text>
         </Button>
         </XStack>
       </YStack>

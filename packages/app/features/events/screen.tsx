@@ -7,12 +7,14 @@ import { X } from '@tamagui/lucide-icons'
 import { CATEGORY_LABELS, EVENT_CATEGORIES, type EventCategory } from 'app/utils/constants'
 import { useEventsQuery } from 'app/utils/react-query/useEventsQuery'
 import { formatDate, formatTime, getRelativeDay } from 'app/utils/date-helpers'
+import { useTranslation } from 'react-i18next'
 
 export function EventsScreen() {
   const [selectedCategory, setSelectedCategory] = useState<EventCategory | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [headerDismissed, setHeaderDismissed] = useState(false)
   const insets = useSafeAreaInsets()
+  const { t } = useTranslation()
 
   // Fetch all events once (including past events for now)
   const { data: allEvents = [], isLoading, error, refetch } = useEventsQuery({ includePast: true })
@@ -66,7 +68,7 @@ export function EventsScreen() {
     <YStack f={1} bg="$background">
       {/* Search */}
       <SearchBar
-        placeholder="Search events..."
+        placeholder={t('events.search_placeholder')}
         onSearch={handleSearch}
         defaultValue={searchQuery}
       />
@@ -78,7 +80,7 @@ export function EventsScreen() {
           variant={selectedCategory === null ? 'outlined' : undefined}
           onPress={() => handleCategorySelect(null)}
         >
-          <Text>All ({allEvents.length})</Text>
+          <Text>{t('events.all_events')} ({allEvents.length})</Text>
         </Button>
         {EVENT_CATEGORIES.map((category) => (
           <Button
@@ -115,20 +117,20 @@ export function EventsScreen() {
         ListEmptyComponent={
           <YStack ai="center" jc="center" py="$10">
             <Text fontSize="$5" color="$color10">
-              No events found
+              {t('events.no_events_found')}
             </Text>
             {(selectedCategory || searchQuery) && (
               <Text fontSize="$3" color="$color9" mt="$2">
-                Try adjusting your filters
+                {t('events.try_adjusting_filters')}
               </Text>
             )}
             {!selectedCategory && !searchQuery && (
               <YStack ai="center" gap="$3" mt="$4">
                 <Text fontSize="$4" color="$color11" ta="center">
-                  No events scheduled yet
+                  {t('events.no_events_scheduled')}
                 </Text>
                 <Button onPress={() => router.push('/create')} size="$4">
-                  <Text>Create First Event</Text>
+                  <Text>{t('events.create_first_event')}</Text>
                 </Button>
               </YStack>
             )}

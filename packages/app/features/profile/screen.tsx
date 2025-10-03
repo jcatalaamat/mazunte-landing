@@ -6,6 +6,7 @@ import { useUser } from 'app/utils/useUser'
 import { SolitoImage } from 'solito/image'
 import { useLink } from 'solito/link'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export function ProfileScreen(props) {
   const { profile, avatarUrl } = useUser()
@@ -13,6 +14,7 @@ export function ProfileScreen(props) {
   const insets = useSafeAreaInsets()
   const height = useWindowDimensions().height
   const [headerDismissed, setHeaderDismissed] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <YStack f={1} bg="$background">
@@ -29,7 +31,7 @@ export function ProfileScreen(props) {
             <Settings.Items>
               <Settings.Group>
                 <Settings.Item icon={User} {...useLink({ href: '/profile/edit' })} accentTheme="pink">
-                  Edit profile
+                  {t('profile.edit_profile')}
                 </Settings.Item>
                 {/* <Settings.Item icon={Box} accentTheme="green">
                   My Items
@@ -44,7 +46,7 @@ export function ProfileScreen(props) {
                   Purchase History
                 </Settings.Item> */}
                 <Settings.Item {...useLink({ href: '/settings' })} icon={Cog}>
-                  Settings
+                  {t('profile.settings')}
                 </Settings.Item>
               </Settings.Group>
             </Settings.Items>
@@ -54,13 +56,13 @@ export function ProfileScreen(props) {
             <Avatar circular size="$3">
               <SolitoImage
                 src={avatarUrl}
-                alt="your avatar"
+                alt={t('profile.avatar_alt')}
                 width={getTokens().size['3'].val}
                 height={getTokens().size['3'].val}
               />
             </Avatar>
             <Paragraph ta="center" ml="$-1.5">
-              {name ?? 'No Name'}
+              {name ?? t('profile.no_name')}
             </Paragraph>
           </XStack>
         </YStack>

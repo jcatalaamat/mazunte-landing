@@ -7,12 +7,14 @@ import { useUser } from 'app/utils/useUser'
 import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
+import { useTranslation } from 'react-i18next'
 
 export function FavoritesScreen() {
   const { profile } = useUser()
   const insets = useSafeAreaInsets()
   const [activeTab, setActiveTab] = useState<'events' | 'places'>('events')
   const [headerDismissed, setHeaderDismissed] = useState(false)
+  const { t } = useTranslation()
 
   const { data: favorites = [], isLoading, refetch } = useFavoritesQuery(profile?.id)
   const [refreshing, setRefreshing] = useState(false)
@@ -40,13 +42,13 @@ export function FavoritesScreen() {
     <ScreenWrapper>
         <YStack f={1} ai="center" jc="center" p="$4">
           <Text fontSize="$6" color="$color10" ta="center" mb="$2">
-            ❤️ No Favorites Yet
+            ❤️ {t('favorites.no_favorites')}
           </Text>
           <Text fontSize="$4" color="$color9" ta="center" mb="$4">
-            Start exploring events and places to build your favorites list!
+            {t('favorites.no_favorites_message')}
           </Text>
           <Button onPress={() => router.push('/')} size="$4">
-            <Text>Explore Events & Places</Text>
+            <Text>{t('favorites.explore_events_places')}</Text>
           </Button>
         </YStack>
     </ScreenWrapper>
@@ -62,7 +64,7 @@ export function FavoritesScreen() {
           onPress={() => setActiveTab('events')}
           borderRadius={0}
         >
-          <Text>Events ({favoriteEvents.length})</Text>
+          <Text>{t('favorites.events')} ({favoriteEvents.length})</Text>
         </Button>
         <Button
           f={1}
@@ -70,7 +72,7 @@ export function FavoritesScreen() {
           onPress={() => setActiveTab('places')}
           borderRadius={0}
         >
-          <Text>Places ({favoritePlaces.length})</Text>
+          <Text>{t('favorites.places')} ({favoritePlaces.length})</Text>
         </Button>
       </XStack>
 
@@ -96,10 +98,10 @@ export function FavoritesScreen() {
           ListEmptyComponent={
             <YStack ai="center" jc="center" py="$10">
               <Text fontSize="$5" color="$color10">
-                No favorite events yet
+                {t('favorites.no_favorite_events')}
               </Text>
               <Text fontSize="$3" color="$color9" mt="$2">
-                Tap the heart icon on events to save them here
+                {t('favorites.tap_heart_events')}
               </Text>
             </YStack>
           }
@@ -128,10 +130,10 @@ export function FavoritesScreen() {
           ListEmptyComponent={
             <YStack ai="center" jc="center" py="$10">
               <Text fontSize="$5" color="$color10">
-                No favorite places yet
+                {t('favorites.no_favorite_places')}
               </Text>
               <Text fontSize="$3" color="$color9" mt="$2">
-                Tap the heart icon on places to save them here
+                {t('favorites.tap_heart_places')}
               </Text>
             </YStack>
           }

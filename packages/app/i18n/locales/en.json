@@ -45,7 +45,13 @@
     "location": "Location",
     "price": "Price",
     "organizer": "Organizer",
-    "description": "Description"
+    "description": "Description",
+    "search_placeholder": "Search events...",
+    "all_events": "All",
+    "no_events_found": "No events found",
+    "try_adjusting_filters": "Try adjusting your filters",
+    "no_events_scheduled": "No events scheduled yet",
+    "create_first_event": "Create First Event"
   },
   "places": {
     "title": "Places",
@@ -61,7 +67,11 @@
     "tags": "Tags",
     "eco_conscious": "Eco Conscious",
     "verified": "Verified",
-    "featured": "Featured"
+    "featured": "Featured",
+    "search_placeholder": "Search places...",
+    "all": "All",
+    "no_places_found": "No places found",
+    "try_adjusting_filters": "Try adjusting your filters"
   },
   "map": {
     "title": "Map",
@@ -70,7 +80,10 @@
     "both": "Both",
     "loading_map": "Loading map...",
     "tap_for_info": "Tap to see more info",
-    "tap_again_for_details": "Tap again to view details"
+    "tap_again_for_details": "Tap again to view details",
+    "mazunte_location": "📍 Mazunte, Mexico (15.666°N, 96.556°W)",
+    "events_available": "Events: {count} available",
+    "places_available": "Places: {count} available"
   },
   "favorites": {
     "title": "Favorites",
@@ -81,7 +94,9 @@
     "places": "Places",
     "no_favorite_events": "No favorite events yet",
     "no_favorite_places": "No favorite places yet",
-    "tap_heart_to_save": "Tap the heart icon on events to save them here"
+    "tap_heart_to_save": "Tap the heart icon on events to save them here",
+    "tap_heart_events": "Tap the heart icon on events to save them here",
+    "tap_heart_places": "Tap the heart icon on places to save them here"
   },
   "profile": {
     "title": "Profile",
@@ -90,7 +105,9 @@
     "about": "About",
     "update_profile": "Update Profile",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "no_name": "No Name",
+    "avatar_alt": "your avatar"
   },
   "auth": {
     "sign_in": "Sign In",

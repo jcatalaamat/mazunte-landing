@@ -7,12 +7,14 @@ import { X } from '@tamagui/lucide-icons'
 import { PLACE_TYPE_COLORS, PLACE_TYPE_LABELS, PLACE_TYPES, type PlaceType } from 'app/utils/constants'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
+import { useTranslation } from 'react-i18next'
 
 export function PlacesScreen() {
   const [selectedType, setSelectedType] = useState<PlaceType | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [headerDismissed, setHeaderDismissed] = useState(false)
   const insets = useSafeAreaInsets()
+  const { t } = useTranslation()
 
   // Fetch all places once
   const { data: allPlaces = [], isLoading, refetch } = usePlacesQuery({})
@@ -62,7 +64,7 @@ export function PlacesScreen() {
     <ScreenWrapper>
       {/* Search */}
       <SearchBar
-        placeholder="Search places..."
+        placeholder={t('places.search_placeholder')}
         onSearch={handleSearch}
         defaultValue={searchQuery}
       />
@@ -74,7 +76,7 @@ export function PlacesScreen() {
           variant={selectedType === null ? 'outlined' : undefined}
           onPress={() => handleTypeSelect(null)}
         >
-          <Text>All ({allPlaces.length})</Text>
+          <Text>{t('places.all')} ({allPlaces.length})</Text>
         </Button>
         {PLACE_TYPES.map((type) => (
           <Button
@@ -110,11 +112,11 @@ export function PlacesScreen() {
         ListEmptyComponent={
           <YStack ai="center" jc="center" py="$10">
             <Text fontSize="$5" color="$color10">
-              No places found
+              {t('places.no_places_found')}
             </Text>
             {(selectedType || searchQuery) && (
               <Text fontSize="$3" color="$color9" mt="$2">
-                Try adjusting your filters
+                {t('places.try_adjusting_filters')}
               </Text>
             )}
           </YStack>

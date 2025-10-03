@@ -45,7 +45,13 @@
     "location": "Ubicación",
     "price": "Precio",
     "organizer": "Organizador",
-    "description": "Descripción"
+    "description": "Descripción",
+    "search_placeholder": "Buscar eventos...",
+    "all_events": "Todos",
+    "no_events_found": "No se encontraron eventos",
+    "try_adjusting_filters": "Intenta ajustar tus filtros",
+    "no_events_scheduled": "Aún no hay eventos programados",
+    "create_first_event": "Crear Primer Evento"
   },
   "places": {
     "title": "Lugares",
@@ -61,7 +67,11 @@
     "tags": "Etiquetas",
     "eco_conscious": "Consciente del Medio Ambiente",
     "verified": "Verificado",
-    "featured": "Destacado"
+    "featured": "Destacado",
+    "search_placeholder": "Buscar lugares...",
+    "all": "Todos",
+    "no_places_found": "No se encontraron lugares",
+    "try_adjusting_filters": "Intenta ajustar tus filtros"
   },
   "map": {
     "title": "Mapa",
@@ -70,7 +80,10 @@
     "both": "Ambos",
     "loading_map": "Cargando mapa...",
     "tap_for_info": "Toca para ver más información",
-    "tap_again_for_details": "Toca de nuevo para ver detalles"
+    "tap_again_for_details": "Toca de nuevo para ver detalles",
+    "mazunte_location": "📍 Mazunte, México (15.666°N, 96.556°O)",
+    "events_available": "Eventos: {count} disponibles",
+    "places_available": "Lugares: {count} disponibles"
   },
   "favorites": {
     "title": "Favoritos",
@@ -81,7 +94,9 @@
     "places": "Lugares",
     "no_favorite_events": "Aún no tienes eventos favoritos",
     "no_favorite_places": "Aún no tienes lugares favoritos",
-    "tap_heart_to_save": "Toca el ícono de corazón en los eventos para guardarlos aquí"
+    "tap_heart_to_save": "Toca el ícono de corazón en los eventos para guardarlos aquí",
+    "tap_heart_events": "Toca el ícono de corazón en los eventos para guardarlos aquí",
+    "tap_heart_places": "Toca el ícono de corazón en los lugares para guardarlos aquí"
   },
   "profile": {
     "title": "Perfil",
@@ -90,7 +105,9 @@
     "about": "Acerca de",
     "update_profile": "Actualizar Perfil",
     "settings": "Configuración",
-    "logout": "Cerrar Sesión"
+    "logout": "Cerrar Sesión",
+    "no_name": "Sin Nombre",
+    "avatar_alt": "tu avatar"
   },
   "auth": {
     "sign_in": "Iniciar Sesión",
