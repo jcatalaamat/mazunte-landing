@@ -5,6 +5,7 @@ import { redirect } from 'app/utils/redirect'
 import { useSupabase } from 'app/utils/supabase/useSupabase'
 import { usePathname } from 'app/utils/usePathname'
 import { useLink } from 'solito/link'
+import { LanguageSwitcher } from 'app/components/LanguageSwitcher'
 
 import rootPackageJson from '../../../../package.json'
 import packageJson from '../../package.json'
@@ -84,6 +85,7 @@ export const SettingsScreen = () => {
             {isWeb && <Separator boc="$color3" mx="$-4" bw="$0.25" />}
             <Settings.Group>
               <SettingsThemeAction />
+              <LanguageSwitcher />
               <SettingsItemLogoutAction />
             </Settings.Group>
           </Settings.Items>
@@ -109,6 +111,7 @@ const SettingsThemeAction = () => {
     </Settings.Item>
   )
 }
+
 
 const SettingsItemLogoutAction = () => {
   const supabase = useSupabase()

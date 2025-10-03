@@ -1,0 +1,120 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "done": "Done",
+    "language": "Language"
+  },
+  "navigation": {
+    "home": "Home",
+    "events": "Events",
+    "places": "Places",
+    "map": "Map",
+    "favorites": "Favorites",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "home": {
+    "welcome": "Welcome to Mazunte Connect",
+    "discover": "Discover amazing events and places in Mazunte",
+    "upcoming_events": "Upcoming Events",
+    "featured_places": "Featured Places",
+    "explore_all": "Explore All"
+  },
+  "events": {
+    "title": "Events",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "no_events": "No events found",
+    "create_event": "Create Event",
+    "event_details": "Event Details",
+    "date": "Date",
+    "time": "Time",
+    "location": "Location",
+    "price": "Price",
+    "organizer": "Organizer",
+    "description": "Description"
+  },
+  "places": {
+    "title": "Places",
+    "all_places": "All Places",
+    "no_places": "No places found",
+    "place_details": "Place Details",
+    "hours": "Hours",
+    "contact": "Contact",
+    "website": "Website",
+    "phone": "Phone",
+    "email": "Email",
+    "instagram": "Instagram",
+    "tags": "Tags",
+    "eco_conscious": "Eco Conscious",
+    "verified": "Verified",
+    "featured": "Featured"
+  },
+  "map": {
+    "title": "Map",
+    "events": "Events",
+    "places": "Places",
+    "both": "Both",
+    "loading_map": "Loading map...",
+    "tap_for_info": "Tap to see more info",
+    "tap_again_for_details": "Tap again to view details"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "no_favorites": "No Favorites Yet",
+    "no_favorites_message": "Start exploring events and places to build your favorites list!",
+    "explore_events_places": "Explore Events & Places",
+    "events": "Events",
+    "places": "Places",
+    "no_favorite_events": "No favorite events yet",
+    "no_favorite_places": "No favorite places yet",
+    "tap_heart_to_save": "Tap the heart icon on events to save them here"
+  },
+  "profile": {
+    "title": "Profile",
+    "edit_profile": "Edit Profile",
+    "name": "Name",
+    "about": "About",
+    "update_profile": "Update Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "auth": {
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "forgot_password": "Forgot Password?",
+    "reset_password": "Reset Password",
+    "sign_in_with_apple": "Sign in with Apple",
+    "sign_in_with_google": "Sign in with Google",
+    "already_have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "create_account": "Create Account"
+  },
+  "about": {
+    "title": "About Mazunte Connect",
+    "welcome": "Welcome to Mazunte Connect!",
+    "mission": "Our Mission:",
+    "mission_text": "To connect people with the vibrant community of Mazunte by showcasing local events, highlighting unique places, and fostering meaningful connections between residents and visitors who share a love for this beautiful coastal town.",
+    "what_we_offer": "What We Offer:",
+    "what_we_offer_text": "Discover upcoming events, explore local businesses and attractions, find community activities, and stay connected with everything happening in Mazunte. Whether you're a long-time resident or a first-time visitor, our platform helps you make the most of your time in this incredible place.",
+    "community_focus": "Community Focus:",
+    "community_focus_text": "We believe in supporting the local economy, promoting sustainable tourism, and celebrating the unique culture and natural beauty that makes Mazunte special. Our platform is built by the community, for the community.",
+    "get_involved": "Get Involved:"
+  }
+}

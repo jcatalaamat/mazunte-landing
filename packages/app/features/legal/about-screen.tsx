@@ -1,41 +1,35 @@
 import { H1, Paragraph, Text, YStack, isWeb } from '@my/ui'
 import { Link } from 'expo-router'
 import { ScrollView } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 export const AboutScreen = () => {
+  const { t } = useTranslation()
+  
   return (
     <ScrollView>
       <YStack gap="$4" p="$4">
       {/* only show title on web since mobile has navigator title */}
-      {isWeb && <H1>About Mazunte Connect</H1>}
+      {isWeb && <H1>{t('about.title')}</H1>}
       
       <Paragraph>
-        <Text fontWeight="bold">Welcome to Mazunte Connect!</Text> We're a community-driven platform 
-        designed to help residents and visitors discover the amazing events, places, and experiences 
-        that make Mazunte, Mexico such a special destination.
+        <Text fontWeight="bold">{t('about.welcome')}</Text> {t('about.mission_text')}
       </Paragraph>
 
       <Paragraph>
-        <Text fontWeight="bold">Our Mission:</Text> To connect people with the vibrant community of 
-        Mazunte by showcasing local events, highlighting unique places, and fostering meaningful 
-        connections between residents and visitors who share a love for this beautiful coastal town.
+        <Text fontWeight="bold">{t('about.mission')}</Text> {t('about.mission_text')}
       </Paragraph>
 
       <Paragraph>
-        <Text fontWeight="bold">What We Offer:</Text> Discover upcoming events, explore local businesses 
-        and attractions, find community activities, and stay connected with everything happening in 
-        Mazunte. Whether you're a long-time resident or a first-time visitor, our platform helps you 
-        make the most of your time in this incredible place.
+        <Text fontWeight="bold">{t('about.what_we_offer')}</Text> {t('about.what_we_offer_text')}
       </Paragraph>
 
       <Paragraph>
-        <Text fontWeight="bold">Community Focus:</Text> We believe in supporting the local economy, 
-        promoting sustainable tourism, and celebrating the unique culture and natural beauty that 
-        makes Mazunte special. Our platform is built by the community, for the community.
+        <Text fontWeight="bold">{t('about.community_focus')}</Text> {t('about.community_focus_text')}
       </Paragraph>
 
       <Paragraph>
-        <Text fontWeight="bold">Get Involved:</Text> Have an event to share? Know a great place 
+        <Text fontWeight="bold">{t('about.get_involved')}</Text> Have an event to share? Know a great place 
         others should discover? Want to connect with like-minded people? Join our community and 
         help make Mazunte an even more connected and vibrant place to live and visit.
       </Paragraph>

@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { LogBox, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import * as Sentry from '@sentry/react-native'
+import 'app/i18n' // Initialize i18n
+import { LanguageProvider } from 'app/contexts/LanguageContext'
 
 // Prevent splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync().catch((error) => {
@@ -82,7 +84,8 @@ function HomeLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
         <Provider initialSession={initialSession}>
-          <Stack screenOptions={{ headerShown: false, headerBackButtonDisplayMode: 'minimal' }}>
+          <LanguageProvider>
+            <Stack screenOptions={{ headerShown: false, headerBackButtonDisplayMode: 'minimal' }}>
             <Stack.Screen
               name="(drawer)/(tabs)/index"
               options={{
@@ -117,8 +120,9 @@ function HomeLayout() {
                 presentation: 'card',
               }}
             />
-          </Stack>
-        </Provider>
+            </Stack>
+          </Provider>
+        </LanguageProvider>
       </View>
     </GestureHandlerRootView>
   )

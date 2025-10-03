@@ -1,0 +1,120 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar",
+    "done": "Listo",
+    "language": "Idioma"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "events": "Eventos",
+    "places": "Lugares",
+    "map": "Mapa",
+    "favorites": "Favoritos",
+    "profile": "Perfil",
+    "settings": "Configuración"
+  },
+  "home": {
+    "welcome": "Bienvenido a Mazunte Connect",
+    "discover": "Descubre eventos y lugares increíbles en Mazunte",
+    "upcoming_events": "Próximos Eventos",
+    "featured_places": "Lugares Destacados",
+    "explore_all": "Explorar Todo"
+  },
+  "events": {
+    "title": "Eventos",
+    "upcoming": "Próximos Eventos",
+    "past": "Eventos Pasados",
+    "no_events": "No se encontraron eventos",
+    "create_event": "Crear Evento",
+    "event_details": "Detalles del Evento",
+    "date": "Fecha",
+    "time": "Hora",
+    "location": "Ubicación",
+    "price": "Precio",
+    "organizer": "Organizador",
+    "description": "Descripción"
+  },
+  "places": {
+    "title": "Lugares",
+    "all_places": "Todos los Lugares",
+    "no_places": "No se encontraron lugares",
+    "place_details": "Detalles del Lugar",
+    "hours": "Horarios",
+    "contact": "Contacto",
+    "website": "Sitio Web",
+    "phone": "Teléfono",
+    "email": "Correo",
+    "instagram": "Instagram",
+    "tags": "Etiquetas",
+    "eco_conscious": "Consciente del Medio Ambiente",
+    "verified": "Verificado",
+    "featured": "Destacado"
+  },
+  "map": {
+    "title": "Mapa",
+    "events": "Eventos",
+    "places": "Lugares",
+    "both": "Ambos",
+    "loading_map": "Cargando mapa...",
+    "tap_for_info": "Toca para ver más información",
+    "tap_again_for_details": "Toca de nuevo para ver detalles"
+  },
+  "favorites": {
+    "title": "Favoritos",
+    "no_favorites": "Aún No Tienes Favoritos",
+    "no_favorites_message": "¡Comienza a explorar eventos y lugares para crear tu lista de favoritos!",
+    "explore_events_places": "Explorar Eventos y Lugares",
+    "events": "Eventos",
+    "places": "Lugares",
+    "no_favorite_events": "Aún no tienes eventos favoritos",
+    "no_favorite_places": "Aún no tienes lugares favoritos",
+    "tap_heart_to_save": "Toca el ícono de corazón en los eventos para guardarlos aquí"
+  },
+  "profile": {
+    "title": "Perfil",
+    "edit_profile": "Editar Perfil",
+    "name": "Nombre",
+    "about": "Acerca de",
+    "update_profile": "Actualizar Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión"
+  },
+  "auth": {
+    "sign_in": "Iniciar Sesión",
+    "sign_up": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirm_password": "Confirmar Contraseña",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "reset_password": "Restablecer Contraseña",
+    "sign_in_with_apple": "Iniciar sesión con Apple",
+    "sign_in_with_google": "Iniciar sesión con Google",
+    "already_have_account": "¿Ya tienes una cuenta?",
+    "dont_have_account": "¿No tienes una cuenta?",
+    "create_account": "Crear Cuenta"
+  },
+  "about": {
+    "title": "Acerca de Mazunte Connect",
+    "welcome": "¡Bienvenido a Mazunte Connect!",
+    "mission": "Nuestra Misión:",
+    "mission_text": "Conectar a las personas con la vibrante comunidad de Mazunte mostrando eventos locales, destacando lugares únicos y fomentando conexiones significativas entre residentes y visitantes que comparten el amor por este hermoso pueblo costero.",
+    "what_we_offer": "Lo que Ofrecemos:",
+    "what_we_offer_text": "Descubre eventos próximos, explora negocios locales y atracciones, encuentra actividades comunitarias y mantente conectado con todo lo que sucede en Mazunte. Ya seas un residente de larga data o un visitante por primera vez, nuestra plataforma te ayuda a aprovechar al máximo tu tiempo en este lugar increíble.",
+    "community_focus": "Enfoque Comunitario:",
+    "community_focus_text": "Creemos en apoyar la economía local, promover el turismo sostenible y celebrar la cultura única y la belleza natural que hace especial a Mazunte. Nuestra plataforma está construida por la comunidad, para la comunidad.",
+    "get_involved": "Involúcrate:"
+  }
+}

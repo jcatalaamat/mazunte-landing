@@ -1623,6 +1623,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.27.6":
+  version: 7.28.4
+  resolution: "@babel/runtime@npm:7.28.4"
+  checksum: 10/6c9a70452322ea80b3c9b2a412bcf60771819213a67576c8cec41e88a95bb7bf01fc983754cda35dc19603eef52df22203ccbf7777b9d6316932f9fb77c25163
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.0.0, @babel/template@npm:^7.20.7, @babel/template@npm:^7.25.0, @babel/template@npm:^7.25.9, @babel/template@npm:^7.27.1, @babel/template@npm:^7.3.3":
   version: 7.27.2
   resolution: "@babel/template@npm:7.27.2"
@@ -5008,6 +5015,17 @@ __metadata:
   peerDependencies:
     react-native: ^0.0.0-0 || >=0.65 <1.0
   checksum: 10/d4f14fe520a1664935ea771db86be397902b743ae7dd805d7cfe142698bcb9758bfe075fe11f20347cc5551ee0673f15822be3127658957a276ac28e0c8dd5ca
+  languageName: node
+  linkType: hard
+
+"@react-native-async-storage/async-storage@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@react-native-async-storage/async-storage@npm:2.2.0"
+  dependencies:
+    merge-options: "npm:^3.0.4"
+  peerDependencies:
+    react-native: ^0.0.0-0 || >=0.65 <1.0
+  checksum: 10/625e42134f0c487acfd4ba9b3ba182e6f6f29581485004cc658850ef024372cdb7381b7399393f4416fda39df2d822e3008427d7671d635a7363f9a65430a2dd
   languageName: node
   linkType: hard
 
@@ -15878,6 +15896,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-localization@npm:^17.0.7":
+  version: 17.0.7
+  resolution: "expo-localization@npm:17.0.7"
+  dependencies:
+    rtl-detect: "npm:^1.0.2"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+  checksum: 10/2e8567eb9b6b62497492451ffa5ca244081bd60d73816efd4c359253eaccb080dc0c17e8a5ffc8ce9c95ef0411eebefcb82e71ead8e3bcaf81a612fcb57de2a9
+  languageName: node
+  linkType: hard
+
 "expo-location@npm:~18.1.6":
   version: 18.1.6
   resolution: "expo-location@npm:18.1.6"
@@ -17545,6 +17575,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-parse-stringify@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "html-parse-stringify@npm:3.0.1"
+  dependencies:
+    void-elements: "npm:3.1.0"
+  checksum: 10/8743b76cc50e46d1956c1ad879d18eb9613b0d2d81e24686d633f9f69bb26b84676f64a926973de793cca479997017a63219278476d617b6c42d68246d7c07fe
+  languageName: node
+  linkType: hard
+
 "html-webpack-plugin@npm:^5.5.0":
   version: 5.6.0
   resolution: "html-webpack-plugin@npm:5.6.0"
@@ -17703,6 +17742,20 @@ __metadata:
   version: 1.1.0
   resolution: "hyphenate-style-name@npm:1.1.0"
   checksum: 10/b9ed74e29181d96bd58a2d0e62fc4a19879db591dba268275829ff0ae595fcdf11faafaeaa63330a45c3004664d7db1f0fc7cdb372af8ee4615ed8260302c207
+  languageName: node
+  linkType: hard
+
+"i18next@npm:^25.5.3":
+  version: 25.5.3
+  resolution: "i18next@npm:25.5.3"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.6"
+  peerDependencies:
+    typescript: ^5
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10/eb7312b3261af4477b7e4d09ec1636372a79a8f81bb5ac9531bbb9aa498ca07f337f9ec2c89507f0d895ce6c0b1352a2ea4fbe47f665ab4feba3df2de79cbeab
   languageName: node
   linkType: hard
 
@@ -19531,6 +19584,7 @@ __metadata:
     "@babel/runtime": "npm:^7.18.9"
     "@manypkg/cli": "npm:^0.19.1"
     "@nderscore/tamagui-typescript-plugin": "npm:^0.6.0"
+    "@react-native-async-storage/async-storage": "npm:^2.2.0"
     "@react-navigation/drawer": "npm:^6.6.15"
     "@sentry/core": "npm:^10.17.0"
     "@sentry/react": "npm:^10.17.0"
@@ -19547,13 +19601,16 @@ __metadata:
     dotenv: "npm:^16.4.7"
     dotenv-cli: "npm:^8.0.0"
     eslint: "npm:^8.46.0"
+    expo-localization: "npm:^17.0.7"
     fs-extra: "npm:^11.2.0"
+    i18next: "npm:^25.5.3"
     node-gyp: "npm:^9.3.1"
     npm-run-all: "npm:^4.1.5"
     patch-package: "npm:^8.0.0"
     postinstall-postinstall: "npm:^2.1.0"
     prettier: "npm:^2.7.1"
     promise-throttle-all: "npm:^1.1.1"
+    react-i18next: "npm:^16.0.0"
     turbo: "npm:^2.5.3"
     typescript: "npm:~5.8.3"
     ultra-runner: "npm:^3.10.5"
@@ -22981,6 +23038,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-i18next@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "react-i18next@npm:16.0.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.27.6"
+    html-parse-stringify: "npm:^3.0.1"
+  peerDependencies:
+    i18next: ">= 25.5.2"
+    react: ">= 16.8.0"
+    typescript: ^5
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 10/3579b5bd6ee286363b6b0316e8536c81033b62bce1792ca1822a6490cc9ad5bd62c9fc5e7e7ab1dad2de6eff6e34e63d0af810839c5ab73d5369c57497d81936
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -23864,6 +23942,13 @@ __metadata:
     hash-base: "npm:^3.0.0"
     inherits: "npm:^2.0.1"
   checksum: 10/006accc40578ee2beae382757c4ce2908a826b27e2b079efdcd2959ee544ddf210b7b5d7d5e80467807604244e7388427330f5c6d4cd61e6edaddc5773ccc393
+  languageName: node
+  linkType: hard
+
+"rtl-detect@npm:^1.0.2":
+  version: 1.1.2
+  resolution: "rtl-detect@npm:1.1.2"
+  checksum: 10/d19089c3b5f7a6fbabfa2c4724fcdf8694f313d196d44c8eee3625ba2e46418afe65b4da38e3e92822985291efd0656d85daa4b2ef296a46a65a702d0b156876
   languageName: node
   linkType: hard
 
@@ -26999,6 +27084,13 @@ __metadata:
   version: 1.1.2
   resolution: "vm-browserify@npm:1.1.2"
   checksum: 10/ad5b17c9f7a9d9f1ed0e24c897782ab7a587c1fd40f370152482e1af154c7cf0b0bacc45c5ae76a44289881e083ae4ae127808fdff864aa9b562192aae8b5c3b
+  languageName: node
+  linkType: hard
+
+"void-elements@npm:3.1.0":
+  version: 3.1.0
+  resolution: "void-elements@npm:3.1.0"
+  checksum: 10/0390f818107fa8fce55bb0a5c3f661056001c1d5a2a48c28d582d4d847347c2ab5b7f8272314cac58acf62345126b6b09bea623a185935f6b1c3bbce0dfd7f7f
   languageName: node
   linkType: hard
 
