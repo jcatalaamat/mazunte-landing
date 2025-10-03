@@ -102,9 +102,9 @@ const EditProfileForm = ({
   return (
     <FormWrapper>
       <FormWrapper.Body>
-        <YStack gap="$2">
+        <YStack gap="$4">
           {/* Avatar */}
-          <YStack ai="center" jc="center">
+          <YStack ai="center" jc="center" mt="$8">
             <UploadAvatar>
               <UserAvatar />
             </UploadAvatar>
@@ -192,12 +192,12 @@ const EditProfileForm = ({
           </YStack> */}
 
           {/* Settings Button */}
-          <Button
+          {/* <Button
             variant="outlined"
             onPress={handleSettings}
           >
             Settings
-          </Button>
+          </Button> */}
         </YStack>
       </FormWrapper.Body>
     </FormWrapper>
