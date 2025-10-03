@@ -1,5 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { getLocales } from 'expo-localization'
 
 // Import translation files
 import en from './locales/en.json'
@@ -14,11 +15,17 @@ const resources = {
   },
 }
 
-// Simple language detection without native modules
+// Get device language using expo-localization
 const getDeviceLanguage = () => {
-  // For now, default to English. We'll add device language detection later
-  // This avoids the native module dependency issue
-  return 'en'
+  try {
+    const locales = getLocales()
+    const deviceLanguage = locales[0]?.languageCode || 'en'
+    // Return 'es' for Spanish, 'en' for English, default to 'en'
+    return deviceLanguage.startsWith('es') ? 'es' : 'en'
+  } catch (error) {
+    console.warn('Failed to get device language:', error)
+    return 'en'
+  }
 }
 
 i18n

@@ -43,6 +43,7 @@ export default {
       bundler: 'metro',
     },
     plugins: [
+      'expo-localization',
       [
         'expo-notifications',
         {

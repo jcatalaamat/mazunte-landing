@@ -15896,6 +15896,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-localization@npm:~16.1.6":
+  version: 16.1.6
+  resolution: "expo-localization@npm:16.1.6"
+  dependencies:
+    rtl-detect: "npm:^1.0.2"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+  checksum: 10/1bb0aaa8b7e946bf668ce4b7833f858a6064d4abdfbb9a21aa351096a7adb03bd57747e37ec2c87e0faaa1b08ac0697d3061ce7bb2338e83889b4557d0e6bd64
+  languageName: node
+  linkType: hard
+
 "expo-location@npm:~18.1.6":
   version: 18.1.6
   resolution: "expo-location@npm:18.1.6"
@@ -19589,6 +19601,7 @@ __metadata:
     dotenv: "npm:^16.4.7"
     dotenv-cli: "npm:^8.0.0"
     eslint: "npm:^8.46.0"
+    expo-localization: "npm:~16.1.6"
     fs-extra: "npm:^11.2.0"
     i18next: "npm:^25.5.3"
     node-gyp: "npm:^9.3.1"
@@ -23929,6 +23942,13 @@ __metadata:
     hash-base: "npm:^3.0.0"
     inherits: "npm:^2.0.1"
   checksum: 10/006accc40578ee2beae382757c4ce2908a826b27e2b079efdcd2959ee544ddf210b7b5d7d5e80467807604244e7388427330f5c6d4cd61e6edaddc5773ccc393
+  languageName: node
+  linkType: hard
+
+"rtl-detect@npm:^1.0.2":
+  version: 1.1.2
+  resolution: "rtl-detect@npm:1.1.2"
+  checksum: 10/d19089c3b5f7a6fbabfa2c4724fcdf8694f313d196d44c8eee3625ba2e46418afe65b4da38e3e92822985291efd0656d85daa4b2ef296a46a65a702d0b156876
   languageName: node
   linkType: hard
 
