@@ -28,6 +28,7 @@ type MapViewType = 'events' | 'places' | 'both'
 export function MapScreen() {
   const [viewType, setViewType] = useState<MapViewType>('both')
   const [headerDismissed, setHeaderDismissed] = useState(false)
+  const [tappedMarkers, setTappedMarkers] = useState<Set<string>>(new Set())
   const insets = useSafeAreaInsets()
   
   const { data: events = [], isLoading: eventsLoading } = useEventsQuery({})
@@ -40,11 +41,37 @@ export function MapScreen() {
   const filteredPlaces = viewType === 'places' || viewType === 'both' ? places : []
 
   const handleEventPress = (eventId: string) => {
-    router.push(`/event/${eventId}`)
+    const markerKey = `event-${eventId}`
+    
+    if (tappedMarkers.has(markerKey)) {
+      // Second tap - navigate to detail page
+      router.push(`/event/${eventId}`)
+      setTappedMarkers(prev => {
+        const newSet = new Set(prev)
+        newSet.delete(markerKey)
+        return newSet
+      })
+    } else {
+      // First tap - just show info popup (handled by Marker title/description)
+      setTappedMarkers(prev => new Set(prev).add(markerKey))
+    }
   }
 
   const handlePlacePress = (placeId: string) => {
-    router.push(`/place/${placeId}`)
+    const markerKey = `place-${placeId}`
+    
+    if (tappedMarkers.has(markerKey)) {
+      // Second tap - navigate to detail page
+      router.push(`/place/${placeId}`)
+      setTappedMarkers(prev => {
+        const newSet = new Set(prev)
+        newSet.delete(markerKey)
+        return newSet
+      })
+    } else {
+      // First tap - just show info popup (handled by Marker title/description)
+      setTappedMarkers(prev => new Set(prev).add(markerKey))
+    }
   }
 
   if (isLoading) {
@@ -139,46 +166,55 @@ export function MapScreen() {
         showsMyLocationButton={true}
         mapType="standard"
       >
-        {/* Mazunte Center Marker */}
-        <Marker
-          coordinate={{
-            latitude: MAZUNTE_CENTER.latitude,
-            longitude: MAZUNTE_CENTER.longitude,
-          }}
-          title="Mazunte, Mexico"
-          description="Welcome to Mazunte! 🌊"
-          pinColor="red"
-        />
+        {/* Event Markers - Only show if coordinates exist */}
+        {filteredEvents
+          .filter(event => event.lat && event.lng)
+          .map((event) => {
+            const markerKey = `event-${event.id}`
+            const isTapped = tappedMarkers.has(markerKey)
+            
+            return (
+              <Marker
+                key={markerKey}
+                coordinate={{
+                  latitude: event.lat!,
+                  longitude: event.lng!,
+                }}
+                title={event.title}
+                description={isTapped 
+                  ? `${event.description}\n\nTap again to view details` 
+                  : `${event.description}\n\nTap to see more info`
+                }
+                pinColor="blue"
+                onPress={() => handleEventPress(event.id)}
+              />
+            )
+          })}
 
-        {/* Event Markers */}
-        {filteredEvents.map((event) => (
-          <Marker
-            key={`event-${event.id}`}
-            coordinate={{
-              latitude: event.latitude || MAZUNTE_CENTER.latitude + (Math.random() - 0.5) * 0.01,
-              longitude: event.longitude || MAZUNTE_CENTER.longitude + (Math.random() - 0.5) * 0.01,
-            }}
-            title={event.title}
-            description={event.description}
-            pinColor="blue"
-            onPress={() => handleEventPress(event.id)}
-          />
-        ))}
-
-        {/* Place Markers */}
-        {filteredPlaces.map((place) => (
-          <Marker
-            key={`place-${place.id}`}
-            coordinate={{
-              latitude: place.latitude || MAZUNTE_CENTER.latitude + (Math.random() - 0.5) * 0.01,
-              longitude: place.longitude || MAZUNTE_CENTER.longitude + (Math.random() - 0.5) * 0.01,
-            }}
-            title={place.name}
-            description={place.description}
-            pinColor="green"
-            onPress={() => handlePlacePress(place.id)}
-          />
-        ))}
+        {/* Place Markers - Only show if coordinates exist */}
+        {filteredPlaces
+          .filter(place => place.lat && place.lng)
+          .map((place) => {
+            const markerKey = `place-${place.id}`
+            const isTapped = tappedMarkers.has(markerKey)
+            
+            return (
+              <Marker
+                key={markerKey}
+                coordinate={{
+                  latitude: place.lat!,
+                  longitude: place.lng!,
+                }}
+                title={place.name}
+                description={isTapped 
+                  ? `${place.description}\n\nTap again to view details` 
+                  : `${place.description}\n\nTap to see more info`
+                }
+                pinColor="green"
+                onPress={() => handlePlacePress(place.id)}
+              />
+            )
+          })}
       </MapView>
     </ScreenWrapper>
   )
