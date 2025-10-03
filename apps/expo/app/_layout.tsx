@@ -82,7 +82,7 @@ function HomeLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
         <Provider initialSession={initialSession}>
-          <Stack screenOptions={{ headerShown: false }}>
+          <Stack screenOptions={{ headerShown: false, headerBackButtonDisplayMode: 'minimal' }}>
             <Stack.Screen
               name="(drawer)/(tabs)/index"
               options={{
@@ -93,14 +93,12 @@ function HomeLayout() {
               name="create"
               options={{
                 headerShown: false,
-                headerBackTitle: 'Events',
               }}
             />
             <Stack.Screen
               name="settings/index"
               options={{
                 headerShown: true,
-                headerBackTitle: 'Back',
               }}
             />
             <Stack.Screen
@@ -108,7 +106,6 @@ function HomeLayout() {
               options={{
                 headerShown: true,
                 headerTitle: '',
-                headerBackTitle: 'Events',
                 presentation: 'card',
               }}
             />
@@ -117,7 +114,6 @@ function HomeLayout() {
               options={{
                 headerShown: true,
                 headerTitle: '',
-                headerBackTitle: 'Places',
                 presentation: 'card',
               }}
             />
