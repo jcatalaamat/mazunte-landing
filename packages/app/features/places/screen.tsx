@@ -6,6 +6,7 @@ import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
 import { PLACE_TYPE_COLORS, PLACE_TYPE_LABELS, PLACE_TYPES, type PlaceType } from 'app/utils/constants'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
+import { ScreenWrapper } from 'app/components/ScreenWrapper'
 
 export function PlacesScreen() {
   const [selectedType, setSelectedType] = useState<PlaceType | null>(null)
@@ -58,7 +59,7 @@ export function PlacesScreen() {
   }
 
   return (
-    <YStack f={1} bg="$background">
+    <ScreenWrapper>
       {/* Search */}
       <SearchBar
         placeholder="Search places..."
@@ -104,7 +105,7 @@ export function PlacesScreen() {
         }
         contentContainerStyle={{
           paddingTop: 16,
-          paddingBottom: insets.bottom + 80,
+          paddingBottom: 80,
         }}
         ListEmptyComponent={
           <YStack ai="center" jc="center" py="$10">
@@ -119,6 +120,6 @@ export function PlacesScreen() {
           </YStack>
         }
       />
-    </YStack>
+    </ScreenWrapper>
   )
 }

@@ -6,6 +6,7 @@ import { useFavoritesQuery } from 'app/utils/react-query/useFavoritesQuery'
 import { useUser } from 'app/utils/useUser'
 import { useState, useMemo } from 'react'
 import { X } from '@tamagui/lucide-icons'
+import { ScreenWrapper } from 'app/components/ScreenWrapper'
 
 export function FavoritesScreen() {
   const { profile } = useUser()
@@ -36,7 +37,7 @@ export function FavoritesScreen() {
   // Show empty state if no favorites at all
   if (favorites.length === 0) {
   return (
-    <YStack f={1} bg="$background">
+    <ScreenWrapper>
         <YStack f={1} ai="center" jc="center" p="$4">
           <Text fontSize="$6" color="$color10" ta="center" mb="$2">
             ❤️ No Favorites Yet
@@ -48,12 +49,12 @@ export function FavoritesScreen() {
             <Text>Explore Events & Places</Text>
           </Button>
         </YStack>
-      </YStack>
+    </ScreenWrapper>
     )
   }
 
   return (
-    <YStack f={1} bg="$background">
+    <ScreenWrapper>
       <XStack w="100%" bg="$background" borderBottomWidth={1} borderBottomColor="$borderColor">
         <Button
           f={1}
@@ -90,7 +91,7 @@ export function FavoritesScreen() {
           }
           contentContainerStyle={{
             paddingTop: 16,
-            paddingBottom: insets.bottom + 80,
+            paddingBottom: 80,
           }}
           ListEmptyComponent={
             <YStack ai="center" jc="center" py="$10">
@@ -122,7 +123,7 @@ export function FavoritesScreen() {
           }
           contentContainerStyle={{
             paddingTop: 16,
-            paddingBottom: insets.bottom + 80,
+            paddingBottom: 80,
           }}
           ListEmptyComponent={
             <YStack ai="center" jc="center" py="$10">

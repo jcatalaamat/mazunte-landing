@@ -7,6 +7,7 @@ import { X } from '@tamagui/lucide-icons'
 import { useEventsQuery } from 'app/utils/react-query/useEventsQuery'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 import { MAZUNTE_CENTER } from 'app/utils/constants'
+import { ScreenWrapper } from 'app/components/ScreenWrapper'
 
 // Import MapView only on native platforms
 let MapView: any = null
@@ -48,17 +49,18 @@ export function MapScreen() {
 
   if (isLoading) {
     return (
-      <YStack f={1} ai="center" jc="center" bg="$background">
-        <Text fontSize="$5" color="$color10">Loading map...</Text>
-      </YStack>
+      <ScreenWrapper>
+        <YStack f={1} ai="center" jc="center">
+          <Text fontSize="$5" color="$color10">Loading map...</Text>
+        </YStack>
+      </ScreenWrapper>
     )
   }
 
   // Web fallback
   if (Platform.OS === 'web' || !MapView) {
     return (
-      <YStack f={1} bg="$background">
-        
+      <ScreenWrapper>
         <YStack f={1} ai="center" jc="center" gap="$4" p="$4">
           <YStack gap="$2" w="100%">
             <Text fontSize="$4" fontWeight="600" color="$color11">
@@ -72,12 +74,12 @@ export function MapScreen() {
             </Text>
           </YStack>
         </YStack>
-      </YStack>
+      </ScreenWrapper>
     )
   }
 
   return (
-    <YStack f={1} bg="$background">
+    <ScreenWrapper>
       {/* View type toggle - always visible */}
       <YStack 
         bg="$background" 
