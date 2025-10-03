@@ -128,13 +128,15 @@ const EditProfileForm = ({
               about: initial.about ?? '',
             }}
             onSubmit={(values) => mutation.mutate(values)}
+            renderAfter={({ submit }) => (
+              <Theme inverse>
+                <SubmitButton onPress={() => submit()}>Update Profile</SubmitButton>
+              </Theme>
+            )}
           >
             {(fields) => (
               <>
                 {Object.values(fields)}
-                <Theme inverse>
-                  <SubmitButton onPress={() => fields.submit()}>Update Profile</SubmitButton>
-                </Theme>
               </>
             )}
           </SchemaForm>
