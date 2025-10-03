@@ -15603,7 +15603,7 @@ __metadata:
     "@babel/core": "npm:^7.26.0"
     "@babel/runtime": "npm:^7.18.9"
     "@my/ui": "npm:*"
-    "@react-native-async-storage/async-storage": "npm:2.1.2"
+    "@react-native-async-storage/async-storage": "npm:^2.2.0"
     "@react-native-community/netinfo": "npm:11.4.1"
     "@sentry/react-native": "npm:~6.14.0"
     "@tamagui/babel-plugin": "npm:^1.132.7"

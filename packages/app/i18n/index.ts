@@ -30,11 +30,12 @@ const getDeviceLanguage = () => {
   }
 }
 
+// Initialize with device language, will be overridden by LanguageProvider
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: getDeviceLanguage(),
+    lng: getDeviceLanguage(), // This will be overridden by LanguageProvider
     fallbackLng: 'en',
     debug: __DEV__,
     
