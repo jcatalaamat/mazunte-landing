@@ -1,6 +1,5 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import { getLocales } from 'expo-localization'
 
 // Import translation files
 import en from './locales/en.json'
@@ -15,15 +14,18 @@ const resources = {
   },
 }
 
-// Get device language using expo-localization
+// Get device language with fallback for development
 const getDeviceLanguage = () => {
   try {
+    // Try to import expo-localization dynamically to avoid issues in development
+    const { getLocales } = require('expo-localization')
     const locales = getLocales()
     const deviceLanguage = locales[0]?.languageCode || 'en'
     // Return 'es' for Spanish, 'en' for English, default to 'en'
     return deviceLanguage.startsWith('es') ? 'es' : 'en'
   } catch (error) {
-    console.warn('Failed to get device language:', error)
+    // Fallback for development or when native module is not available
+    console.warn('Failed to get device language, using fallback:', error.message)
     return 'en'
   }
 }
