@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { usePostHog } from 'posthog-react-native'
 
 interface LanguageContextType {
   currentLanguage: string
@@ -23,6 +24,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation()
   const [currentLanguage, setCurrentLanguage] = useState<string | null>(null) // Start with null
   const [isRTL, setIsRTL] = useState(false)
+  const posthog = usePostHog()
 
   useEffect(() => {
     async function loadLanguage() {
@@ -51,6 +53,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       await i18n.changeLanguage(language)
       setCurrentLanguage(language)
       setIsRTL(language === 'ar')
+
+      // Track language change in PostHog
+      posthog?.capture('language_changed', {
+        from_language: currentLanguage,
+        to_language: language,
+      })
+      // Update user properties
+      posthog?.setPersonProperties({
+        preferred_language: language,
+      })
     } catch (error) {
       console.error('Failed to change language:', error)
     }

@@ -2,12 +2,13 @@ import { PlaceCard, SearchBar, CategoryFilter, FullscreenSpinner, Text, YStack, 
 import { router } from 'expo-router'
 import { FlatList, RefreshControl, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { X } from '@tamagui/lucide-icons'
 import { PLACE_TYPE_COLORS, PLACE_TYPE_LABELS, PLACE_TYPES, type PlaceType } from 'app/utils/constants'
 import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
 import { useTranslation } from 'react-i18next'
+import { usePostHog } from 'posthog-react-native'
 
 export function PlacesScreen() {
   const [selectedType, setSelectedType] = useState<PlaceType | null>(null)
@@ -15,6 +16,11 @@ export function PlacesScreen() {
   const [headerDismissed, setHeaderDismissed] = useState(false)
   const insets = useSafeAreaInsets()
   const { t } = useTranslation()
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    posthog?.capture('places_screen_viewed')
+  }, [posthog])
 
   // Fetch all places once
   const { data: allPlaces = [], isLoading, refetch } = usePlacesQuery({})
@@ -50,10 +56,18 @@ export function PlacesScreen() {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
+    posthog?.capture('places_searched', {
+      search_query: query,
+      results_count: filteredPlaces.length,
+    })
   }
 
   const handleTypeSelect = (type: string | null) => {
     setSelectedType(type as PlaceType | null)
+    posthog?.capture('places_type_selected', {
+      type: type || 'all',
+      places_count: type ? allPlaces.filter(p => p.type === type).length : allPlaces.length,
+    })
   }
 
   if (isLoading) {
@@ -105,7 +119,14 @@ export function PlacesScreen() {
         renderItem={({ item }) => (
           <PlaceCard
             place={item}
-            onPress={() => router.push(`/place/${item.id}`)}
+            onPress={() => {
+              posthog?.capture('place_card_tapped', {
+                place_id: item.id,
+                place_name: item.name,
+                place_type: item.type,
+              })
+              router.push(`/place/${item.id}`)
+            }}
             mx="$4"
             mb="$3"
           />

@@ -1,6 +1,6 @@
 import { Text, YStack, XStack, Button } from '@my/ui'
 import { router } from 'expo-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Alert, Platform } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { X } from '@tamagui/lucide-icons'
@@ -9,6 +9,7 @@ import { usePlacesQuery } from 'app/utils/react-query/usePlacesQuery'
 import { MAZUNTE_CENTER } from 'app/utils/constants'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
 import { useTranslation } from 'react-i18next'
+import { usePostHog } from 'posthog-react-native'
 
 // Import MapView only on native platforms
 let MapView: any = null
@@ -32,7 +33,12 @@ export function MapScreen() {
   const [tappedMarkers, setTappedMarkers] = useState<Set<string>>(new Set())
   const insets = useSafeAreaInsets()
   const { t } = useTranslation()
-  
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    posthog?.capture('map_screen_viewed')
+  }, [posthog])
+
   const { data: events = [], isLoading: eventsLoading } = useEventsQuery({ includePast: true })
   const { data: places = [], isLoading: placesLoading } = usePlacesQuery({})
 
@@ -87,9 +93,13 @@ export function MapScreen() {
 
   const handleEventPress = (eventId: string) => {
     const markerKey = `event-${eventId}`
-    
+
     if (tappedMarkers.has(markerKey)) {
       // Second tap - navigate to detail page
+      posthog?.capture('map_event_marker_tapped', {
+        event_id: eventId,
+        view_type: viewType,
+      })
       router.push(`/event/${eventId}`)
       setTappedMarkers(prev => {
         const newSet = new Set(prev)
@@ -104,9 +114,13 @@ export function MapScreen() {
 
   const handlePlacePress = (placeId: string) => {
     const markerKey = `place-${placeId}`
-    
+
     if (tappedMarkers.has(markerKey)) {
       // Second tap - navigate to detail page
+      posthog?.capture('map_place_marker_tapped', {
+        place_id: placeId,
+        view_type: viewType,
+      })
       router.push(`/place/${placeId}`)
       setTappedMarkers(prev => {
         const newSet = new Set(prev)
@@ -168,7 +182,10 @@ export function MapScreen() {
         <Button
           size="$3"
           variant={viewType === 'events' ? 'outlined' : 'ghost'}
-          onPress={() => setViewType('events')}
+          onPress={() => {
+            setViewType('events')
+            posthog?.capture('map_view_type_changed', { view_type: 'events' })
+          }}
           f={1}
         >
           <Text>{t('map.events')} ({events.filter(event => event.lat && event.lng).length})</Text>
@@ -176,7 +193,10 @@ export function MapScreen() {
         <Button
           size="$3"
           variant={viewType === 'places' ? 'outlined' : 'ghost'}
-          onPress={() => setViewType('places')}
+          onPress={() => {
+            setViewType('places')
+            posthog?.capture('map_view_type_changed', { view_type: 'places' })
+          }}
           f={1}
         >
           <Text>{t('map.places')} ({places.filter(place => place.lat && place.lng).length})</Text>
@@ -184,7 +204,10 @@ export function MapScreen() {
         <Button
           size="$3"
           variant={viewType === 'both' ? 'outlined' : 'ghost'}
-          onPress={() => setViewType('both')}
+          onPress={() => {
+            setViewType('both')
+            posthog?.capture('map_view_type_changed', { view_type: 'both' })
+          }}
           f={1}
         >
           <Text>{t('map.both')}</Text>

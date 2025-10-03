@@ -4,6 +4,7 @@ import { supabase } from 'app/utils/supabase/client.native'
 import { router, useSegments } from 'expo-router'
 import { createContext, useEffect, useState } from 'react'
 import { Platform } from 'react-native'
+import { usePostHog } from 'posthog-react-native'
 
 import type { AuthProviderProps } from './AuthProvider'
 import { AuthStateChangeHandler } from './AuthStateChangeHandler'
@@ -19,7 +20,10 @@ export const AuthProvider = ({ children, initialSession }: AuthProviderProps) =>
   const [session, setSession] = useState<Session | null>(initialSession || null)
   const [error, setError] = useState<AuthError | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const posthog = usePostHog()
+
   useProtectedRoute(session?.user ?? null)
+
   useEffect(() => {
     setIsLoading(true)
     supabase.auth
@@ -30,16 +34,31 @@ export const AuthProvider = ({ children, initialSession }: AuthProviderProps) =>
       .catch((error) => setError(new AuthError(error.message)))
       .finally(() => setIsLoading(false))
   }, [])
+
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, newSession) => {
+    } = supabase.auth.onAuthStateChange((event, newSession) => {
       setSession(newSession)
+
+      // Identify user in PostHog when they sign in
+      if (event === 'SIGNED_IN' && newSession?.user) {
+        posthog?.identify(newSession.user.id, {
+          email: newSession.user.email,
+          created_at: newSession.user.created_at,
+        })
+        posthog?.capture('user_signed_in', {
+          provider: newSession.user.app_metadata?.provider,
+        })
+      } else if (event === 'SIGNED_OUT') {
+        posthog?.capture('user_signed_out')
+        posthog?.reset()
+      }
     })
     return () => {
       subscription.unsubscribe()
     }
-  }, [])
+  }, [posthog])
 
   return (
     <SessionContext.Provider

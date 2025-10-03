@@ -4,10 +4,11 @@ import { FlatList, RefreshControl } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useFavoritesQuery } from 'app/utils/react-query/useFavoritesQuery'
 import { useUser } from 'app/utils/useUser'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { X } from '@tamagui/lucide-icons'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
 import { useTranslation } from 'react-i18next'
+import { usePostHog } from 'posthog-react-native'
 
 export function FavoritesScreen() {
   const { profile } = useUser()
@@ -15,6 +16,7 @@ export function FavoritesScreen() {
   const [activeTab, setActiveTab] = useState<'events' | 'places'>('events')
   const [headerDismissed, setHeaderDismissed] = useState(false)
   const { t } = useTranslation()
+  const posthog = usePostHog()
 
   const { data: favorites = [], isLoading, refetch } = useFavoritesQuery(profile?.id)
   const [refreshing, setRefreshing] = useState(false)
@@ -31,6 +33,14 @@ export function FavoritesScreen() {
     const places = favorites.filter(fav => fav.item_type === 'place' && fav.item).map(fav => fav.item)
     return { favoriteEvents: events, favoritePlaces: places }
   }, [favorites])
+
+  useEffect(() => {
+    posthog?.capture('favorites_screen_viewed', {
+      total_favorites: favorites.length,
+      event_favorites: favoriteEvents.length,
+      place_favorites: favoritePlaces.length,
+    })
+  }, [posthog, favorites.length, favoriteEvents.length, favoritePlaces.length])
 
   if (isLoading) {
     return <FullscreenSpinner />
@@ -61,7 +71,10 @@ export function FavoritesScreen() {
         <Button
           f={1}
           variant={activeTab === 'events' ? 'outlined' : undefined}
-          onPress={() => setActiveTab('events')}
+          onPress={() => {
+            setActiveTab('events')
+            posthog?.capture('favorites_tab_changed', { tab: 'events' })
+          }}
           borderRadius={0}
         >
           <Text>{t('favorites.events')} ({favoriteEvents.length})</Text>
@@ -69,7 +82,10 @@ export function FavoritesScreen() {
         <Button
           f={1}
           variant={activeTab === 'places' ? 'outlined' : undefined}
-          onPress={() => setActiveTab('places')}
+          onPress={() => {
+            setActiveTab('places')
+            posthog?.capture('favorites_tab_changed', { tab: 'places' })
+          }}
           borderRadius={0}
         >
           <Text>{t('favorites.places')} ({favoritePlaces.length})</Text>
@@ -83,7 +99,13 @@ export function FavoritesScreen() {
           renderItem={({ item }) => (
             <EventCard
               event={item}
-              onPress={() => router.push(`/event/${item.id}`)}
+              onPress={() => {
+                posthog?.capture('favorite_event_tapped', {
+                  event_id: item.id,
+                  event_title: item.title,
+                })
+                router.push(`/event/${item.id}`)
+              }}
               mx="$4"
               mb="$3"
             />
@@ -115,7 +137,13 @@ export function FavoritesScreen() {
           renderItem={({ item }) => (
             <PlaceCard
               place={item}
-              onPress={() => router.push(`/place/${item.id}`)}
+              onPress={() => {
+                posthog?.capture('favorite_place_tapped', {
+                  place_id: item.id,
+                  place_name: item.name,
+                })
+                router.push(`/place/${item.id}`)
+              }}
               mx="$4"
               mb="$3"
             />

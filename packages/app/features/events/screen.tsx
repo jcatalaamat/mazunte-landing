@@ -2,12 +2,13 @@ import { EventCard, FullscreenSpinner, SearchBar, Text, YStack, Button, XStack, 
 import { router } from 'expo-router'
 import { FlatList, RefreshControl, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { X } from '@tamagui/lucide-icons'
 import { CATEGORY_LABELS, EVENT_CATEGORIES, type EventCategory } from 'app/utils/constants'
 import { useEventsQuery } from 'app/utils/react-query/useEventsQuery'
 import { formatDate, formatTime, getRelativeDay } from 'app/utils/date-helpers'
 import { useTranslation } from 'react-i18next'
+import { usePostHog } from 'posthog-react-native'
 
 export function EventsScreen() {
   const [selectedCategory, setSelectedCategory] = useState<EventCategory | null>(null)
@@ -15,6 +16,11 @@ export function EventsScreen() {
   const [headerDismissed, setHeaderDismissed] = useState(false)
   const insets = useSafeAreaInsets()
   const { t } = useTranslation()
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    posthog?.capture('events_screen_viewed')
+  }, [posthog])
 
   // Fetch all events once (including past events for now)
   const { data: allEvents = [], isLoading, error, refetch } = useEventsQuery({ includePast: true })
@@ -54,10 +60,18 @@ export function EventsScreen() {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
+    posthog?.capture('events_searched', {
+      search_query: query,
+      results_count: filteredEvents.length,
+    })
   }
 
   const handleCategorySelect = (category: string | null) => {
     setSelectedCategory(category as EventCategory | null)
+    posthog?.capture('events_category_selected', {
+      category: category || 'all',
+      events_count: category ? allEvents.filter(e => e.category === category).length : allEvents.length,
+    })
   }
 
   if (isLoading) {
@@ -110,7 +124,14 @@ export function EventsScreen() {
         renderItem={({ item }) => (
           <EventCard
             event={item}
-            onPress={() => router.push(`/event/${item.id}`)}
+            onPress={() => {
+              posthog?.capture('event_card_tapped', {
+                event_id: item.id,
+                event_title: item.title,
+                event_category: item.category,
+              })
+              router.push(`/event/${item.id}`)
+            }}
             mx="$4"
             mb="$3"
           />
