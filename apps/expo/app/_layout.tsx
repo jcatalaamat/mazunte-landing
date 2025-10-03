@@ -10,6 +10,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import * as Sentry from '@sentry/react-native'
 import 'app/i18n' // Initialize i18n
 import { LanguageProvider } from 'app/contexts/LanguageContext'
+import { PostHogProvider } from 'posthog-react-native'
+import { EXPO_PUBLIC_POSTHOG_API_KEY, EXPO_PUBLIC_POSTHOG_HOST } from '@env'
 
 // Prevent splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync().catch((error) => {
@@ -81,50 +83,57 @@ function HomeLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-        <Provider initialSession={initialSession}>
-          <LanguageProvider>
-            <Stack screenOptions={{ headerShown: false, headerBackButtonDisplayMode: 'minimal' }}>
-            <Stack.Screen
-              name="(drawer)/(tabs)/index"
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="create"
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="settings/index"
-              options={{
-                headerShown: true,
-              }}
-            />
-            <Stack.Screen
-              name="event/[id]"
-              options={{
-                headerShown: true,
-                headerTitle: '',
-                presentation: 'card',
-              }}
-            />
-            <Stack.Screen
-              name="place/[id]"
-              options={{
-                headerShown: true,
-                headerTitle: '',
-                presentation: 'card',
-              }}
-            />
-            </Stack>
-          </LanguageProvider>
-        </Provider>
-      </View>
-    </GestureHandlerRootView>
+    <PostHogProvider
+      apiKey={EXPO_PUBLIC_POSTHOG_API_KEY}
+      options={{
+        host: EXPO_PUBLIC_POSTHOG_HOST,
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+          <Provider initialSession={initialSession}>
+            <LanguageProvider>
+              <Stack screenOptions={{ headerShown: false, headerBackButtonDisplayMode: 'minimal' }}>
+              <Stack.Screen
+                name="(drawer)/(tabs)/index"
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="create"
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="settings/index"
+                options={{
+                  headerShown: true,
+                }}
+              />
+              <Stack.Screen
+                name="event/[id]"
+                options={{
+                  headerShown: true,
+                  headerTitle: '',
+                  presentation: 'card',
+                }}
+              />
+              <Stack.Screen
+                name="place/[id]"
+                options={{
+                  headerShown: true,
+                  headerTitle: '',
+                  presentation: 'card',
+                }}
+              />
+              </Stack>
+            </LanguageProvider>
+          </Provider>
+        </View>
+      </GestureHandlerRootView>
+    </PostHogProvider>
   )
 }
 

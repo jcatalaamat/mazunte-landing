@@ -6,6 +6,8 @@ import { CATEGORY_COLORS } from 'app/utils/constants'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
 import { ScreenWrapper } from 'app/components/ScreenWrapper'
+import { usePostHog } from 'posthog-react-native'
+import { useEffect } from 'react'
 
 interface EventDetailScreenProps {
   id: string
@@ -15,6 +17,19 @@ export function EventDetailScreen({ id }: EventDetailScreenProps) {
   const insets = useSafeAreaInsets()
   const { data: event, isLoading } = useEventDetailQuery(id)
   const { t } = useTranslation()
+  const posthog = usePostHog()
+
+  useEffect(() => {
+    if (event) {
+      posthog?.capture('event_detail_viewed', {
+        event_id: event.id,
+        event_title: event.title,
+        event_category: event.category,
+        is_featured: event.featured,
+        is_eco_conscious: event.eco_conscious,
+      })
+    }
+  }, [event, posthog])
 
   if (isLoading) {
     return <FullscreenSpinner />
