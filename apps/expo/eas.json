@@ -39,7 +39,7 @@
       "channel": "development",
       "env": {
         "APP_ENV": "development",
-        "NODE_ENV": "development",
+        "NODE_ENV": "production",
         "EXPO_PUBLIC_URL": "https://unistack-next-delta.vercel.app",
         "EXPO_PUBLIC_SUPABASE_URL": "https://ddbuvzotcasyanocqcsh.supabase.co",
         "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkYnV2em90Y2FzeWFub2NxY3NoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyMTc2OTUsImV4cCI6MjA3NDc5MzY5NX0.PMT70ZA13edRBikancgh1COnEeT_0OPAR6puegXPFsM"
