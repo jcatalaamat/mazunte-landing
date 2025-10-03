@@ -35,7 +35,7 @@
     },
     "development": {
       "distribution": "internal",
-      "developmentClient": false,
+      "developmentClient": true,
       "channel": "development",
       "env": {
         "APP_ENV": "development",
