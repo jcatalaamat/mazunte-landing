@@ -137,6 +137,6 @@ export function FavoritesScreen() {
           }
         />
       )}
-    </YStack>
+    </ScreenWrapper>
   )
 }
