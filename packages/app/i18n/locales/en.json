@@ -106,6 +106,17 @@
     "dont_have_account": "Don't have an account?",
     "create_account": "Create Account"
   },
+  "settings": {
+    "general": "General",
+    "change_password": "Change Password",
+    "change_email": "Change Email",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "about": "About",
+    "theme": "Theme",
+    "language": "Language",
+    "log_out": "Log Out"
+  },
   "about": {
     "title": "About Mazunte Connect",
     "welcome": "Welcome to Mazunte Connect!",

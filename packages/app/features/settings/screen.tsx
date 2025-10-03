@@ -6,6 +6,7 @@ import { useSupabase } from 'app/utils/supabase/useSupabase'
 import { usePathname } from 'app/utils/usePathname'
 import { useLink } from 'solito/link'
 import { LanguageSwitcher } from 'app/components/LanguageSwitcher'
+import { useTranslation } from 'react-i18next'
 
 import rootPackageJson from '../../../../package.json'
 import packageJson from '../../package.json'
@@ -13,6 +14,7 @@ import packageJson from '../../package.json'
 export const SettingsScreen = () => {
   const media = useMedia()
   const pathname = usePathname()
+  const { t } = useTranslation()
 
   return (
     <YStack f={1}>
@@ -26,7 +28,7 @@ export const SettingsScreen = () => {
                 {...useLink({ href: media.sm ? '/settings/general' : '/settings' })}
                 accentTheme="green"
               >
-                General
+                {t('settings.general')}
               </Settings.Item>
               <Settings.Item
                 icon={Lock}
@@ -34,7 +36,7 @@ export const SettingsScreen = () => {
                 {...useLink({ href: '/settings/change-password' })}
                 accentTheme="green"
               >
-                Change Password
+                {t('settings.change_password')}
               </Settings.Item>
               <Settings.Item
                 icon={Mail}
@@ -42,7 +44,7 @@ export const SettingsScreen = () => {
                 {...useLink({ href: '/settings/change-email' })}
                 accentTheme="green"
               >
-                Change Email
+                {t('settings.change_email')}
               </Settings.Item>
             </Settings.Group>
             {isWeb && <Separator boc="$color3" mx="$-4" bw="$0.25" />}
@@ -53,7 +55,7 @@ export const SettingsScreen = () => {
                 {...useLink({ href: '/privacy-policy' })}
                 accentTheme="purple"
               >
-                Privacy Policy
+                {t('settings.privacy_policy')}
               </Settings.Item>
               <Settings.Item
                 icon={Book}
@@ -61,14 +63,14 @@ export const SettingsScreen = () => {
                 {...useLink({ href: '/terms-of-service' })}
                 accentTheme="purple"
               >
-                Terms Of Service
+                {t('settings.terms_of_service')}
               </Settings.Item>
               {/* removing about from web since landing pages are more common on web - feel free to add back if needed */}
               {!isWeb && (
                 // isWeb is a constant so this isn't really a conditional hook
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 <Settings.Item icon={Info} {...useLink({ href: '/about' })} accentTheme="blue">
-                  About
+                  {t('settings.about')}
                 </Settings.Item>
               )}
             </Settings.Group>
@@ -104,10 +106,11 @@ export const SettingsScreen = () => {
 
 const SettingsThemeAction = () => {
   const { toggle, current } = useThemeSetting()
+  const { t } = useTranslation()
 
   return (
     <Settings.Item icon={Moon} accentTheme="blue" onPress={toggle} rightLabel={current}>
-      Theme
+      {t('settings.theme')}
     </Settings.Item>
   )
 }
@@ -115,10 +118,11 @@ const SettingsThemeAction = () => {
 
 const SettingsItemLogoutAction = () => {
   const supabase = useSupabase()
+  const { t } = useTranslation()
 
   return (
     <Settings.Item icon={LogOut} accentTheme="red" onPress={() => supabase.auth.signOut()}>
-      Log Out
+      {t('settings.log_out')}
     </Settings.Item>
   )
 }
