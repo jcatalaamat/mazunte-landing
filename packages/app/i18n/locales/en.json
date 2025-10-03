@@ -94,9 +94,9 @@
     "places": "Places",
     "no_favorite_events": "No favorite events yet",
     "no_favorite_places": "No favorite places yet",
-    "tap_heart_to_save": "Tap the heart icon on events to save them here",
-    "tap_heart_events": "Tap the heart icon on events to save them here",
-    "tap_heart_places": "Tap the heart icon on places to save them here"
+    "tap_heart_to_save": "Tap ❤️ on events to save them",
+    "tap_heart_events": "Tap ❤️ on events to save them",
+    "tap_heart_places": "Tap ❤️ on places to save them"
   },
   "profile": {
     "title": "Profile",

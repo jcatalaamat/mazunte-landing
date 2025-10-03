@@ -40,7 +40,7 @@ export function FavoritesScreen() {
   if (favorites.length === 0) {
   return (
     <ScreenWrapper>
-        <YStack f={1} ai="center" jc="center" p="$4">
+        <YStack f={1} ai="center" jc="center" py="$10" px="$6">
           <Text fontSize="$6" color="$color10" ta="center" mb="$2">
             ❤️ {t('favorites.no_favorites')}
           </Text>
