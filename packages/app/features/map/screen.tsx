@@ -38,9 +38,24 @@ export function MapScreen() {
 
   const isLoading = eventsLoading || placesLoading
 
-  // Filter data based on view type
-  const filteredEvents = viewType === 'events' || viewType === 'both' ? events : []
-  const filteredPlaces = viewType === 'places' || viewType === 'both' ? places : []
+  // Filter data based on view type and ensure coordinates exist
+  const filteredEvents = (viewType === 'events' || viewType === 'both') 
+    ? events.filter(event => event.lat && event.lng) 
+    : []
+  const filteredPlaces = (viewType === 'places' || viewType === 'both') 
+    ? places.filter(place => place.lat && place.lng) 
+    : []
+
+  // Debug logging
+  console.log('MapScreen Debug:', {
+    eventsCount: events.length,
+    placesCount: places.length,
+    eventsWithCoords: events.filter(event => event.lat && event.lng).length,
+    placesWithCoords: places.filter(place => place.lat && place.lng).length,
+    viewType,
+    filteredEventsCount: filteredEvents.length,
+    filteredPlacesCount: filteredPlaces.length
+  })
 
   const handleEventPress = (eventId: string) => {
     const markerKey = `event-${eventId}`
@@ -128,7 +143,7 @@ export function MapScreen() {
           onPress={() => setViewType('events')}
           f={1}
         >
-          <Text>{t('map.events')} ({filteredEvents.length})</Text>
+          <Text>{t('map.events')} ({events.filter(event => event.lat && event.lng).length})</Text>
         </Button>
         <Button
           size="$3"
@@ -136,7 +151,7 @@ export function MapScreen() {
           onPress={() => setViewType('places')}
           f={1}
         >
-          <Text>{t('map.places')} ({filteredPlaces.length})</Text>
+          <Text>{t('map.places')} ({places.filter(place => place.lat && place.lng).length})</Text>
         </Button>
         <Button
           size="$3"
@@ -168,10 +183,8 @@ export function MapScreen() {
         showsMyLocationButton={true}
         mapType="standard"
       >
-        {/* Event Markers - Only show if coordinates exist */}
-        {filteredEvents
-          .filter(event => event.lat && event.lng)
-          .map((event) => {
+        {/* Event Markers */}
+        {filteredEvents.map((event) => {
             const markerKey = `event-${event.id}`
             const isTapped = tappedMarkers.has(markerKey)
             
@@ -193,10 +206,8 @@ export function MapScreen() {
             )
           })}
 
-        {/* Place Markers - Only show if coordinates exist */}
-        {filteredPlaces
-          .filter(place => place.lat && place.lng)
-          .map((place) => {
+        {/* Place Markers */}
+        {filteredPlaces.map((place) => {
             const markerKey = `place-${place.id}`
             const isTapped = tappedMarkers.has(markerKey)
             
