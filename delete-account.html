@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Mazunte Connect</title>
+    <meta name="description" content="Request deletion of your Mazunte Connect account and associated data.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 40px;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(to right, #fb923c, #f472b6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            color: #fb923c;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .section {
+            background: rgba(39, 39, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .section.warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .section.primary {
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.1), rgba(244, 114, 182, 0.1));
+            border: 1px solid rgba(251, 146, 60, 0.2);
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #fb923c;
+        }
+        p {
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+        ul, ol {
+            margin-left: 0;
+            margin-bottom: 15px;
+        }
+        li {
+            color: #9ca3af;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        ul li:before {
+            content: "•";
+            color: #fb923c;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        ol {
+            list-style: none;
+            counter-reset: item;
+        }
+        ol li {
+            counter-increment: item;
+            padding-left: 30px;
+        }
+        ol li:before {
+            content: counter(item) ".";
+            color: #fb923c;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .email-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(to right, #fb923c, #f472b6);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .email-link:hover {
+            opacity: 0.9;
+        }
+        .important-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #fb923c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .lang-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6b7280;
+        }
+        strong {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <!-- English Version -->
+        <div class="header">
+            <h1>Delete Your Account</h1>
+            <p class="subtitle">Request deletion of your Mazunte Connect account</p>
+        </div>
+
+        <div class="section warning">
+            <h2>⚠️ Before You Delete</h2>
+            <p><strong>Account deletion is permanent and cannot be undone.</strong> Once your account is deleted, you will lose access to:</p>
+            <ul>
+                <li>Your saved events and favorites</li>
+                <li>Your event RSVPs and bookings</li>
+                <li>Your profile and preferences</li>
+                <li>Any content you've created or posted</li>
+            </ul>
+            <p>Please make sure this is what you want to do before proceeding.</p>
+        </div>
+
+        <div class="section primary">
+            <h2>📋 How to Delete Your Account</h2>
+            <p>Follow these steps to request deletion of your Mazunte Connect account:</p>
+            <ol>
+                <li>Send an email to <strong>hello@mazunteconnect.com</strong> from the email address associated with your account</li>
+                <li>Include "<strong>Delete Account Request</strong>" in the subject line</li>
+                <li>In the email body, confirm that you want to permanently delete your account and all associated data</li>
+                <li>We will process your request within <strong>7 business days</strong> and send you a confirmation email once completed</li>
+            </ol>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="mailto:hello@mazunteconnect.com?subject=Delete%20Account%20Request&body=I%20would%20like%20to%20request%20deletion%20of%20my%20Mazunte%20Connect%20account%20and%20all%20associated%20data." class="email-link">📧 Send Deletion Request</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🗑️ What Data Will Be Deleted</h2>
+            <p>When you delete your Mazunte Connect account, the following data will be <strong>permanently removed</strong>:</p>
+            <ul>
+                <li><strong>Account Information:</strong> Your email address, username, and profile data</li>
+                <li><strong>Personal Preferences:</strong> App settings, notification preferences, and saved filters</li>
+                <li><strong>User-Generated Content:</strong> Reviews, comments, photos, and any content you've posted</li>
+                <li><strong>Activity Data:</strong> Your saved events, favorites, RSVPs, and browsing history</li>
+                <li><strong>Location Data:</strong> Any location data we've collected with your permission</li>
+            </ul>
+
+            <div class="important-box">
+                <p><strong>Data Retention Period:</strong> Most data is deleted immediately upon account deletion. Some data may be retained for up to <strong>30 days</strong> in encrypted backups for security and recovery purposes, after which it is permanently purged from our systems.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Data We May Retain</h2>
+            <p>For legal, security, and operational reasons, we may retain certain <strong>anonymized or aggregated data</strong> that cannot be used to identify you:</p>
+            <ul>
+                <li><strong>Analytics Data:</strong> Anonymous usage statistics and app performance metrics</li>
+                <li><strong>Legal Compliance:</strong> Records required by law or for legal proceedings (retained only as long as legally required)</li>
+                <li><strong>Security Logs:</strong> Anonymized security and fraud prevention logs (retained for up to 90 days)</li>
+            </ul>
+            <p>This retained data is fully anonymized and cannot be linked back to you or your deleted account.</p>
+        </div>
+
+        <div class="section">
+            <h2>🔄 Alternative Options</h2>
+            <p>If you're not sure about deleting your account permanently, consider these alternatives:</p>
+            <ul>
+                <li><strong>Disable Notifications:</strong> Turn off email and push notifications in your app settings</li>
+                <li><strong>Clear Your Data:</strong> Remove your saved events and favorites without deleting your account</li>
+                <li><strong>Update Privacy Settings:</strong> Adjust your data sharing and location preferences</li>
+            </ul>
+            <p>You can manage these settings in the app or contact us for assistance.</p>
+        </div>
+
+        <div class="section">
+            <h2>❓ Questions or Concerns?</h2>
+            <p>If you have questions about account deletion or data privacy, please contact our support team:</p>
+            <a href="mailto:hello@mazunteconnect.com" class="email-link">hello@mazunteconnect.com</a>
+            <p style="margin-top: 20px;">For more information about how we handle your data, please review our <a href="/privacy.html" style="color: #fb923c;">Privacy Policy</a>.</p>
+        </div>
+
+        <!-- Spanish Version -->
+        <div class="lang-section">
+            <div class="header">
+                <h1>Eliminar tu Cuenta</h1>
+                <p class="subtitle">Solicita la eliminación de tu cuenta de Mazunte Connect</p>
+            </div>
+
+            <div class="section warning">
+                <h2>⚠️ Antes de Eliminar</h2>
+                <p><strong>La eliminación de la cuenta es permanente y no se puede deshacer.</strong> Una vez eliminada tu cuenta, perderás acceso a:</p>
+                <ul>
+                    <li>Tus eventos guardados y favoritos</li>
+                    <li>Tus confirmaciones de asistencia y reservas de eventos</li>
+                    <li>Tu perfil y preferencias</li>
+                    <li>Cualquier contenido que hayas creado o publicado</li>
+                </ul>
+                <p>Por favor, asegúrate de que esto es lo que quieres hacer antes de continuar.</p>
+            </div>
+
+            <div class="section primary">
+                <h2>📋 Cómo Eliminar tu Cuenta</h2>
+                <p>Sigue estos pasos para solicitar la eliminación de tu cuenta de Mazunte Connect:</p>
+                <ol>
+                    <li>Envía un correo electrónico a <strong>hello@mazunteconnect.com</strong> desde la dirección de correo asociada con tu cuenta</li>
+                    <li>Incluye "<strong>Solicitud de Eliminación de Cuenta</strong>" en el asunto</li>
+                    <li>En el cuerpo del correo, confirma que deseas eliminar permanentemente tu cuenta y todos los datos asociados</li>
+                    <li>Procesaremos tu solicitud en <strong>7 días hábiles</strong> y te enviaremos un correo de confirmación una vez completado</li>
+                </ol>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="mailto:hello@mazunteconnect.com?subject=Solicitud%20de%20Eliminaci%C3%B3n%20de%20Cuenta&body=Me%20gustar%C3%ADa%20solicitar%20la%20eliminaci%C3%B3n%20de%20mi%20cuenta%20de%20Mazunte%20Connect%20y%20todos%20los%20datos%20asociados." class="email-link">📧 Enviar Solicitud de Eliminación</a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🗑️ Qué Datos se Eliminarán</h2>
+                <p>Cuando eliminas tu cuenta de Mazunte Connect, los siguientes datos serán <strong>eliminados permanentemente</strong>:</p>
+                <ul>
+                    <li><strong>Información de Cuenta:</strong> Tu dirección de correo electrónico, nombre de usuario y datos de perfil</li>
+                    <li><strong>Preferencias Personales:</strong> Configuraciones de la app, preferencias de notificaciones y filtros guardados</li>
+                    <li><strong>Contenido Generado por el Usuario:</strong> Reseñas, comentarios, fotos y cualquier contenido que hayas publicado</li>
+                    <li><strong>Datos de Actividad:</strong> Tus eventos guardados, favoritos, confirmaciones de asistencia e historial de navegación</li>
+                    <li><strong>Datos de Ubicación:</strong> Cualquier dato de ubicación que hayamos recopilado con tu permiso</li>
+                </ul>
+
+                <div class="important-box">
+                    <p><strong>Período de Retención de Datos:</strong> La mayoría de los datos se eliminan inmediatamente al eliminar la cuenta. Algunos datos pueden retenerse hasta por <strong>30 días</strong> en copias de seguridad encriptadas por razones de seguridad y recuperación, después de lo cual se eliminan permanentemente de nuestros sistemas.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📊 Datos que Podemos Retener</h2>
+                <p>Por razones legales, de seguridad y operativas, podemos retener ciertos <strong>datos anonimizados o agregados</strong> que no pueden usarse para identificarte:</p>
+                <ul>
+                    <li><strong>Datos de Análisis:</strong> Estadísticas de uso anónimas y métricas de rendimiento de la app</li>
+                    <li><strong>Cumplimiento Legal:</strong> Registros requeridos por ley o para procedimientos legales (retenidos solo mientras sea legalmente requerido)</li>
+                    <li><strong>Registros de Seguridad:</strong> Registros de seguridad y prevención de fraude anonimizados (retenidos hasta por 90 días)</li>
+                </ul>
+                <p>Estos datos retenidos están completamente anonimizados y no pueden vincularse contigo o con tu cuenta eliminada.</p>
+            </div>
+
+            <div class="section">
+                <h2>🔄 Opciones Alternativas</h2>
+                <p>Si no estás seguro de eliminar tu cuenta permanentemente, considera estas alternativas:</p>
+                <ul>
+                    <li><strong>Desactivar Notificaciones:</strong> Desactiva las notificaciones por correo electrónico y push en la configuración de tu app</li>
+                    <li><strong>Limpiar tus Datos:</strong> Elimina tus eventos guardados y favoritos sin eliminar tu cuenta</li>
+                    <li><strong>Actualizar Configuración de Privacidad:</strong> Ajusta tus preferencias de compartir datos y ubicación</li>
+                </ul>
+                <p>Puedes gestionar estas configuraciones en la app o contactarnos para obtener ayuda.</p>
+            </div>
+
+            <div class="section">
+                <h2>❓ ¿Preguntas o Inquietudes?</h2>
+                <p>Si tienes preguntas sobre la eliminación de cuenta o privacidad de datos, contacta a nuestro equipo de soporte:</p>
+                <a href="mailto:hello@mazunteconnect.com" class="email-link">hello@mazunteconnect.com</a>
+                <p style="margin-top: 20px;">Para más información sobre cómo manejamos tus datos, por favor revisa nuestra <a href="/privacy.html" style="color: #fb923c;">Política de Privacidad</a>.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Made with 💚 by travelers, for Mazunte</p>
+        </div>
+    </div>
+</body>
+</html>
