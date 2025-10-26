@@ -17,9 +17,11 @@ const PlacePreview: React.FC<PlacePreviewProps> = ({ language: initialLanguage }
     title: "Descubre este lugar en Mazunte Connect",
     subtitle: "La app que te conecta con todos los espacios conscientes en Mazunte",
     platform: {
-      title: "Próximamente en iOS y Android",
+      title: "Disponible en iOS",
       subtitle: "Tu guía de bolsillo a Mazunte, donde sea que estés",
-      availableOn: "Disponible en"
+      availableOn: "Disponible en",
+      availableNow: "Disponible Ahora",
+      comingSoon: "Próximamente"
     },
     features: {
       title: "Con la app podrás:",
@@ -50,9 +52,11 @@ const PlacePreview: React.FC<PlacePreviewProps> = ({ language: initialLanguage }
     title: "Discover this place in Mazunte Connect",
     subtitle: "The app that connects you with all conscious spaces in Mazunte",
     platform: {
-      title: "Coming to iOS & Android",
+      title: "Available on iOS",
       subtitle: "Your pocket guide to Mazunte, wherever you are",
-      availableOn: "Available on"
+      availableOn: "Available on",
+      availableNow: "Available Now",
+      comingSoon: "Coming Soon"
     },
     features: {
       title: "With the app you can:",
@@ -233,23 +237,28 @@ const PlacePreview: React.FC<PlacePreviewProps> = ({ language: initialLanguage }
                       <p className="text-gray-400 text-lg">{t.platform.subtitle}</p>
                     </div>
                     <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-                      <div className="group/badge relative">
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-2xl blur opacity-40 group-hover/badge:opacity-60 transition"></div>
-                        <div className="relative flex items-center gap-3 px-6 py-4 bg-zinc-800/90 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all">
-                          <Apple className="w-8 h-8 text-white" />
+                      <a
+                        href="https://apps.apple.com/es/app/mazunte-connect/id6753561445"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/badge relative block"
+                      >
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-2xl blur opacity-40 group-hover/badge:opacity-60 transition"></div>
+                        <div className="relative flex items-center gap-3 px-6 py-4 bg-zinc-800/90 backdrop-blur-xl rounded-2xl border border-blue-500/30 hover:border-blue-400/50 transition-all transform hover:scale-105">
+                          <Apple className="w-8 h-8 text-blue-400" />
                           <div className="text-left">
-                            <div className="text-xs text-gray-400">{t.platform.availableOn}</div>
+                            <div className="text-xs text-blue-400 font-medium">{t.platform.availableNow}</div>
                             <div className="text-lg font-semibold text-white">iOS</div>
                           </div>
                         </div>
-                      </div>
-                      <div className="group/badge relative">
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl blur opacity-40 group-hover/badge:opacity-60 transition"></div>
-                        <div className="relative flex items-center gap-3 px-6 py-4 bg-zinc-800/90 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 transition-all">
-                          <Smartphone className="w-8 h-8 text-green-400" />
+                      </a>
+                      <div className="group/badge relative opacity-60">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-400 to-gray-600 rounded-2xl blur opacity-20"></div>
+                        <div className="relative flex items-center gap-3 px-6 py-4 bg-zinc-800/90 backdrop-blur-xl rounded-2xl border border-white/10">
+                          <Smartphone className="w-8 h-8 text-gray-500" />
                           <div className="text-left">
-                            <div className="text-xs text-gray-400">{t.platform.availableOn}</div>
-                            <div className="text-lg font-semibold text-white">Android</div>
+                            <div className="text-xs text-gray-500">{t.platform.comingSoon}</div>
+                            <div className="text-lg font-semibold text-gray-400">Android</div>
                           </div>
                         </div>
                       </div>

@@ -198,16 +198,16 @@ export default function PrivacyPage() {
   }, []);
 
   const spotlightStyle = {
-    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(251, 146, 60, 0.15), transparent 40%)`
+    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(20, 184, 166, 0.12), transparent 40%)`
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 text-amber-950 overflow-hidden relative">
       {/* Animated mesh background */}
-      <div className="fixed inset-0 opacity-30">
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '7s'}}></div>
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '9s', animationDelay: '2s'}}></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '11s', animationDelay: '4s'}}></div>
+      <div className="fixed inset-0 opacity-20">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '7s'}}></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '9s', animationDelay: '2s'}}></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '11s', animationDelay: '4s'}}></div>
       </div>
 
       {/* Mouse spotlight effect */}
@@ -215,7 +215,7 @@ export default function PrivacyPage() {
 
       {/* Grid overlay */}
       <div className="fixed inset-0 opacity-5" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+        backgroundImage: 'linear-gradient(rgba(120,53,15,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(120,53,15,0.1) 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }}></div>
 
@@ -224,10 +224,10 @@ export default function PrivacyPage() {
         <div className="fixed top-4 left-4 z-50">
           <Link
             to="/"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-amber-900/20 hover:bg-white/80 transition-all shadow-md"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">{t.privacy.backToHome}</span>
+            <ArrowLeft className="w-4 h-4 text-amber-900" />
+            <span className="text-sm font-medium text-amber-900">{t.privacy.backToHome}</span>
           </Link>
         </div>
 
@@ -235,23 +235,23 @@ export default function PrivacyPage() {
         <div className="fixed top-4 right-4 z-50">
           <button
             onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-amber-900/20 hover:bg-white/80 transition-all shadow-md"
           >
-            <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">{language === 'en' ? 'EN' : 'ES'}</span>
+            <Globe className="w-4 h-4 text-amber-900" />
+            <span className="text-sm font-medium text-amber-900">{language === 'en' ? 'EN' : 'ES'}</span>
           </button>
         </div>
 
         {/* Hero Section */}
         <div className="container mx-auto px-4 pt-16 pb-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-600 via-teal-600 to-amber-700 bg-clip-text text-transparent">
               {t.privacy.title}
             </h1>
-            <p className="text-xl text-gray-400 mb-4">
+            <p className="text-xl text-amber-800 mb-4">
               {t.privacy.subtitle}
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-amber-700">
               {t.privacy.lastUpdated}
             </p>
           </div>
@@ -263,20 +263,20 @@ export default function PrivacyPage() {
             {t.privacy.sections.map((section, index) => {
               const IconComponent = iconMap[section.icon as keyof typeof iconMap] || Shield;
               const gradients = [
-                'from-orange-500 to-pink-500',
-                'from-pink-500 to-purple-500',
-                'from-purple-500 to-blue-500',
-                'from-blue-500 to-cyan-500',
-                'from-cyan-500 to-green-500',
+                'from-orange-500 to-teal-500',
+                'from-teal-500 to-amber-500',
+                'from-amber-500 to-orange-500',
+                'from-orange-600 to-teal-600',
+                'from-teal-500 to-orange-500',
                 'from-green-500 to-emerald-500',
-                'from-emerald-500 to-orange-500'
+                'from-orange-500 to-amber-600'
               ];
               const gradient = gradients[index % gradients.length];
 
               return (
                 <div key={index} className="group relative">
                   <div className={`absolute -inset-0.5 bg-gradient-to-r ${gradient} rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500`}></div>
-                  <div className="relative bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-white/5 p-8 hover:border-white/10 transition-all">
+                  <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-amber-900/20 p-8 hover:border-orange-400/30 transition-all shadow-lg">
                     <div className="flex items-start gap-6">
                       <div className="flex-shrink-0">
                         <div className={`w-14 h-14 bg-gradient-to-br ${gradient} rounded-2xl flex items-center justify-center`}>
@@ -284,10 +284,10 @@ export default function PrivacyPage() {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold mb-4">{section.title}</h3>
+                        <h3 className="text-2xl font-bold mb-4 text-amber-950">{section.title}</h3>
                         <div className="space-y-3">
                           {section.content.map((paragraph, pIndex) => (
-                            <p key={pIndex} className="text-gray-400 leading-relaxed">
+                            <p key={pIndex} className="text-amber-800 leading-relaxed">
                               {paragraph}
                             </p>
                           ))}
@@ -301,13 +301,13 @@ export default function PrivacyPage() {
 
             {/* Contact Section */}
             <div className="group relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <div className="relative bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-white/5 p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">{t.privacy.contact.title}</h3>
-                <p className="text-gray-400 mb-4">{t.privacy.contact.description}</p>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 via-teal-500 to-amber-500 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-amber-900/20 p-8 text-center shadow-lg">
+                <h3 className="text-2xl font-bold mb-4 text-amber-950">{t.privacy.contact.title}</h3>
+                <p className="text-amber-800 mb-4">{t.privacy.contact.description}</p>
                 <a
                   href={`mailto:${t.privacy.contact.email}`}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-teal-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-orange-500/30 transform hover:scale-105 transition-all"
                 >
                   {t.privacy.contact.email}
                 </a>
@@ -319,7 +319,7 @@ export default function PrivacyPage() {
         {/* Footer */}
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-gray-500">
+            <p className="text-amber-700">
               {t.footer.made}
             </p>
           </div>

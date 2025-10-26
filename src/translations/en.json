@@ -1,47 +1,64 @@
 {
   "hero": {
-    "title": "Never miss what's happening in Mazunte",
-    "subtitle": "All events, retreats, yoga, restaurants, and conscious spaces in Mazunte. No more WhatsApp chaos.",
-    "cta": "Get Early Access",
-    "waitlist": "Join {count}+ people on the waitlist",
-    "launching": "Launching Soon"
+    "title": "Your guide to everything Mazunte",
+    "subtitle": "All events, retreats, yoga, restaurants, and conscious spaces in one place. No more WhatsApp chaos.",
+    "stats": "Growing daily with new events & places",
+    "cta": "Download Free on iOS",
+    "androidCta": "Join Android Beta",
+    "androidBetaNote": "Limited to 100 testers",
+    "betaSpots": "{count}/100 spots filled",
+    "launching": "Available Now on iOS"
   },
   "platform": {
-    "title": "Coming to iOS & Android",
+    "title": "Download Mazunte Connect",
     "subtitle": "Your pocket guide to Mazunte, wherever you are",
-    "availableOn": "Available on"
+    "availableOn": "Available on",
+    "availableNow": "Download Now",
+    "comingSoon": "Beta Testing",
+    "androidBetaTitle": "Android Beta Program",
+    "androidBetaSubtitle": "Join the beta testing program (limited to 100 spots)",
+    "androidBetaInstructions": "Enter your Gmail address associated with Google Play Store. We'll manually add you to the beta program.",
+    "emailPlaceholder": "your.email@gmail.com"
   },
   "features": {
     "title": "Everything Mazunte, one app",
-    "subtitle": "Your digital guide to paradise",
+    "subtitle": "Browse, discover, and connect with your community",
     "events": {
-      "title": "Never miss an event",
-      "description": "Cacao ceremonies, ecstatic dance, yoga classes, full moon gatherings. See everything happening.",
+      "title": "All events in one place",
+      "description": "Cacao ceremonies, ecstatic dance, yoga classes, full moon gatherings, live music, workshops. See everything happening in Mazunte.",
       "features": [
+        "RSVP & get reminders",
         "Calendar & list views",
-        "Smart filters & search",
-        "Save favorites"
+        "Smart filters & search"
       ]
     },
     "discover": {
-      "title": "Discover everything",
-      "description": "Retreat centers, wellness studios, vegan restaurants, healers, surf spots. All mapped."
+      "title": "Discover places & services",
+      "description": "30+ yoga studios, retreat centers, vegan restaurants, healers, surf spots. All mapped and ready to explore."
     },
     "conscious": {
-      "title": "Conscious & eco-friendly",
-      "description": "Supporting businesses with regenerative practices and authentic community values."
+      "title": "100% Free to use",
+      "description": "Download, browse, RSVP, and connect with the Mazunte community. No subscriptions, no hidden fees."
     },
     "reminders": {
       "title": "Push reminders",
-      "description": "Never forget an event"
+      "description": "Never miss an event you care about"
     },
     "fresh": {
-      "title": "Always fresh",
-      "description": "Updated daily"
+      "title": "Real-time updates",
+      "description": "See what's happening today, this week, this month"
     },
     "community": {
-      "title": "By travelers",
-      "description": "For the community"
+      "title": "Create & share",
+      "description": "Post your own events and connect with others"
+    },
+    "messaging": {
+      "title": "Direct messaging",
+      "description": "Chat with event hosts and community members"
+    },
+    "bookmarks": {
+      "title": "Save favorites",
+      "description": "Bookmark events and places you want to check out"
     }
   },
   "problem": {
@@ -58,17 +75,21 @@
     ]
   },
   "cta": {
-    "title": "Your guide to Mazunte",
-    "subtitle": "Every event, retreat, restaurant, and conscious space. Always updated, beautifully organized.",
-    "button": "Join Waitlist"
+    "title": "Start exploring Mazunte today",
+    "subtitle": "All Mazunte events and places in one beautifully organized app. Download free on iOS or join the Android beta.",
+    "button": "Download on iOS",
+    "androidButton": "Join Android Beta"
   },
   "footer": {
     "made": "Made with 💚 by travelers, for Mazunte",
     "email": "hello@mazunteconnect.com"
   },
   "success": {
-    "title": "You're in! 🎉",
-    "message": "We'll notify you when Mazunte Connect launches.",
-    "email": "📧 Check your email! We sent you a confirmation link to complete your subscription."
+    "title": "You're in the beta! 🎉",
+    "message": "We'll add you to the Android beta program within 24 hours.",
+    "email": "📧 Check your email! We sent you a confirmation. You'll receive an invite to the Google Play beta program soon.",
+    "iosTitle": "Ready to explore Mazunte?",
+    "iosMessage": "Download the app now and start discovering events and places.",
+    "iosButton": "Open App Store"
   }
 }

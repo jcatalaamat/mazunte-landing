@@ -36,7 +36,7 @@ const supportTranslations = {
             },
             {
               q: "Which platforms will be supported?",
-              a: "We're launching on both iOS and Android simultaneously."
+              a: "The app is now available on iOS! Android version is coming soon."
             }
           ]
         },
@@ -81,7 +81,7 @@ const supportTranslations = {
             },
             {
               q: "¿Qué plataformas estarán soportadas?",
-              a: "Lanzaremos en iOS y Android simultáneamente."
+              a: "¡La app ya está disponible en iOS! La versión de Android llegará pronto."
             }
           ]
         },
@@ -114,16 +114,16 @@ export default function SupportPage() {
   }, []);
 
   const spotlightStyle = {
-    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(251, 146, 60, 0.15), transparent 40%)`
+    background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(20, 184, 166, 0.12), transparent 40%)`
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 text-amber-950 overflow-hidden relative">
       {/* Animated mesh background */}
-      <div className="fixed inset-0 opacity-30">
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '7s'}}></div>
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '9s', animationDelay: '2s'}}></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '11s', animationDelay: '4s'}}></div>
+      <div className="fixed inset-0 opacity-20">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '7s'}}></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-teal-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '9s', animationDelay: '2s'}}></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDuration: '11s', animationDelay: '4s'}}></div>
       </div>
 
       {/* Mouse spotlight effect */}
@@ -131,7 +131,7 @@ export default function SupportPage() {
 
       {/* Grid overlay */}
       <div className="fixed inset-0 opacity-5" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+        backgroundImage: 'linear-gradient(rgba(120,53,15,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(120,53,15,0.1) 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }}></div>
 
@@ -140,10 +140,10 @@ export default function SupportPage() {
         <div className="fixed top-4 left-4 z-50">
           <Link
             to="/"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-amber-900/20 hover:bg-white/80 transition-all shadow-md"
           >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm font-medium">{t.support.backToHome}</span>
+            <ArrowLeft className="w-4 h-4 text-amber-900" />
+            <span className="text-sm font-medium text-amber-900">{t.support.backToHome}</span>
           </Link>
         </div>
 
@@ -151,20 +151,20 @@ export default function SupportPage() {
         <div className="fixed top-4 right-4 z-50">
           <button
             onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-amber-900/20 hover:bg-white/80 transition-all shadow-md"
           >
-            <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">{language === 'en' ? 'EN' : 'ES'}</span>
+            <Globe className="w-4 h-4 text-amber-900" />
+            <span className="text-sm font-medium text-amber-900">{language === 'en' ? 'EN' : 'ES'}</span>
           </button>
         </div>
 
         {/* Hero Section */}
         <div className="container mx-auto px-4 pt-16 pb-16">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-600 via-teal-600 to-amber-700 bg-clip-text text-transparent">
               {t.support.title}
             </h1>
-            <p className="text-xl text-gray-400 mb-12">
+            <p className="text-xl text-amber-800 mb-12">
               {t.support.subtitle}
             </p>
           </div>
@@ -176,20 +176,20 @@ export default function SupportPage() {
 
             {/* Email Support */}
             <div className="group relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-pink-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-              <div className="relative bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-white/5 p-8 hover:border-white/10 transition-all">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-teal-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-amber-900/20 p-8 hover:border-orange-400/30 transition-all shadow-lg">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-pink-500 rounded-2xl flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-teal-500 rounded-2xl flex items-center justify-center">
                       <Mail className="w-8 h-8 text-white" />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold mb-3">{t.support.sections.email.title}</h3>
-                    <p className="text-gray-400 mb-4">{t.support.sections.email.description}</p>
+                    <h3 className="text-2xl font-bold mb-3 text-amber-950">{t.support.sections.email.title}</h3>
+                    <p className="text-amber-800 mb-4">{t.support.sections.email.description}</p>
                     <a
                       href={`mailto:${t.support.sections.email.action}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-teal-500 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-orange-500/30 transform hover:scale-105 transition-all"
                     >
                       {t.support.sections.email.action}
                     </a>
@@ -200,33 +200,33 @@ export default function SupportPage() {
 
             {/* FAQ Section */}
             <div className="group relative">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-              <div className="relative bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-white/5 p-8 hover:border-white/10 transition-all">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500 to-amber-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-amber-900/20 p-8 hover:border-teal-400/30 transition-all shadow-lg">
                 <div className="flex items-start gap-6 mb-8">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-2xl flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-amber-500 rounded-2xl flex items-center justify-center">
                       <HelpCircle className="w-8 h-8 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-3">{t.support.sections.faq.title}</h3>
-                    <p className="text-gray-400">{t.support.sections.faq.description}</p>
+                    <h3 className="text-2xl font-bold mb-3 text-amber-950">{t.support.sections.faq.title}</h3>
+                    <p className="text-amber-800">{t.support.sections.faq.description}</p>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   {t.support.sections.faq.items.map((item, index) => (
-                    <div key={index} className="bg-black/30 rounded-xl border border-white/5 overflow-hidden">
+                    <div key={index} className="bg-amber-50/50 rounded-xl border border-amber-900/20 overflow-hidden">
                       <button
                         onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/5 transition-all"
+                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/50 transition-all"
                       >
-                        <span className="font-semibold text-white">{item.q}</span>
-                        <MessageCircle className={`w-5 h-5 text-pink-400 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
+                        <span className="font-semibold text-amber-950">{item.q}</span>
+                        <MessageCircle className={`w-5 h-5 text-teal-600 transition-transform ${openFaq === index ? 'rotate-180' : ''}`} />
                       </button>
                       {openFaq === index && (
-                        <div className="px-6 py-4 border-t border-white/5 bg-white/5">
-                          <p className="text-gray-400">{item.a}</p>
+                        <div className="px-6 py-4 border-t border-amber-900/20 bg-white/30">
+                          <p className="text-amber-800">{item.a}</p>
                         </div>
                       )}
                     </div>
@@ -239,25 +239,25 @@ export default function SupportPage() {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Community */}
               <div className="group relative">
-                <div className="absolute -inset-0.5 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-white/5 p-8 hover:border-white/10 transition-all h-full">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6">
+                <div className="absolute -inset-0.5 bg-gradient-to-br from-teal-500 to-orange-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-amber-900/20 p-8 hover:border-teal-400/30 transition-all h-full shadow-lg">
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6">
                     <Users className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{t.support.sections.community.title}</h3>
-                  <p className="text-gray-400">{t.support.sections.community.description}</p>
+                  <h3 className="text-xl font-bold mb-3 text-amber-950">{t.support.sections.community.title}</h3>
+                  <p className="text-amber-800">{t.support.sections.community.description}</p>
                 </div>
               </div>
 
               {/* Documentation */}
               <div className="group relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-br from-green-500 to-emerald-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-white/5 p-8 hover:border-white/10 transition-all h-full">
+                <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-amber-900/20 p-8 hover:border-green-400/30 transition-all h-full shadow-lg">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6">
                     <Book className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{t.support.sections.docs.title}</h3>
-                  <p className="text-gray-400">{t.support.sections.docs.description}</p>
+                  <h3 className="text-xl font-bold mb-3 text-amber-950">{t.support.sections.docs.title}</h3>
+                  <p className="text-amber-800">{t.support.sections.docs.description}</p>
                 </div>
               </div>
             </div>
@@ -267,7 +267,7 @@ export default function SupportPage() {
         {/* Footer */}
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-gray-500">
+            <p className="text-amber-700">
               {t.footer.made}
             </p>
           </div>
