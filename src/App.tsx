@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams, Link } from 'react-router-dom';
-import { CheckCircle, Sparkles, Calendar, MapPin, Leaf, ArrowRight, Zap, Users, Bell, Waves, Globe, Apple, Smartphone } from 'lucide-react';
+import { CheckCircle, Sparkles, Calendar, MapPin, Leaf, ArrowRight, Zap, Users, Bell, Apple, Smartphone } from 'lucide-react';
 import enTranslations from './translations/en.json';
 import esTranslations from './translations/es.json';
 import EventPreview from './components/EventPreview';
