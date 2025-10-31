@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams, Link } from 'react-router-dom';
 import { CheckCircle, Sparkles, Calendar, MapPin, Leaf, ArrowRight, Zap, Users, Bell, Apple, Smartphone } from 'lucide-react';
 import enTranslations from './translations/en.json';
@@ -10,9 +10,6 @@ import PrivacyPage from './components/PrivacyPage';
 
 // Main Landing Page Component
 function LandingPage() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [count, setCount] = useState(0);
@@ -41,64 +38,6 @@ function LandingPage() {
       return () => clearTimeout(timer);
     }
   }, [count]);
-
-  const handleSubmit = async () => {
-    if (!email || !email.includes('@')) return;
-    setLoading(true);
-    
-    try {
-      // ConvertKit API integration
-      const convertKitApiKey = (import.meta as any).env.VITE_CONVERTKIT_API_KEY || 'WL4dvqOgWKNB2eq6RLOflQ';
-      const convertKitFormId = (import.meta as any).env.VITE_CONVERTKIT_FORM_ID || '8630317';
-      
-      if (convertKitApiKey && convertKitFormId) {
-        console.log('Sending to ConvertKit:', { apiKey: convertKitApiKey, formId: convertKitFormId, email });
-        
-        const response = await fetch(`https://api.convertkit.com/v3/forms/${convertKitFormId}/subscribe`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            api_key: convertKitApiKey,
-            email: email,
-            tags: ['mazunte-android-beta']
-          })
-        });
-
-        console.log('ConvertKit response:', response.status, response.statusText);
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log('ConvertKit success:', data);
-          setSubmitted(true);
-          setEmail('');
-          setLoading(false);
-          return;
-        } else {
-          const errorData = await response.json();
-          console.error('ConvertKit error:', errorData);
-          throw new Error('Failed to subscribe');
-        }
-      }
-
-      // Fallback: No email service configured
-      throw new Error('No email service configured');
-      
-    } catch (error) {
-      console.error('Subscription error:', error);
-      // For now, still show success for demo purposes
-      // In production, you might want to show an error message
-      setSubmitted(true);
-      setEmail('');
-    }
-    
-    setLoading(false);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') handleSubmit();
-  };
 
   const spotlightStyle = {
     background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(20, 184, 166, 0.12), transparent 40%)`
@@ -217,66 +156,40 @@ function LandingPage() {
               </div>
 
               {/* Android Beta - Secondary CTA */}
-              {!submitted ? (
-                <div className="relative group">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/30 to-teal-500/30 rounded-2xl blur opacity-30 group-hover:opacity-50 transition"></div>
-                  <div className="relative bg-white/80 backdrop-blur-2xl p-6 rounded-2xl border border-amber-900/20 space-y-3 shadow-lg">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <Smartphone className="w-5 h-5 text-amber-800" />
-                        <span className="font-semibold text-amber-950">{t.hero.androidCta}</span>
-                      </div>
-                      <span className="text-xs text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
-                        {t.hero.androidBetaNote}
-                      </span>
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/30 to-teal-500/30 rounded-2xl blur opacity-30 group-hover:opacity-50 transition"></div>
+                <div className="relative bg-white/80 backdrop-blur-2xl p-6 rounded-2xl border border-amber-900/20 space-y-4 shadow-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Smartphone className="w-5 h-5 text-amber-800" />
+                      <span className="font-semibold text-amber-950">{t.hero.androidCta}</span>
                     </div>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      placeholder={t.platform.emailPlaceholder}
-                      className="w-full px-4 py-3 rounded-xl bg-white border border-amber-900/20 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20 text-sm text-amber-950 placeholder-amber-600 transition-all"
-                    />
-                    <button
-                      onClick={handleSubmit}
-                      disabled={loading || !email}
-                      className="w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-teal-500 text-white rounded-xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
-                    >
-                      {loading ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span className="text-sm">Joining...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="text-sm">{t.hero.androidCta}</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </>
-                      )}
-                    </button>
-                    <p className="text-xs text-amber-700 text-center">
-                      {t.hero.betaSpots.replace('{count}', '12')}
-                    </p>
+                    <span className="text-xs text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
+                      {t.hero.androidBetaNote}
+                    </span>
                   </div>
-                </div>
-              ) : (
-                <div className="relative group animate-fadeIn">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl blur opacity-40"></div>
-                  <div className="relative p-8 bg-white/90 backdrop-blur-2xl rounded-2xl border border-green-500/30 shadow-xl">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full mb-4">
-                      <CheckCircle className="w-8 h-8 text-white" />
+
+                  <p className="text-sm text-amber-800">
+                    {t.hero.androidBetaInstructions}
+                  </p>
+
+                  <a
+                    href="https://play.google.com/apps/internaltest/4701540982422302032"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-teal-500 text-white rounded-xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all text-center"
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-sm">{t.hero.androidCtaButton}</span>
+                      <ArrowRight className="w-4 h-4" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-2 text-amber-950">{t.success.title}</h3>
-                    <p className="text-amber-800 mb-3">{t.success.message}</p>
-                    <div className="bg-teal-500/10 border border-teal-500/30 rounded-xl p-3">
-                      <p className="text-teal-700 text-xs">
-                        {t.success.email}
-                      </p>
-                    </div>
-                  </div>
+                  </a>
+
+                  <p className="text-xs text-amber-700 text-center">
+                    {t.hero.betaSpots.replace('{count}', '12')}
+                  </p>
                 </div>
-              )}
+              </div>
             </div>
 
           </div>

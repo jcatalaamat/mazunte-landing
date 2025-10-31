@@ -4,8 +4,10 @@
     "subtitle": "Todos los eventos, retiros, yoga, restaurantes y espacios conscientes en un solo lugar. No más caos de WhatsApp.",
     "stats": "Creciendo diariamente con nuevos eventos y lugares",
     "cta": "Descarga Gratis en iOS",
-    "androidCta": "Únete al Beta de Android",
+    "androidCta": "Beta de Android",
     "androidBetaNote": "Limitado a 100 probadores",
+    "androidBetaInstructions": "Únete a nuestro programa beta en Google Play. Haz clic abajo para inscribirte y sigue las instrucciones.",
+    "androidCtaButton": "Unirse al Programa Beta",
     "betaSpots": "{count}/100 lugares ocupados",
     "launching": "Disponible Ahora en iOS"
   },

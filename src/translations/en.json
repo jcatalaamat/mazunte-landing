@@ -4,8 +4,10 @@
     "subtitle": "All events, retreats, yoga, restaurants, and conscious spaces in one place. No more WhatsApp chaos.",
     "stats": "Growing daily with new events & places",
     "cta": "Download Free on iOS",
-    "androidCta": "Join Android Beta",
+    "androidCta": "Android Beta Testing",
     "androidBetaNote": "Limited to 100 testers",
+    "androidBetaInstructions": "Join our beta program on Google Play. Click below to enroll and follow the instructions.",
+    "androidCtaButton": "Join Beta Program",
     "betaSpots": "{count}/100 spots filled",
     "launching": "Available Now on iOS"
   },
