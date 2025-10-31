@@ -157,38 +157,22 @@ function LandingPage() {
 
               {/* Android Beta - Secondary CTA */}
               <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/30 to-teal-500/30 rounded-2xl blur opacity-30 group-hover:opacity-50 transition"></div>
-                <div className="relative bg-white/80 backdrop-blur-2xl p-6 rounded-2xl border border-amber-900/20 space-y-4 shadow-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <Smartphone className="w-5 h-5 text-amber-800" />
-                      <span className="font-semibold text-amber-950">{t.hero.androidCta}</span>
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-teal-500 to-amber-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                <a
+                  href="https://play.google.com/apps/internaltest/4701540982422302032"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block bg-gradient-to-r from-orange-500 via-teal-500 to-amber-600 text-white rounded-2xl overflow-hidden shadow-xl"
+                >
+                  <div className="px-8 py-5 flex items-center justify-center gap-4 relative overflow-hidden group-hover:scale-105 transition-transform">
+                    <Smartphone className="w-8 h-8" />
+                    <div className="text-left">
+                      <div className="text-xs font-medium opacity-90">{t.hero.androidBetaNote}</div>
+                      <div className="text-xl font-bold">{t.hero.androidCta}</div>
                     </div>
-                    <span className="text-xs text-amber-700 bg-amber-100 px-2 py-1 rounded-full">
-                      {t.hero.androidBetaNote}
-                    </span>
+                    <ArrowRight className="w-6 h-6 ml-auto group-hover:translate-x-1 transition-transform" />
                   </div>
-
-                  <p className="text-sm text-amber-800">
-                    {t.hero.androidBetaInstructions}
-                  </p>
-
-                  <a
-                    href="https://play.google.com/apps/internaltest/4701540982422302032"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full px-6 py-3 bg-gradient-to-r from-orange-500 to-teal-500 text-white rounded-xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all text-center"
-                  >
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="text-sm">{t.hero.androidCtaButton}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </a>
-
-                  <p className="text-xs text-amber-700 text-center">
-                    {t.hero.betaSpots.replace('{count}', '12')}
-                  </p>
-                </div>
+                </a>
               </div>
             </div>
 
